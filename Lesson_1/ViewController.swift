@@ -53,12 +53,10 @@ class ViewController: UIViewController {
             
             @objc func hideKeyboard(){
                 self.scrollView.endEditing(true)
-            
     }
 
     @IBAction func pushButton(_ sender: UIButton) {
         rootInfo.text = "GOOD TRY! %))"
     }
-    
 }
 
