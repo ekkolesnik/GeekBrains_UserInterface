@@ -56,9 +56,36 @@ class ViewController: UIViewController {
             
     }
 
-    @IBAction func pushButton(_ sender: UIButton) {
-        rootInfo.text = "GOOD TRY! %))"
+    func showAuthError() {
+        //формируем сам алерт
+        let alertVC = UIAlertController(title: "Ошибка", message: "Не верный пароль или логин", preferredStyle: .alert)
+        //формируем кнопку к алерту
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        
+        //добавдяем кнопку к алерту
+        alertVC.addAction(action)
+        
+        //выводим на экран
+        present(alertVC, animated: true, completion: nil)
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if let login = loginTextField.text, let password = passTextField.text {
+            print("Login \(login) and Password \(password)")
+            
+            if login == "admin", password == "pwd123" {
+                print("Успешная авторизация")
+                return true
+            } else {
+                print("Не успешная авторизация")
+                //показываем ошибку
+                showAuthError()
+                return false
+            }
+        }
+        //показываем ошибку
+        showAuthError()
+        return false
+    }
 }
 
