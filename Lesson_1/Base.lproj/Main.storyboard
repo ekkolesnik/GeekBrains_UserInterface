@@ -201,7 +201,7 @@
         <scene sceneID="Ucy-qC-1c8">
             <objects>
                 <navigationController modalPresentationStyle="fullScreen" id="aRR-gE-Dvq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Friends" id="MPR-Ll-Kvp"/>
+                    <tabBarItem key="tabBarItem" title="Friends" image="person.crop.circle" catalog="system" id="MPR-Ll-Kvp"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UZK-8W-61T">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -221,6 +221,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="cRp-AC-12H"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XW7-gi-D8A">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -301,7 +302,7 @@
         <scene sceneID="Usp-i1-uOG">
             <objects>
                 <navigationController id="vAa-pI-CTB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Groups" id="0xY-bN-YCU"/>
+                    <tabBarItem key="tabBarItem" title="Groups" image="person.3" catalog="system" id="0xY-bN-YCU"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="E3z-Yc-RuM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -317,5 +318,7 @@
     </scenes>
     <resources>
         <image name="After Noon.png" width="375" height="667"/>
+        <image name="person.3" catalog="system" width="72" height="35"/>
+        <image name="person.crop.circle" catalog="system" width="64" height="60"/>
     </resources>
 </document>

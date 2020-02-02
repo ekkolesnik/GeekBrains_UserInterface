@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8569251A23E6A35B007FD8F9 /* friends.png in Resources */ = {isa = PBXBuildFile; fileRef = 8569251823E6A35B007FD8F9 /* friends.png */; };
+		8569251B23E6A35B007FD8F9 /* group.png in Resources */ = {isa = PBXBuildFile; fileRef = 8569251923E6A35B007FD8F9 /* group.png */; };
 		85CB9BE723E02F33007E105D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB9BE623E02F33007E105D /* AppDelegate.swift */; };
 		85CB9BE923E02F33007E105D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB9BE823E02F33007E105D /* SceneDelegate.swift */; };
 		85CB9BEB23E02F33007E105D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB9BEA23E02F33007E105D /* ViewController.swift */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8569251823E6A35B007FD8F9 /* friends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friends.png; sourceTree = "<group>"; };
+		8569251923E6A35B007FD8F9 /* group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group.png; sourceTree = "<group>"; };
 		85CB9BE323E02F33007E105D /* Lesson_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lesson_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85CB9BE623E02F33007E105D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85CB9BE823E02F33007E105D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +77,8 @@
 		85CB9BFA23E03CD7007E105D /* img */ = {
 			isa = PBXGroup;
 			children = (
+				8569251823E6A35B007FD8F9 /* friends.png */,
+				8569251923E6A35B007FD8F9 /* group.png */,
 				85CB9BFB23E03D0D007E105D /* After Noon.png */,
 			);
 			path = img;
@@ -138,6 +144,8 @@
 			files = (
 				85CB9BF323E02F34007E105D /* LaunchScreen.storyboard in Resources */,
 				85CB9BFC23E03D0D007E105D /* After Noon.png in Resources */,
+				8569251A23E6A35B007FD8F9 /* friends.png in Resources */,
+				8569251B23E6A35B007FD8F9 /* group.png in Resources */,
 				85CB9BF023E02F34007E105D /* Assets.xcassets in Resources */,
 				85CB9BEE23E02F33007E105D /* Main.storyboard in Resources */,
 			);
