@@ -16,6 +16,11 @@
 		85CB9BF023E02F34007E105D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85CB9BEF23E02F34007E105D /* Assets.xcassets */; };
 		85CB9BF323E02F34007E105D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85CB9BF123E02F34007E105D /* LaunchScreen.storyboard */; };
 		85CB9BFC23E03D0D007E105D /* After Noon.png in Resources */ = {isa = PBXBuildFile; fileRef = 85CB9BFB23E03D0D007E105D /* After Noon.png */; };
+		85E67BBC23ED45A80079590C /* MyGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BBB23ED45A80079590C /* MyGroupsController.swift */; };
+		85E67BBE23ED46AB0079590C /* AvailableGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BBD23ED46AB0079590C /* AvailableGroupsController.swift */; };
+		85E67BC023ED49320079590C /* DetailedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BBF23ED49320079590C /* DetailedController.swift */; };
+		85E67BC223ED499B0079590C /* FriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BC123ED499B0079590C /* FriendsController.swift */; };
+		85E67BC523ED76840079590C /* FriensCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BC423ED76840079590C /* FriensCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +35,11 @@
 		85CB9BF223E02F34007E105D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85CB9BF423E02F34007E105D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85CB9BFB23E03D0D007E105D /* After Noon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "After Noon.png"; sourceTree = "<group>"; };
+		85E67BBB23ED45A80079590C /* MyGroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsController.swift; sourceTree = "<group>"; };
+		85E67BBD23ED46AB0079590C /* AvailableGroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableGroupsController.swift; sourceTree = "<group>"; };
+		85E67BBF23ED49320079590C /* DetailedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedController.swift; sourceTree = "<group>"; };
+		85E67BC123ED499B0079590C /* FriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsController.swift; sourceTree = "<group>"; };
+		85E67BC423ED76840079590C /* FriensCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriensCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,8 +75,9 @@
 				85CB9BFA23E03CD7007E105D /* img */,
 				85CB9BE623E02F33007E105D /* AppDelegate.swift */,
 				85CB9BE823E02F33007E105D /* SceneDelegate.swift */,
-				85CB9BEA23E02F33007E105D /* ViewController.swift */,
+				85E67BC323ED4E180079590C /* Controllers */,
 				85CB9BEC23E02F33007E105D /* Main.storyboard */,
+				85E67BC423ED76840079590C /* FriensCell.swift */,
 				85CB9BEF23E02F34007E105D /* Assets.xcassets */,
 				85CB9BF123E02F34007E105D /* LaunchScreen.storyboard */,
 				85CB9BF423E02F34007E105D /* Info.plist */,
@@ -82,6 +93,18 @@
 				85CB9BFB23E03D0D007E105D /* After Noon.png */,
 			);
 			path = img;
+			sourceTree = "<group>";
+		};
+		85E67BC323ED4E180079590C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				85CB9BEA23E02F33007E105D /* ViewController.swift */,
+				85E67BC123ED499B0079590C /* FriendsController.swift */,
+				85E67BBF23ED49320079590C /* DetailedController.swift */,
+				85E67BBD23ED46AB0079590C /* AvailableGroupsController.swift */,
+				85E67BBB23ED45A80079590C /* MyGroupsController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,7 +182,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				85CB9BEB23E02F33007E105D /* ViewController.swift in Sources */,
+				85E67BC023ED49320079590C /* DetailedController.swift in Sources */,
+				85E67BC523ED76840079590C /* FriensCell.swift in Sources */,
+				85E67BBE23ED46AB0079590C /* AvailableGroupsController.swift in Sources */,
+				85E67BBC23ED45A80079590C /* MyGroupsController.swift in Sources */,
 				85CB9BE723E02F33007E105D /* AppDelegate.swift in Sources */,
+				85E67BC223ED499B0079590C /* FriendsController.swift in Sources */,
 				85CB9BE923E02F33007E105D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

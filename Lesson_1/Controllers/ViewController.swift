@@ -69,6 +69,8 @@ class ViewController: UIViewController {
         present(alertVC, animated: true, completion: nil)
     }
     
+    // MARK: - Изменение функции перехода (логин + пасс)
+    
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if let login = loginTextField.text, let password = passTextField.text {
             print("Login \(login) and Password \(password)")
