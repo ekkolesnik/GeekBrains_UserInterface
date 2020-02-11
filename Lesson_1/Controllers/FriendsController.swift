@@ -10,7 +10,15 @@ import UIKit
 
 class FriendsController: UITableViewController {
     
-    let friends = ["Oleg Makedonsky", "Gora Gregovsky", "Anna Karenina", "Ganna Agyzarova", "Ivan Urgant"]
+    var image: UIImage?
+    
+    let friends = [
+        User(name: "Oleg", lastname: "Makedonsky", image: UIImage(named: "img1")!),
+        User(name: "Gora", lastname: "Gregovsky", image: UIImage(named: "img2")!),
+        User(name: "Anna", lastname: "Karenina", image: UIImage(named: "img3")!),
+        User(name: "Ganna", lastname: "Agyzarova", image: UIImage(named: "img4")!),
+        User(name: "Ivan", lastname: "Urgant", image: UIImage(named: "img5")!)
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +28,13 @@ class FriendsController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "DetailCon" else { return }
+        guard let destination = segue.destination as? DetailedController else { return }
+        destination.arr = friends
+        destination.image = image
     }
 
     // MARK: - Table view data source
@@ -39,11 +54,13 @@ class FriendsController: UITableViewController {
             preconditionFailure("Can't create FriensCell")
         }
         
-        let nameFriends = friends[indexPath.row]
-        cell.FriendsLabel.text = nameFriends
-
+        let users = friends[indexPath.row]
+        cell.FriendsLabel.text = users.name + " " + users.lastname
+        cell.ImagePic.image = users.image
+        image = users.image
         return cell
     }
+    
 
     /*
     // Override to support conditional editing of the table view.

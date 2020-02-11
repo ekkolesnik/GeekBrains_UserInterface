@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		855FC85F23F189100088E39D /* DetailedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855FC85E23F189100088E39D /* DetailedCell.swift */; };
 		8569251A23E6A35B007FD8F9 /* friends.png in Resources */ = {isa = PBXBuildFile; fileRef = 8569251823E6A35B007FD8F9 /* friends.png */; };
 		8569251B23E6A35B007FD8F9 /* group.png in Resources */ = {isa = PBXBuildFile; fileRef = 8569251923E6A35B007FD8F9 /* group.png */; };
+		85B03FFA23F1EE0E00EE4F3D /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B03FF923F1EE0E00EE4F3D /* Users.swift */; };
 		85CB9BE723E02F33007E105D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB9BE623E02F33007E105D /* AppDelegate.swift */; };
 		85CB9BE923E02F33007E105D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB9BE823E02F33007E105D /* SceneDelegate.swift */; };
 		85CB9BEB23E02F33007E105D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB9BEA23E02F33007E105D /* ViewController.swift */; };
@@ -21,11 +23,15 @@
 		85E67BC023ED49320079590C /* DetailedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BBF23ED49320079590C /* DetailedController.swift */; };
 		85E67BC223ED499B0079590C /* FriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BC123ED499B0079590C /* FriendsController.swift */; };
 		85E67BC523ED76840079590C /* FriensCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BC423ED76840079590C /* FriensCell.swift */; };
+		85E67BC723F09B040079590C /* MyGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BC623F09B040079590C /* MyGroupCell.swift */; };
+		85E67BC923F0ABD70079590C /* AvailableGroupsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BC823F0ABD70079590C /* AvailableGroupsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		855FC85E23F189100088E39D /* DetailedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedCell.swift; sourceTree = "<group>"; };
 		8569251823E6A35B007FD8F9 /* friends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friends.png; sourceTree = "<group>"; };
 		8569251923E6A35B007FD8F9 /* group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group.png; sourceTree = "<group>"; };
+		85B03FF923F1EE0E00EE4F3D /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		85CB9BE323E02F33007E105D /* Lesson_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lesson_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85CB9BE623E02F33007E105D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85CB9BE823E02F33007E105D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +46,8 @@
 		85E67BBF23ED49320079590C /* DetailedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedController.swift; sourceTree = "<group>"; };
 		85E67BC123ED499B0079590C /* FriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsController.swift; sourceTree = "<group>"; };
 		85E67BC423ED76840079590C /* FriensCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriensCell.swift; sourceTree = "<group>"; };
+		85E67BC623F09B040079590C /* MyGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupCell.swift; sourceTree = "<group>"; };
+		85E67BC823F0ABD70079590C /* AvailableGroupsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableGroupsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +85,11 @@
 				85CB9BE823E02F33007E105D /* SceneDelegate.swift */,
 				85E67BC323ED4E180079590C /* Controllers */,
 				85CB9BEC23E02F33007E105D /* Main.storyboard */,
+				85B03FF923F1EE0E00EE4F3D /* Users.swift */,
+				85E67BC823F0ABD70079590C /* AvailableGroupsCell.swift */,
+				85E67BC623F09B040079590C /* MyGroupCell.swift */,
 				85E67BC423ED76840079590C /* FriensCell.swift */,
+				855FC85E23F189100088E39D /* DetailedCell.swift */,
 				85CB9BEF23E02F34007E105D /* Assets.xcassets */,
 				85CB9BF123E02F34007E105D /* LaunchScreen.storyboard */,
 				85CB9BF423E02F34007E105D /* Info.plist */,
@@ -184,9 +196,13 @@
 				85CB9BEB23E02F33007E105D /* ViewController.swift in Sources */,
 				85E67BC023ED49320079590C /* DetailedController.swift in Sources */,
 				85E67BC523ED76840079590C /* FriensCell.swift in Sources */,
+				855FC85F23F189100088E39D /* DetailedCell.swift in Sources */,
+				85B03FFA23F1EE0E00EE4F3D /* Users.swift in Sources */,
+				85E67BC723F09B040079590C /* MyGroupCell.swift in Sources */,
 				85E67BBE23ED46AB0079590C /* AvailableGroupsController.swift in Sources */,
 				85E67BBC23ED45A80079590C /* MyGroupsController.swift in Sources */,
 				85CB9BE723E02F33007E105D /* AppDelegate.swift in Sources */,
+				85E67BC923F0ABD70079590C /* AvailableGroupsCell.swift in Sources */,
 				85E67BC223ED499B0079590C /* FriendsController.swift in Sources */,
 				85CB9BE923E02F33007E105D /* SceneDelegate.swift in Sources */,
 			);

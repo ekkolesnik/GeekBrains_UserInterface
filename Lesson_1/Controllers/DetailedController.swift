@@ -8,21 +8,24 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
 class DetailedController: UICollectionViewController {
 
+    var image: UIImage?
+    var arr = [User]()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        
     }
+    
+//    @IBAction func postImage(segue: UIStoryboardSegue) {
+//
+//        guard let friendsController = segue.source as? FriendsController else { return }
+//        let indexPath = friendsController.tableView.indexPathForSelectedRow
+//        images = friendsController.friends[indexPath!.row].image
+//        collectionView.reloadData()
+//    }
 
     /*
     // MARK: - Navigation
@@ -38,20 +41,20 @@ class DetailedController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return 1
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailedCell", for: indexPath) as! DetailedCell
+
+        let wer =
+        
         return cell
     }
 
