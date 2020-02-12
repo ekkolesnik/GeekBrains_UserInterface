@@ -10,15 +10,13 @@ import UIKit
 
 class MyGroupsController: UITableViewController {
 
-    let myGroups = [
+    var myGroups = [
         Groups(name: "Клуб любителей путешествий", image: UIImage(named: "img6")!),
         Groups(name: "Однокашники", image: UIImage(named: "img8")!),
         Groups(name: "Бывалые", image: UIImage(named: "img9")!),
         Groups(name: "Худеем вместе", image: UIImage(named: "img10")!),
         Groups(name: "Кин-Дза-Дза", image: UIImage(named: "img7")!)
     ]
-    
-//    let myGrops = ["Клуб любителей путешествий", "Однокашники", "Бывалые", "Худеем вместе", "Кин-Дза-Дза"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +51,29 @@ class MyGroupsController: UITableViewController {
 
         return cell
     }
+    
+    // MARK: - Добавление группы
+    
+    @IBAction func addGroup(segue: UIStoryboardSegue) {
+        
+        // Проверяем идентификатор перехода, чтобы убедиться, что это нужный
+        if segue.identifier == "addGroup" {
+            // Получаем ссылку на контроллер, с которого осуществлен переход
+            guard let availableGroupController = segue.source as? AvailableGroupsController else { return }
+            // Получаем индекс выделенной ячейки
+            if let indexPath = availableGroupController.tableView.indexPathForSelectedRow {
+                // Получаем город по индексу
+                let groups = availableGroupController.avaGroup[indexPath.row]
+                // Проверяем, что такого города нет в списке
+                if !myGroups.contains(where: { $0.name == groups.name }) {
+                    // Добавляем город в список выбранных
+                    myGroups.append(groups)
+                    // Обновляем таблицу
+                    tableView.reloadData()
+                }
+            }
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -62,17 +83,16 @@ class MyGroupsController: UITableViewController {
     }
     */
 
-    /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // Если была нажата кнопка «Удалить»
         if editingStyle == .delete {
-            // Delete the row from the data source
+        // Удаляем город из массива
+            myGroups.remove(at: indexPath.row)
+        // И удаляем строку из таблицы
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
-    */
 
     /*
     // Override to support rearranging the table view.

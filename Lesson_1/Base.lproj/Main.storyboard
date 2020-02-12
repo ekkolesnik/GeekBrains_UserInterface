@@ -385,6 +385,7 @@
                                 <connections>
                                     <outlet property="avaGroupImage" destination="Kg4-Gt-gOc" id="eVc-03-vvq"/>
                                     <outlet property="avaGroupName" destination="LTK-11-mwF" id="zCE-Md-Kbr"/>
+                                    <segue destination="QyI-b4-PAP" kind="unwind" identifier="addGroup" unwindAction="addGroupWithSegue:" id="ioE-XB-ABk"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -396,6 +397,7 @@
                     <navigationItem key="navigationItem" title="Available Groups" id="g1Q-se-UJi"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8wS-WN-SYz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="QyI-b4-PAP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2778" y="858"/>
         </scene>
