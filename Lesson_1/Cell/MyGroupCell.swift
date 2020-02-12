@@ -12,4 +12,7 @@ class MyGroupCell: UITableViewCell {
     
     @IBOutlet weak var MyGroupNameLabel: UILabel!
     
+    @IBOutlet weak var MyGroupImage: UIImageView!
+    
+    
 }

@@ -10,8 +10,6 @@ import UIKit
 
 class FriendsController: UITableViewController {
     
-    var image: UIImage?
-    
     let friends = [
         User(name: "Oleg", lastname: "Makedonsky", image: UIImage(named: "img1")!),
         User(name: "Gora", lastname: "Gregovsky", image: UIImage(named: "img2")!),
@@ -30,11 +28,16 @@ class FriendsController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    // MARK: - Подготовка к перходу на CollectionView
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Получаем ссылку на контроллер, с которого осуществлен переход
         guard let destination = segue.destination as? DetailedController else { return }
-        destination.arr = friends
+        // Получаем индекс выделенной ячейки
         let indexPath = tableView.indexPathForSelectedRow
+        // Присваеваем картинку
         let image = friends[indexPath!.row].image
+        // Передаём картинку на другой контроллер
         destination.image = image
         
     }
@@ -42,12 +45,10 @@ class FriendsController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return friends.count
     }
 
@@ -57,7 +58,6 @@ class FriendsController: UITableViewController {
         }
         
         let users = friends[indexPath.row]
-        //let imm = friends[indexPath.row].image
         cell.FriendsLabel.text = users.name + " " + users.lastname
         cell.ImagePic.image = users.image
         

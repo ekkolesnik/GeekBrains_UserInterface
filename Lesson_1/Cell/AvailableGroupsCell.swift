@@ -12,5 +12,7 @@ class AvailableGroupsCell: UITableViewCell {
 
     @IBOutlet weak var avaGroupName: UILabel!
     
-
+    @IBOutlet weak var avaGroupImage: UIImageView!
+    
+    
 }

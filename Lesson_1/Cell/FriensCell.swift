@@ -14,5 +14,4 @@ class FriensCell: UITableViewCell {
    
     @IBOutlet weak var ImagePic: UIImageView!
     
-    
 }

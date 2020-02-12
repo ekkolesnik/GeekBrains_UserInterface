@@ -156,7 +156,7 @@
                                             <rect key="frame" x="334" y="0.0" width="60" height="60.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="XAF-7L-yIU"/>
-                                                <constraint firstAttribute="height" constant="60" id="qZJ-Up-mRO"/>
+                                                <constraint firstAttribute="height" constant="60" id="lgH-F4-gQx"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
@@ -320,6 +320,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="MyGroupImage" destination="CJE-1f-x7H" id="E9o-v0-9iV"/>
                                     <outlet property="MyGroupNameLabel" destination="Dsq-5D-Rs9" id="di0-Kn-wD8"/>
                                 </connections>
                             </tableViewCell>
@@ -350,7 +351,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AvailableGroupsCell" id="AVm-Ya-bMZ" customClass="AvailableGroupsCell" customModule="Lesson_1" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AvailableGroupsCell" rowHeight="60.5" id="AVm-Ya-bMZ" customClass="AvailableGroupsCell" customModule="Lesson_1" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="60.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AVm-Ya-bMZ" id="jYs-XW-FqO">
@@ -382,6 +383,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="avaGroupImage" destination="Kg4-Gt-gOc" id="eVc-03-vvq"/>
                                     <outlet property="avaGroupName" destination="LTK-11-mwF" id="zCE-Md-Kbr"/>
                                 </connections>
                             </tableViewCell>

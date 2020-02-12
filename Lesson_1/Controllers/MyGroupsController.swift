@@ -9,8 +9,16 @@
 import UIKit
 
 class MyGroupsController: UITableViewController {
+
+    let myGroups = [
+        Groups(name: "Клуб любителей путешествий", image: UIImage(named: "img6")!),
+        Groups(name: "Однокашники", image: UIImage(named: "img8")!),
+        Groups(name: "Бывалые", image: UIImage(named: "img9")!),
+        Groups(name: "Худеем вместе", image: UIImage(named: "img10")!),
+        Groups(name: "Кин-Дза-Дза", image: UIImage(named: "img7")!)
+    ]
     
-    let myGrops = ["Клуб любителей путешествий", "Однокашники", "Бывалые", "Худеем вместе", "Кин-Дза-Дза"]
+//    let myGrops = ["Клуб любителей путешествий", "Однокашники", "Бывалые", "Худеем вместе", "Кин-Дза-Дза"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +39,7 @@ class MyGroupsController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return myGrops.count
+        return myGroups.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -39,8 +47,9 @@ class MyGroupsController: UITableViewController {
             preconditionFailure("Can't create MyGroupCell")
         }
 
-        let nameMyGroup = myGrops[indexPath.row]
-        cell.MyGroupNameLabel.text = nameMyGroup
+        let nameMyGroup = myGroups[indexPath.row]
+        cell.MyGroupNameLabel.text = nameMyGroup.name
+        cell.MyGroupImage.image = nameMyGroup.image
 
         return cell
     }

@@ -11,22 +11,11 @@ import UIKit
 class DetailedController: UICollectionViewController {
 
     var image: UIImage?
-    var arr = [User]()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
     }
-    
-//    @IBAction func postImage(segue: UIStoryboardSegue) {
-//
-//        guard let friendsController = segue.source as? FriendsController else { return }
-//        let indexPath = friendsController.tableView.indexPathForSelectedRow
-//        images = friendsController.friends[indexPath!.row].image
-//        collectionView.reloadData()
-//    }
 
     /*
     // MARK: - Navigation

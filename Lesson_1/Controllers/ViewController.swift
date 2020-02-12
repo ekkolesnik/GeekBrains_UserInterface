@@ -17,7 +17,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+//Жест нажатия
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         scrollView.addGestureRecognizer(tapGesture)
             }
@@ -25,6 +26,7 @@ class ViewController: UIViewController {
             override func viewWillAppear(_ animated: Bool) {
                 super.viewWillAppear(animated)
                 
+// MARK: - Hide\Show keyboard
                 NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
                 
                 NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -56,6 +58,8 @@ class ViewController: UIViewController {
             
     }
 
+    // MARK: - Alert
+    
     func showAuthError() {
         //формируем сам алерт
         let alertVC = UIAlertController(title: "Ошибка", message: "Не верный пароль или логин", preferredStyle: .alert)
