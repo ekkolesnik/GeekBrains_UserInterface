@@ -17,6 +17,7 @@ class DetailedController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
     }
     
 //    @IBAction func postImage(segue: UIStoryboardSegue) {
@@ -52,8 +53,8 @@ class DetailedController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailedCell", for: indexPath) as! DetailedCell
-
-        let wer =
+        
+        cell.DetailedImage.image = image
         
         return cell
     }

@@ -31,10 +31,12 @@ class FriendsController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "DetailCon" else { return }
         guard let destination = segue.destination as? DetailedController else { return }
         destination.arr = friends
+        let indexPath = tableView.indexPathForSelectedRow
+        let image = friends[indexPath!.row].image
         destination.image = image
+        
     }
 
     // MARK: - Table view data source
@@ -55,9 +57,10 @@ class FriendsController: UITableViewController {
         }
         
         let users = friends[indexPath.row]
+        //let imm = friends[indexPath.row].image
         cell.FriendsLabel.text = users.name + " " + users.lastname
         cell.ImagePic.image = users.image
-        image = users.image
+        
         return cell
     }
     
