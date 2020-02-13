@@ -310,33 +310,46 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="60.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e3x-SD-UtP">
+                                            <rect key="frame" x="334" y="0.0" width="60" height="60.5"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CJE-1f-x7H">
+                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="5jb-Vl-84R"/>
+                                                        <constraint firstAttribute="height" constant="60" id="COy-eH-AbA"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <constraints>
+                                                <constraint firstItem="CJE-1f-x7H" firstAttribute="leading" secondItem="e3x-SD-UtP" secondAttribute="leading" id="F3J-5X-64H"/>
+                                                <constraint firstItem="CJE-1f-x7H" firstAttribute="top" secondItem="e3x-SD-UtP" secondAttribute="top" id="N6Q-OU-XFH"/>
+                                                <constraint firstAttribute="trailing" secondItem="CJE-1f-x7H" secondAttribute="trailing" id="STo-1x-mHX"/>
+                                                <constraint firstAttribute="bottom" secondItem="CJE-1f-x7H" secondAttribute="bottom" id="dWJ-Gc-K0S"/>
+                                            </constraints>
+                                        </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dsq-5D-Rs9">
                                             <rect key="frame" x="12" y="12" width="42" height="36.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CJE-1f-x7H">
-                                            <rect key="frame" x="334" y="0.0" width="60" height="60.5"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="60" id="5jb-Vl-84R"/>
-                                                <constraint firstAttribute="height" constant="60" id="COy-eH-AbA"/>
-                                            </constraints>
-                                        </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="CJE-1f-x7H" secondAttribute="trailing" constant="20" symbolic="YES" id="05g-wp-Lla"/>
+                                        <constraint firstItem="e3x-SD-UtP" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Dsq-5D-Rs9" secondAttribute="trailing" constant="280" id="4Gt-3E-EfH"/>
                                         <constraint firstItem="Dsq-5D-Rs9" firstAttribute="leading" secondItem="vWG-Zj-FDa" secondAttribute="leading" constant="12" id="ANe-zV-ftp"/>
-                                        <constraint firstItem="CJE-1f-x7H" firstAttribute="top" secondItem="vWG-Zj-FDa" secondAttribute="top" id="B6q-Xg-Vmp"/>
+                                        <constraint firstAttribute="trailing" secondItem="e3x-SD-UtP" secondAttribute="trailing" constant="20" id="AuY-fw-OF1"/>
+                                        <constraint firstItem="e3x-SD-UtP" firstAttribute="top" secondItem="vWG-Zj-FDa" secondAttribute="top" id="LHp-pZ-0ur"/>
+                                        <constraint firstAttribute="bottom" secondItem="e3x-SD-UtP" secondAttribute="bottom" id="XTx-el-gTR"/>
                                         <constraint firstItem="Dsq-5D-Rs9" firstAttribute="top" secondItem="vWG-Zj-FDa" secondAttribute="top" constant="12" id="YBm-9b-si4"/>
-                                        <constraint firstAttribute="bottom" secondItem="CJE-1f-x7H" secondAttribute="bottom" id="YFU-HR-CPV"/>
-                                        <constraint firstItem="CJE-1f-x7H" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Dsq-5D-Rs9" secondAttribute="trailing" constant="280" id="bfO-ls-L0o"/>
                                         <constraint firstAttribute="bottom" secondItem="Dsq-5D-Rs9" secondAttribute="bottom" constant="12" id="pxA-fa-Eap"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="MyGroupImage" destination="CJE-1f-x7H" id="E9o-v0-9iV"/>
                                     <outlet property="MyGroupNameLabel" destination="Dsq-5D-Rs9" id="di0-Kn-wD8"/>
+                                    <outlet property="ViewImage" destination="e3x-SD-UtP" id="6g3-ep-QNu"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -379,25 +392,40 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kg4-Gt-gOc">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDo-6C-Fzr">
                                             <rect key="frame" x="334" y="0.0" width="60" height="60.5"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kg4-Gt-gOc">
+                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="h47-E6-Doe"/>
+                                                        <constraint firstAttribute="width" constant="60" id="s3y-2Y-8pZ"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="60" id="h47-E6-Doe"/>
-                                                <constraint firstAttribute="width" constant="60" id="s3y-2Y-8pZ"/>
+                                                <constraint firstAttribute="width" constant="60" id="Aqf-xu-tfg"/>
+                                                <constraint firstItem="Kg4-Gt-gOc" firstAttribute="leading" secondItem="gDo-6C-Fzr" secondAttribute="leading" id="CCv-Ty-GCE"/>
+                                                <constraint firstAttribute="height" constant="60" id="HWj-wM-f4D"/>
+                                                <constraint firstItem="Kg4-Gt-gOc" firstAttribute="top" secondItem="gDo-6C-Fzr" secondAttribute="top" id="Jbt-qW-K9D"/>
+                                                <constraint firstAttribute="bottom" secondItem="Kg4-Gt-gOc" secondAttribute="bottom" id="VLZ-V9-xRH"/>
+                                                <constraint firstAttribute="trailing" secondItem="Kg4-Gt-gOc" secondAttribute="trailing" id="zoC-aT-Ftf"/>
                                             </constraints>
-                                        </imageView>
+                                        </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Kg4-Gt-gOc" firstAttribute="top" secondItem="jYs-XW-FqO" secondAttribute="top" id="9eP-gZ-C8f"/>
+                                        <constraint firstItem="gDo-6C-Fzr" firstAttribute="leading" relation="lessThanOrEqual" secondItem="LTK-11-mwF" secondAttribute="trailing" constant="280" id="Gwd-Nx-fMn"/>
                                         <constraint firstItem="LTK-11-mwF" firstAttribute="top" secondItem="jYs-XW-FqO" secondAttribute="top" constant="12" id="JiX-rY-hku"/>
-                                        <constraint firstAttribute="trailing" secondItem="Kg4-Gt-gOc" secondAttribute="trailing" constant="20" symbolic="YES" id="T8g-JK-Jun"/>
-                                        <constraint firstItem="Kg4-Gt-gOc" firstAttribute="leading" relation="lessThanOrEqual" secondItem="LTK-11-mwF" secondAttribute="trailing" constant="280" id="aNT-Jv-Qc9"/>
+                                        <constraint firstAttribute="trailing" secondItem="gDo-6C-Fzr" secondAttribute="trailing" constant="20" symbolic="YES" id="Y82-47-Ttd"/>
+                                        <constraint firstItem="gDo-6C-Fzr" firstAttribute="top" secondItem="jYs-XW-FqO" secondAttribute="top" id="gGF-z1-z4a"/>
+                                        <constraint firstAttribute="bottom" secondItem="gDo-6C-Fzr" secondAttribute="bottom" id="ldT-Je-9kW"/>
                                         <constraint firstItem="LTK-11-mwF" firstAttribute="leading" secondItem="jYs-XW-FqO" secondAttribute="leading" constant="12" id="vyG-pN-c5B"/>
-                                        <constraint firstAttribute="bottom" secondItem="Kg4-Gt-gOc" secondAttribute="bottom" id="wSb-qV-OwM"/>
                                         <constraint firstAttribute="bottom" secondItem="LTK-11-mwF" secondAttribute="bottom" constant="12" id="z8f-wT-chn"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="ViewImage" destination="gDo-6C-Fzr" id="UZM-rU-8Pp"/>
                                     <outlet property="avaGroupImage" destination="Kg4-Gt-gOc" id="eVc-03-vvq"/>
                                     <outlet property="avaGroupName" destination="LTK-11-mwF" id="zCE-Md-Kbr"/>
                                     <segue destination="QyI-b4-PAP" kind="unwind" identifier="addGroup" unwindAction="addGroupWithSegue:" id="ioE-XB-ABk"/>
