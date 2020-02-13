@@ -152,27 +152,42 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zLa-tP-6Jo">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TGB-Wb-FTO">
                                             <rect key="frame" x="334" y="0.0" width="60" height="60.5"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zLa-tP-6Jo">
+                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="XAF-7L-yIU"/>
+                                                        <constraint firstAttribute="height" constant="60" id="lgH-F4-gQx"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="60" id="XAF-7L-yIU"/>
-                                                <constraint firstAttribute="height" constant="60" id="lgH-F4-gQx"/>
+                                                <constraint firstAttribute="trailing" secondItem="zLa-tP-6Jo" secondAttribute="trailing" id="W9q-In-uHD"/>
+                                                <constraint firstItem="zLa-tP-6Jo" firstAttribute="leading" secondItem="TGB-Wb-FTO" secondAttribute="leading" id="bit-22-kRu"/>
+                                                <constraint firstAttribute="height" constant="60" id="nxH-qJ-Xzs"/>
+                                                <constraint firstItem="zLa-tP-6Jo" firstAttribute="top" secondItem="TGB-Wb-FTO" secondAttribute="top" id="p77-if-cTE"/>
+                                                <constraint firstAttribute="bottom" secondItem="zLa-tP-6Jo" secondAttribute="bottom" id="qgx-0d-q6H"/>
+                                                <constraint firstAttribute="width" constant="60" id="wmY-BV-jt1"/>
                                             </constraints>
-                                        </imageView>
+                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="tri-te-4qf" firstAttribute="leading" secondItem="80g-ee-Zny" secondAttribute="leading" constant="12" id="Lkw-yH-Iq6"/>
-                                        <constraint firstAttribute="bottom" secondItem="zLa-tP-6Jo" secondAttribute="bottom" id="Wzc-sQ-oa4"/>
+                                        <constraint firstItem="TGB-Wb-FTO" firstAttribute="leading" relation="lessThanOrEqual" secondItem="tri-te-4qf" secondAttribute="trailing" constant="280" id="PuS-wo-iBT"/>
+                                        <constraint firstAttribute="bottom" secondItem="TGB-Wb-FTO" secondAttribute="bottom" id="Yea-Sj-SLX"/>
                                         <constraint firstItem="tri-te-4qf" firstAttribute="top" secondItem="80g-ee-Zny" secondAttribute="top" constant="12" id="Z6m-u2-2UD"/>
-                                        <constraint firstItem="zLa-tP-6Jo" firstAttribute="leading" relation="lessThanOrEqual" secondItem="tri-te-4qf" secondAttribute="trailing" constant="280" id="dz9-hR-zd6"/>
-                                        <constraint firstAttribute="trailing" secondItem="zLa-tP-6Jo" secondAttribute="trailing" constant="20" symbolic="YES" id="gzR-hJ-hd4"/>
-                                        <constraint firstItem="zLa-tP-6Jo" firstAttribute="top" secondItem="80g-ee-Zny" secondAttribute="top" id="luX-bC-ZBm"/>
+                                        <constraint firstAttribute="trailing" secondItem="TGB-Wb-FTO" secondAttribute="trailing" constant="20" symbolic="YES" id="eXy-UZ-fSB"/>
                                         <constraint firstAttribute="bottom" secondItem="tri-te-4qf" secondAttribute="bottom" constant="12" id="mla-ci-hxh"/>
+                                        <constraint firstItem="TGB-Wb-FTO" firstAttribute="top" secondItem="80g-ee-Zny" secondAttribute="top" id="qpy-Vo-rfP"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="FriendsLabel" destination="tri-te-4qf" id="A06-4l-qJf"/>
                                     <outlet property="ImagePic" destination="zLa-tP-6Jo" id="Oca-HC-joA"/>
+                                    <outlet property="ViewImage" destination="TGB-Wb-FTO" id="wcJ-Iq-XAM"/>
                                     <segue destination="sud-KF-Knq" kind="show" identifier="DetailCon" id="wBP-Gf-uRa"/>
                                 </connections>
                             </tableViewCell>
