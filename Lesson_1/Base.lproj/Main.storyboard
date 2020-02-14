@@ -152,7 +152,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TGB-Wb-FTO">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TGB-Wb-FTO" customClass="ViewImage" customModule="Lesson_1" customModuleProvider="target">
                                             <rect key="frame" x="334" y="0.0" width="60" height="60.5"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zLa-tP-6Jo">
@@ -172,6 +172,14 @@
                                                 <constraint firstAttribute="bottom" secondItem="zLa-tP-6Jo" secondAttribute="bottom" id="qgx-0d-q6H"/>
                                                 <constraint firstAttribute="width" constant="60" id="wmY-BV-jt1"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                    <real key="value" value="6"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
                                     <constraints>
@@ -310,7 +318,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="60.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e3x-SD-UtP">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e3x-SD-UtP" customClass="MyGroupViewImage" customModule="Lesson_1" customModuleProvider="target">
                                             <rect key="frame" x="334" y="0.0" width="60" height="60.5"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CJE-1f-x7H">
@@ -328,6 +336,14 @@
                                                 <constraint firstAttribute="trailing" secondItem="CJE-1f-x7H" secondAttribute="trailing" id="STo-1x-mHX"/>
                                                 <constraint firstAttribute="bottom" secondItem="CJE-1f-x7H" secondAttribute="bottom" id="dWJ-Gc-K0S"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                    <real key="value" value="6"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dsq-5D-Rs9">
                                             <rect key="frame" x="12" y="12" width="42" height="36.5"/>
@@ -392,7 +408,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDo-6C-Fzr">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDo-6C-Fzr" customClass="AvailableGroupViewImage" customModule="Lesson_1" customModuleProvider="target">
                                             <rect key="frame" x="334" y="0.0" width="60" height="60.5"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kg4-Gt-gOc">
@@ -412,6 +428,14 @@
                                                 <constraint firstAttribute="bottom" secondItem="Kg4-Gt-gOc" secondAttribute="bottom" id="VLZ-V9-xRH"/>
                                                 <constraint firstAttribute="trailing" secondItem="Kg4-Gt-gOc" secondAttribute="trailing" id="zoC-aT-Ftf"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                    <real key="value" value="6"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
                                     <constraints>

@@ -111,3 +111,26 @@ class FriendsController: UITableViewController {
     */
 
 }
+
+@IBDesignable class ViewImage: UIView {
+    
+    @IBInspectable var shadowColor: UIColor = .clear {
+        didSet {
+            self.layer.shadowColor = shadowColor.cgColor
+        }
+    }
+    
+    @IBInspectable var shadowRadius: CGFloat = 6.0 {
+        didSet {
+            self.layer.shadowRadius = shadowRadius
+        }
+    }
+    
+    @IBInspectable var shadowOpacity: Float = 0.7 {
+        didSet {
+            self.layer.shadowOpacity = shadowOpacity
+        }
+    }
+    
+    
+}

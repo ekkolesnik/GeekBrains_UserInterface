@@ -21,9 +21,9 @@ class MyGroupCell: UITableViewCell {
     
     ViewImage.layer.cornerRadius = ViewImage.frame.height / 2
     
-    ViewImage.layer.shadowColor = UIColor.black.cgColor
-    ViewImage.layer.shadowOpacity = 0.7
-    ViewImage.layer.shadowRadius = 6
+//    ViewImage.layer.shadowColor = UIColor.black.cgColor
+//    ViewImage.layer.shadowOpacity = 0.7
+//    ViewImage.layer.shadowRadius = 6
     ViewImage.layer.shadowOffset = .zero
     
     MyGroupImage.layer.cornerRadius = MyGroupImage.frame.height / 2
