@@ -226,19 +226,13 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DetailedCell" id="CV6-LZ-8k2" customClass="DetailedCell" customModule="Lesson_1" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="DetailedCell" reuseIdentifier="DetailedCell" id="CV6-LZ-8k2" customClass="DetailedCell" customModule="Lesson_1" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="6Py-Pv-yU4">
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6H-ZT-YLv">
-                                            <rect key="frame" x="107.5" y="167" width="16.5" height="20"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.74273973699999996" green="7.8667835620000004e-05" blue="0.12152860309999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="dImage" translatesAutoresizingMaskIntoConstraints="NO" id="6Pv-Cp-2cQ">
                                             <rect key="frame" x="20" y="20" width="160" height="160"/>
                                             <constraints>
@@ -246,31 +240,27 @@
                                                 <constraint firstAttribute="width" secondItem="6Pv-Cp-2cQ" secondAttribute="height" multiplier="1:1" id="o26-Ap-Z7y"/>
                                             </constraints>
                                         </imageView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vwP-hz-yW5" customClass="heartView" customModule="Lesson_1" customModuleProvider="target">
-                                            <rect key="frame" x="137" y="162" width="30" height="30"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="STb-Ch-jfN" customClass="HeartLikeControl" customModule="Lesson_1" customModuleProvider="target">
+                                            <rect key="frame" x="115" y="165" width="85" height="27"/>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <color key="tintColor" red="0.74273973699999996" green="7.8667835620000004e-05" blue="0.12152860309999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="Ns5-5H-4Wz"/>
-                                                <constraint firstAttribute="width" constant="30" id="fn2-VJ-DdC"/>
+                                                <constraint firstAttribute="width" constant="85" id="U3M-DE-MtP"/>
+                                                <constraint firstAttribute="height" constant="27" id="lQU-L9-95h"/>
                                             </constraints>
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="vwP-hz-yW5" secondAttribute="trailing" constant="33" id="FKQ-Cn-dMf"/>
-                                        <constraint firstAttribute="bottom" secondItem="o6H-ZT-YLv" secondAttribute="bottom" constant="13" id="GsD-ia-5Fv"/>
                                         <constraint firstItem="6Pv-Cp-2cQ" firstAttribute="leading" secondItem="6Py-Pv-yU4" secondAttribute="leading" constant="20" symbolic="YES" id="KnW-1G-FMN"/>
-                                        <constraint firstItem="vwP-hz-yW5" firstAttribute="leading" secondItem="o6H-ZT-YLv" secondAttribute="trailing" constant="13" id="Wep-4d-MSO"/>
                                         <constraint firstAttribute="bottom" secondItem="6Pv-Cp-2cQ" secondAttribute="bottom" constant="20" symbolic="YES" id="ajC-tG-Ads"/>
-                                        <constraint firstAttribute="bottom" secondItem="vwP-hz-yW5" secondAttribute="bottom" constant="8" id="maJ-cf-oeG"/>
+                                        <constraint firstAttribute="bottom" secondItem="STb-Ch-jfN" secondAttribute="bottom" constant="8" id="fhC-Uv-62i"/>
                                         <constraint firstItem="6Pv-Cp-2cQ" firstAttribute="top" secondItem="6Py-Pv-yU4" secondAttribute="top" constant="20" symbolic="YES" id="mh1-6h-luN"/>
                                         <constraint firstAttribute="trailing" secondItem="6Pv-Cp-2cQ" secondAttribute="trailing" constant="20" symbolic="YES" id="syE-yX-Uj0"/>
+                                        <constraint firstAttribute="trailing" secondItem="STb-Ch-jfN" secondAttribute="trailing" id="voe-5l-ZJc"/>
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="200" height="200"/>
                                 <connections>
                                     <outlet property="DetailedImage" destination="6Pv-Cp-2cQ" id="DCJ-ns-RpH"/>
-                                    <outlet property="countLikeUsers" destination="o6H-ZT-YLv" id="BIP-tb-d6e"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

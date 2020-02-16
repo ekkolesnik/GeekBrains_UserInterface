@@ -12,6 +12,5 @@ class DetailedCell: UICollectionViewCell {
     
     @IBOutlet weak var DetailedImage: UIImageView!
     
-    @IBOutlet weak var countLikeUsers: UILabel!
-    
 }
+

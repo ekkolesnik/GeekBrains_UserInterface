@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		854BF4CA23F9DD74008850BB /* HeartLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854BF4C923F9DD74008850BB /* HeartLike.swift */; };
 		855FC85F23F189100088E39D /* DetailedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855FC85E23F189100088E39D /* DetailedCell.swift */; };
 		8566F83523F4017500EBD6DE /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8566F83423F4017500EBD6DE /* Groups.swift */; };
 		8569251A23E6A35B007FD8F9 /* friends.png in Resources */ = {isa = PBXBuildFile; fileRef = 8569251823E6A35B007FD8F9 /* friends.png */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		854BF4C923F9DD74008850BB /* HeartLike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartLike.swift; sourceTree = "<group>"; };
 		855FC85E23F189100088E39D /* DetailedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedCell.swift; sourceTree = "<group>"; };
 		8566F83423F4017500EBD6DE /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
 		8569251823E6A35B007FD8F9 /* friends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friends.png; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				85CB9BE823E02F33007E105D /* SceneDelegate.swift */,
 				85E67BC323ED4E180079590C /* Controllers */,
 				85CB9BEC23E02F33007E105D /* Main.storyboard */,
+				854BF4C923F9DD74008850BB /* HeartLike.swift */,
 				85B03FF923F1EE0E00EE4F3D /* Users.swift */,
 				8566F83423F4017500EBD6DE /* Groups.swift */,
 				8566F83323F3FEDB00EBD6DE /* Cell */,
@@ -205,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85CB9BEB23E02F33007E105D /* ViewController.swift in Sources */,
+				854BF4CA23F9DD74008850BB /* HeartLike.swift in Sources */,
 				85E67BC023ED49320079590C /* DetailedController.swift in Sources */,
 				85E67BC523ED76840079590C /* FriensCell.swift in Sources */,
 				855FC85F23F189100088E39D /* DetailedCell.swift in Sources */,
