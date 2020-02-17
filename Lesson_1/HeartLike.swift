@@ -12,8 +12,8 @@ class HeartLikeControl: UIControl{
     
     public var likeBool: Bool = false
     
-    var likeCount: UILabel!
-    var likeImage: UIImageView!
+    var likeCount: UILabel?
+    var likeImage: UIImageView?
     var count: Int = 0
     
     override init (frame: CGRect){
@@ -31,24 +31,24 @@ class HeartLikeControl: UIControl{
         gesture.numberOfTouchesRequired = 1
         addGestureRecognizer(gesture)
         likeCount = UILabel(frame:CGRect(x: 0, y: 5, width: 10, height: 23))
-        likeCount.text = String(count)
-        likeCount.textColor = .red
-        self.addSubview(likeCount)
+        likeCount?.text = String(count)
+        likeCount?.textColor = .red
+        self.addSubview(likeCount!)
         
         likeImage = UIImageView(image: UIImage(named: "LikeEmpty")!)
-        likeImage.frame = CGRect(x: 20, y: 0, width: 25, height: 27)
+        likeImage?.frame = CGRect(x: 20, y: 0, width: 25, height: 27)
 
-        self.addSubview(likeImage)
+        self.addSubview(likeImage!)
     }
 
     @objc func likeTapped(){
         likeBool.toggle()
-        likeImage.image = likeBool ? UIImage(named: "LikeFull") : UIImage(named: "LikeEmpty")
-        likeCount.textColor = likeBool ? .yellow : .red
+        likeImage?.image = likeBool ? UIImage(named: "LikeFull") : UIImage(named: "LikeEmpty")
+        likeCount?.textColor = likeBool ? .yellow : .red
            if likeBool == true {
-                   likeCount.text = String(count+1)
+                   likeCount?.text = String(count+1)
            } else {
-                    likeCount.text = String(count)
+                    likeCount?.text = String(count)
            }
            setNeedsDisplay()
            sendActions(for: .valueChanged)

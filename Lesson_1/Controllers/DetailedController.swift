@@ -11,6 +11,8 @@ import UIKit
 class DetailedController: UICollectionViewController {
     
     var image: UIImage?
+    var nameLabelDetail: String?
+    var lastNameLabelDetail: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +46,8 @@ class DetailedController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailedCell", for: indexPath) as! DetailedCell
         
         cell.DetailedImage.image = image
+        cell.NameLabelDetail.text = nameLabelDetail
+        cell.LastNameLabelDetail.text = lastNameLabelDetail
         
         return cell
     }

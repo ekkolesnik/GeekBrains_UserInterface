@@ -12,5 +12,16 @@ class DetailedCell: UICollectionViewCell {
     
     @IBOutlet weak var DetailedImage: UIImageView!
     
+    @IBOutlet weak var NameLabelDetail: UILabel!
+    
+    @IBOutlet weak var LastNameLabelDetail: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        DetailedImage.layer.cornerRadius = DetailedImage.frame.height / 2
+        
+    }
+    
 }
 

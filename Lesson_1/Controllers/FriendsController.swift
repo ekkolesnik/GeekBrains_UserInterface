@@ -21,6 +21,7 @@ class FriendsController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -37,8 +38,16 @@ class FriendsController: UITableViewController {
         let indexPath = tableView.indexPathForSelectedRow
         // Присваеваем картинку
         let image = friends[indexPath!.row].image
+        //Присваиваем имя
+        let labelNameDetail = friends[indexPath!.row].name
+        //присваиваем фамилию
+        let labelLastNameDetail = friends[indexPath!.row].lastname
         // Передаём картинку на другой контроллер
         destination.image = image
+        //Передаём имя на контроллер
+        destination.nameLabelDetail = labelNameDetail
+        //Передаём Фамилию на контроллер
+        destination.lastNameLabelDetail = labelLastNameDetail
         
     }
 
@@ -50,6 +59,7 @@ class FriendsController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count
+
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,6 +73,7 @@ class FriendsController: UITableViewController {
         
         return cell
     }
+    
     
 
     /*
