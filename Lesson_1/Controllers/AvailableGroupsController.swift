@@ -17,8 +17,6 @@ class AvailableGroupsController: UITableViewController {
         Groups(name: "Новости недели", image: UIImage(named: "img14")!),
         Groups(name: "Комиксы", image: UIImage(named: "img15")!)
     ]
-    
-//    let avaGroup = ["Мужики за 40", "Автобарахолка", "Сериалы", "Новости недели", "Комиксы"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,7 +116,5 @@ class AvailableGroupsController: UITableViewController {
             self.layer.shadowOpacity = shadowOpacity
         }
     }
-    
-    
 }
 

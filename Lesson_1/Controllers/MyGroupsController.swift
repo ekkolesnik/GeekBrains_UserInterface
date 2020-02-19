@@ -9,6 +9,9 @@
 import UIKit
 
 class MyGroupsController: UITableViewController {
+    
+    @IBOutlet weak var SearchBar: UISearchBar!
+    
 
     var myGroups = [
         Groups(name: "Клуб любителей путешествий", image: UIImage(named: "img6")!),
@@ -17,9 +20,15 @@ class MyGroupsController: UITableViewController {
         Groups(name: "Худеем вместе", image: UIImage(named: "img10")!),
         Groups(name: "Кин-Дза-Дза", image: UIImage(named: "img7")!)
     ]
+    
+    var filterGroup = [Groups]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.SearchBar.delegate = self
+        
+        self.filterGroup = myGroups
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -34,7 +43,7 @@ class MyGroupsController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myGroups.count
+        return filterGroup.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -42,7 +51,7 @@ class MyGroupsController: UITableViewController {
             preconditionFailure("Can't create MyGroupCell")
         }
 
-        let nameMyGroup = myGroups[indexPath.row]
+        let nameMyGroup = filterGroup[indexPath.row]
         cell.MyGroupNameLabel.text = nameMyGroup.name
         cell.MyGroupImage.image = nameMyGroup.image
 
@@ -62,9 +71,9 @@ class MyGroupsController: UITableViewController {
                 // Получаем город по индексу
                 let groups = availableGroupController.avaGroup[indexPath.row]
                 // Проверяем, что такого города нет в списке
-                if !myGroups.contains(where: { $0.name == groups.name }) {
+                if !filterGroup.contains(where: { $0.name == groups.name }) {
                     // Добавляем город в список выбранных
-                    myGroups.append(groups)
+                    filterGroup.append(groups)
                     // Обновляем таблицу
                     tableView.reloadData()
                 }
@@ -137,6 +146,32 @@ class MyGroupsController: UITableViewController {
             self.layer.shadowOpacity = shadowOpacity
         }
     }
+}
+
+// MARK: - UISearchBarDelegate
+
+extension MyGroupsController: UISearchBarDelegate {
     
-    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+        
+        print(searchText)
+        self.filterGroup.removeAll()
+        
+        if searchText == "" || searchText == " " {
+            self.filterGroup = myGroups
+            self.tableView.reloadData()
+            return
+        }
+        
+        for item in myGroups {
+            let text = searchText.lowercased()
+            let isArrayContain = item.name.lowercased().range(of: text)
+            
+            if isArrayContain != nil {
+                print("success")
+                filterGroup.append(item)
+            }
+        }
+        self.tableView.reloadData()
+    }
 }

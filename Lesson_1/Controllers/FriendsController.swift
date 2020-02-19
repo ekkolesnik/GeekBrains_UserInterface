@@ -10,6 +10,8 @@ import UIKit
 
 class FriendsController: UITableViewController {
     
+    @IBOutlet weak var SearchBarFriends: UISearchBar!
+    
     let friends = [
         User(name: "Oleg", lastname: "Makedonsky", image: UIImage(named: "img1")!),
         User(name: "Gora", lastname: "Gregovsky", image: UIImage(named: "img2")!),
@@ -17,10 +19,15 @@ class FriendsController: UITableViewController {
         User(name: "Ganna", lastname: "Agyzarova", image: UIImage(named: "img4")!),
         User(name: "Ivan", lastname: "Urgant", image: UIImage(named: "img5")!)
     ]
+    
+    var filterFriends = [User]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.SearchBarFriends.delegate = self
+        
+        self.filterFriends = friends
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -58,7 +65,7 @@ class FriendsController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friends.count
+        return filterFriends.count
 
     }
 
@@ -67,7 +74,7 @@ class FriendsController: UITableViewController {
             preconditionFailure("Can't create FriensCell")
         }
         
-        let users = friends[indexPath.row]
+        let users = filterFriends[indexPath.row]
         cell.FriendsLabel.text = users.name + " " + users.lastname
         cell.ImagePic.image = users.image
         
@@ -142,6 +149,33 @@ class FriendsController: UITableViewController {
             self.layer.shadowOpacity = shadowOpacity
         }
     }
+}
+
+// MARK: - UISearchBarDelegate
+
+extension FriendsController: UISearchBarDelegate {
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+        
+        print(searchText)
+        self.filterFriends.removeAll()
+        
+        if searchText == "" || searchText == " " {
+            self.filterFriends = friends
+            self.tableView.reloadData()
+            return
+        }
+        
+        for item in friends {
+            let text = searchText.lowercased()
+            let isArrayContain = item.name.lowercased().range(of: text)
+            
+            if isArrayContain != nil {
+                print("success")
+                filterFriends.append(item)
+            }
+        }
+        self.tableView.reloadData()
+    }
     
 }
