@@ -94,7 +94,7 @@ class MyGroupsController: UITableViewController {
         // Если была нажата кнопка «Удалить»
         if editingStyle == .delete {
         // Удаляем город из массива
-            myGroups.remove(at: indexPath.row)
+            filterGroup.remove(at: indexPath.row)
         // И удаляем строку из таблицы
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
@@ -154,7 +154,6 @@ extension MyGroupsController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         
-        print(searchText)
         self.filterGroup.removeAll()
         
         if searchText == "" || searchText == " " {
@@ -168,7 +167,6 @@ extension MyGroupsController: UISearchBarDelegate {
             let isArrayContain = item.name.lowercased().range(of: text)
             
             if isArrayContain != nil {
-                print("success")
                 filterGroup.append(item)
             }
         }

@@ -79,7 +79,7 @@ class ViewController: UIViewController {
         if let login = loginTextField.text, let password = passTextField.text {
             print("Login \(login) and Password \(password)")
             
-            if login == "admin", password == "pwd123" {
+            if login == "admin", password == "admin" {
                 print("Успешная авторизация")
                 return true
             } else {

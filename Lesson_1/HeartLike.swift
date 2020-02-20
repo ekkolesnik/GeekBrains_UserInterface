@@ -44,7 +44,7 @@ class HeartLikeControl: UIControl{
     @objc func likeTapped(){
         likeBool.toggle()
         likeImage?.image = likeBool ? UIImage(named: "LikeFull") : UIImage(named: "LikeEmpty")
-        likeCount?.textColor = likeBool ? .yellow : .red
+        likeCount?.textColor = likeBool ? .black : .red
            if likeBool == true {
                    likeCount?.text = String(count+1)
            } else {
