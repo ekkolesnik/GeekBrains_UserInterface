@@ -12,28 +12,47 @@ class FriendsController: UITableViewController {
     
     @IBOutlet weak var SearchBarFriends: UISearchBar!
     
-    let friends = [
-        User(name: "Oleg", lastname: "Makedonsky", image: UIImage(named: "img1")!),
-        User(name: "Gora", lastname: "Gregovsky", image: UIImage(named: "img2")!),
-        User(name: "Anna", lastname: "Karenina", image: UIImage(named: "img3")!),
-        User(name: "Ganna", lastname: "Agyzarova", image: UIImage(named: "img4")!),
-        User(name: "Ivan", lastname: "Urgant", image: UIImage(named: "img5")!)
+    var friends = [
+        User(name: "Oleg", lastname: "Makedonsky", image: UIImage(named: "img1")!, id: 1),
+        User(name: "Gora", lastname: "Gregovsky", image: UIImage(named: "img2")!, id: 2),
+        User(name: "Anna", lastname: "Karenina", image: UIImage(named: "img3")!, id: 3),
+        User(name: "Ganna", lastname: "Agyzarova", image: UIImage(named: "img4")!, id: 4),
+        User(name: "Ivan", lastname: "Urgant", image: UIImage(named: "img5")!, id: 5)
     ]
     
-    var filterFriends = [User]()
-
+    lazy var friendsSorted: [String] = {
+        var temp: [String] = []
+        friends.forEach { friend in
+            temp.append(friend.name + " " + friend.lastname)
+        }
+        return temp
+    }()
+    
+    var filterFriends = [String]()
+    
+    lazy var sections:[[String]] = {
+        
+        var dict = [[String]]()
+        return filterFriends.sorted().reduce([[String]]()) { (result, element) -> [[String]] in
+            guard var last = result.last else { return [[element]] }
+            var collection = result
+            if element.first == result.last?.first?.first {
+                last.append(element)
+                collection[collection.count - 1] = last
+            } else {
+                collection.append([element])
+            }
+            return collection
+        }
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.SearchBarFriends.delegate = self
         
-        self.filterFriends = friends
+        self.filterFriends = friendsSorted
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     // MARK: - Подготовка к перходу на CollectionView
@@ -41,94 +60,91 @@ class FriendsController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Получаем ссылку на контроллер, с которого осуществлен переход
         guard let destination = segue.destination as? DetailedController else { return }
-        // Получаем индекс выделенной ячейки
-        let indexPath = tableView.indexPathForSelectedRow
-        // Присваеваем картинку
-        let image = friends[indexPath!.row].image
-        //Присваиваем имя
-        let labelNameDetail = friends[indexPath!.row].name
-        //присваиваем фамилию
-        let labelLastNameDetail = friends[indexPath!.row].lastname
-        // Передаём картинку на другой контроллер
+
+        var image: UIImage?
+        var labelNameDetail: String?
+        var labelLastNameDetail: String?
+
+        for i in friends {
+            if i.name + " " + i.lastname == selectedRowSuper {
+                image = i.image
+                labelNameDetail = i.name
+                labelLastNameDetail = i.lastname
+            }
+        }
+
+//        // Передаём картинку на другой контроллер
         destination.image = image
-        //Передаём имя на контроллер
+//        //Передаём имя на контроллер
         destination.nameLabelDetail = labelNameDetail
-        //Передаём Фамилию на контроллер
+//        //Передаём Фамилию на контроллер
         destination.lastNameLabelDetail = labelLastNameDetail
-        
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+//        return 1
+        return sections.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filterFriends.count
+        return sections[section].count
 
     }
+    
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        // Делаем массив плоским
+        // Например [[Москва, Мурманск], [Самара, Суздаль]] -> [Москва, Мурманск, Самара, Суздаль]
+        let sectionsJoined = sections.joined()
+
+        // Трансформируем наш "плоский" массив городов в массив первых букв названий городов
+        let letterArray = sectionsJoined.compactMap{ $0.first?.uppercased() }
+
+        // Делаем Set из массива чтобы все неуникальные буквы пропали
+        let set = Set(letterArray)
+
+        // Возвращаем массив уникальных букв предварительно его отсортировав
+        return Array(set).sorted()
+    }
+    
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        return tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerView")
+//    }
+    
+    //определяем нажатую ячейку для передачи её через метод "prepare"
+    var selectedRowSuper: String?
+
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        selectedRowSuper = sections[indexPath.section][indexPath.row]
+        return indexPath
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sections[section].first?.first?.uppercased()
+    }
+    
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriensCell", for: indexPath) as? FriensCell else {
             preconditionFailure("Can't create FriensCell")
         }
         
-        let users = filterFriends[indexPath.row]
-        cell.FriendsLabel.text = users.name + " " + users.lastname
-        cell.ImagePic.image = users.image
+        let users = sections[indexPath.section][indexPath.row]
+        cell.FriendsLabel.text = users
+        
+        for i in friends {
+            if i.name + " " + i.lastname == users {
+                cell.ImagePic.image = i.image
+            }
+        }
         
         return cell
     }
-    
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+//Отображение изменения цвета, радиуса и прозрачности тени
 
 @IBDesignable class ViewImage: UIView {
     
@@ -154,28 +170,24 @@ class FriendsController: UITableViewController {
 // MARK: - UISearchBarDelegate
 
 extension FriendsController: UISearchBarDelegate {
-    
+
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
-        
-        print(searchText)
-        self.filterFriends.removeAll()
-        
-        if searchText == "" || searchText == " " {
-            self.filterFriends = friends
-            self.tableView.reloadData()
-            return
-        }
-        
-        for item in friends {
-            let text = searchText.lowercased()
-            let isArrayContain = item.name.lowercased().range(of: text)
+        filterFriends = friendsSorted.filter { $0.range(of: searchText, options: .caseInsensitive) != nil }
+            if filterFriends.count == 0 {filterFriends = friendsSorted}
             
-            if isArrayContain != nil {
-                print("success")
-                filterFriends.append(item)
-            }
+            sections = {
+                return filterFriends.sorted().reduce([[String]]()) { (result, element) -> [[String]] in
+                    guard var last = result.last else { return [[element]] }
+                    var collection = result
+                    if element.first == result.last?.first?.first {
+                        last.append(element)
+                        collection[collection.count - 1] = last
+                    } else {
+                        collection.append([element])
+                    }
+                    return collection
+                }
+            }()
+            tableView.reloadData()
         }
-        self.tableView.reloadData()
-    }
-    
 }

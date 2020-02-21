@@ -8,8 +8,13 @@
 
 import UIKit
 
-struct User {
+struct User: Comparable {
+    static func < (lhs: User, rhs: User) -> Bool {
+        return lhs.name < rhs.name
+    }
+    
     let name: String
     let lastname: String
     let image: UIImage
+    let id: Int
 }

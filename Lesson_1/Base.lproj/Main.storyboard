@@ -419,6 +419,15 @@
                                                     <color key="tintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                     <state key="normal" image="arrowshape.turn.up.right" catalog="system"/>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oYK-Lk-GAx">
+                                                    <rect key="frame" x="359" y="498" width="35" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="35" id="93G-gv-6vL"/>
+                                                        <constraint firstAttribute="height" constant="35" id="aGa-kY-URS"/>
+                                                    </constraints>
+                                                    <color key="tintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                    <state key="normal" image="eye" catalog="system"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="6rX-OU-e7n" firstAttribute="leading" secondItem="v4q-nT-8IQ" secondAttribute="leadingMargin" id="06j-3R-LeQ"/>
@@ -432,6 +441,7 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="2e0-Oq-DZ6" secondAttribute="bottom" id="SuN-qi-7ye"/>
                                                 <constraint firstItem="YzB-3D-UzM" firstAttribute="top" secondItem="td9-J2-UaF" secondAttribute="bottom" constant="6.5" id="Tl4-2t-Q5V"/>
                                                 <constraint firstItem="td9-J2-UaF" firstAttribute="leading" secondItem="v4q-nT-8IQ" secondAttribute="leading" constant="20" symbolic="YES" id="YQe-8Q-fUr"/>
+                                                <constraint firstItem="oYK-Lk-GAx" firstAttribute="top" secondItem="td9-J2-UaF" secondAttribute="bottom" constant="6.5" id="ZeU-5P-fni"/>
                                                 <constraint firstItem="aS4-Pk-xea" firstAttribute="leading" secondItem="2e0-Oq-DZ6" secondAttribute="trailing" constant="8" id="Zql-Xo-8Ye"/>
                                                 <constraint firstItem="L8e-EE-doP" firstAttribute="leading" secondItem="fLK-3X-6Rn" secondAttribute="trailing" constant="8" id="bkw-vj-4PN"/>
                                                 <constraint firstItem="2e0-Oq-DZ6" firstAttribute="leading" secondItem="v4q-nT-8IQ" secondAttribute="leadingMargin" id="byo-lf-qV4"/>
@@ -444,6 +454,7 @@
                                                 <constraint firstItem="aS4-Pk-xea" firstAttribute="top" secondItem="td9-J2-UaF" secondAttribute="bottom" constant="6.5" id="r1u-iy-obx"/>
                                                 <constraint firstItem="X1o-IY-WF8" firstAttribute="leading" secondItem="fLK-3X-6Rn" secondAttribute="trailing" constant="8" id="s5S-bx-rBS"/>
                                                 <constraint firstItem="fLK-3X-6Rn" firstAttribute="leading" secondItem="v4q-nT-8IQ" secondAttribute="leadingMargin" id="u7t-O7-5qG"/>
+                                                <constraint firstAttribute="trailing" secondItem="oYK-Lk-GAx" secondAttribute="trailing" constant="20" symbolic="YES" id="uAs-d1-xTI"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -712,6 +723,7 @@
         <image name="arrowshape.turn.up.right" catalog="system" width="64" height="52"/>
         <image name="bubble.left.and.bubble.right" catalog="system" width="64" height="48"/>
         <image name="doc.richtext" catalog="system" width="56" height="64"/>
+        <image name="eye" catalog="system" width="64" height="40"/>
         <image name="img2" width="400" height="401"/>
         <image name="newsPic" width="414" height="423.5"/>
         <image name="person.3" catalog="system" width="72" height="35"/>
