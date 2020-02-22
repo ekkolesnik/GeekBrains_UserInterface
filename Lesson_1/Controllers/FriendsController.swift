@@ -53,6 +53,9 @@ class FriendsController: UITableViewController {
         
         self.filterFriends = friendsSorted
         
+        //регистрируем  xib header
+        tableView.register(UINib(nibName: "FriendCellXIBView", bundle: nil), forHeaderFooterViewReuseIdentifier: "headerView")
+        
     }
     
     // MARK: - Подготовка к перходу на CollectionView
@@ -108,9 +111,9 @@ class FriendsController: UITableViewController {
         return Array(set).sorted()
     }
     
-//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        return tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerView")
-//    }
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerView")
+    }
     
     //определяем нажатую ячейку для передачи её через метод "prepare"
     var selectedRowSuper: String?

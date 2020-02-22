@@ -18,6 +18,13 @@ class FriensCell: UITableViewCell {
     
     @IBOutlet weak var ViewImage: UIView!
     
+    //возвращение  нормального состояния ячейки при переиспользовании
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        ImagePic.image = nil
+        FriendsLabel.text = ""
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         

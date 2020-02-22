@@ -199,6 +199,7 @@
                                         <constraint firstItem="TGB-Wb-FTO" firstAttribute="top" secondItem="80g-ee-Zny" secondAttribute="top" id="qpy-Vo-rfP"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.80784313725490198" green="0.6705882352941176" blue="0.0" alpha="0.62018407534246578" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <outlet property="FriendsLabel" destination="tri-te-4qf" id="A06-4l-qJf"/>
                                     <outlet property="ImagePic" destination="zLa-tP-6Jo" id="Oca-HC-joA"/>
