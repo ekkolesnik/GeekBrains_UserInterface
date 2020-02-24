@@ -17,7 +17,12 @@ class MyGroupCell: UITableViewCell {
     @IBOutlet weak var ViewImage: UIView!
     
     override func awakeFromNib() {
-    super.awakeFromNib()
+        super.awakeFromNib()
+        
+        //добавляем GestureRecognizer
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageOnTap))
+        ViewImage.addGestureRecognizer(tapGesture)
+        ViewImage.isUserInteractionEnabled = true
     
     ViewImage.layer.cornerRadius = ViewImage.frame.height / 2
     
@@ -29,4 +34,17 @@ class MyGroupCell: UITableViewCell {
     MyGroupImage.layer.cornerRadius = MyGroupImage.frame.height / 2
     
     }
+    
+    @objc func imageOnTap(){
+        
+        UIView.animate(withDuration: 0.2, delay: 0.0, animations: {
+            self.ViewImage.transform = .init(scaleX: 0.9, y: 0.9)
+        })
+        
+        UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 20, animations: {
+            self.ViewImage.transform = .init(scaleX: 1, y: 1)
+        })
+        
+    }
+    
 }

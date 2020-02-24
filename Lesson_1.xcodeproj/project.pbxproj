@@ -17,6 +17,7 @@
 		85A0FF50240193310046E8C2 /* FriendCellXIBView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85A0FF4F240193310046E8C2 /* FriendCellXIBView.xib */; };
 		85A0FF52240197180046E8C2 /* FriendsCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A0FF51240197180046E8C2 /* FriendsCellHeader.swift */; };
 		85B03FFA23F1EE0E00EE4F3D /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B03FF923F1EE0E00EE4F3D /* Users.swift */; };
+		85C725D924044103008B03BF /* LoadingScenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C725D824044103008B03BF /* LoadingScenController.swift */; };
 		85CB9BE723E02F33007E105D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB9BE623E02F33007E105D /* AppDelegate.swift */; };
 		85CB9BE923E02F33007E105D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB9BE823E02F33007E105D /* SceneDelegate.swift */; };
 		85CB9BEB23E02F33007E105D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB9BEA23E02F33007E105D /* ViewController.swift */; };
@@ -44,6 +45,7 @@
 		85A0FF4F240193310046E8C2 /* FriendCellXIBView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCellXIBView.xib; sourceTree = "<group>"; };
 		85A0FF51240197180046E8C2 /* FriendsCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCellHeader.swift; sourceTree = "<group>"; };
 		85B03FF923F1EE0E00EE4F3D /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		85C725D824044103008B03BF /* LoadingScenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScenController.swift; sourceTree = "<group>"; };
 		85CB9BE323E02F33007E105D /* Lesson_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lesson_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85CB9BE623E02F33007E105D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85CB9BE823E02F33007E105D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				85CB9BEA23E02F33007E105D /* ViewController.swift */,
+				85C725D824044103008B03BF /* LoadingScenController.swift */,
 				85E67BC123ED499B0079590C /* FriendsController.swift */,
 				85E67BBF23ED49320079590C /* DetailedController.swift */,
 				85E67BBD23ED46AB0079590C /* AvailableGroupsController.swift */,
@@ -235,6 +238,7 @@
 				85E67BBC23ED45A80079590C /* MyGroupsController.swift in Sources */,
 				85CB9BE723E02F33007E105D /* AppDelegate.swift in Sources */,
 				85E67BC923F0ABD70079590C /* AvailableGroupsCell.swift in Sources */,
+				85C725D924044103008B03BF /* LoadingScenController.swift in Sources */,
 				85E67BC223ED499B0079590C /* FriendsController.swift in Sources */,
 				85CB9BE923E02F33007E105D /* SceneDelegate.swift in Sources */,
 			);

@@ -52,5 +52,14 @@ class HeartLikeControl: UIControl{
            }
            setNeedsDisplay()
            sendActions(for: .valueChanged)
+        
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: [.autoreverse], animations: {
+            self.likeImage!.transform = .init(rotationAngle: 6)
+        })
+        
+        UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 20, animations: {
+            self.likeImage!.transform = .init(scaleX: 1, y: 1)
+        })
+        
     }
 }
