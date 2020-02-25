@@ -34,7 +34,7 @@ class MyGroupCell: UITableViewCell {
     MyGroupImage.layer.cornerRadius = MyGroupImage.frame.height / 2
     
     }
-    
+    //функ-я обработки нажатия на иконку группы
     @objc func imageOnTap(){
         
         UIView.animate(withDuration: 0.2, delay: 0.0, animations: {

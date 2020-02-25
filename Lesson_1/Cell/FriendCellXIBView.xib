@@ -14,10 +14,9 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zVm-BT-vpa">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="77"/>
-                    <color key="backgroundColor" red="0.80784313725490198" green="0.6705882352941176" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.80784313730000001" green="0.6705882353" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="0.58431372550000005" blue="0.0" alpha="0.18709867294520538" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="zVm-BT-vpa" secondAttribute="trailing" id="2qR-nb-S0l"/>
                 <constraint firstAttribute="bottom" secondItem="zVm-BT-vpa" secondAttribute="bottom" id="4Kp-jX-NRW"/>

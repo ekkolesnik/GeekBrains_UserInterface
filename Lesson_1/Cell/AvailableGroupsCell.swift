@@ -9,7 +9,7 @@
 import UIKit
 
 class AvailableGroupsCell: UITableViewCell {
-
+    
     @IBOutlet weak var avaGroupName: UILabel!
     
     @IBOutlet weak var avaGroupImage: UIImageView!
@@ -23,18 +23,19 @@ class AvailableGroupsCell: UITableViewCell {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageOnTap))
         ViewImage.addGestureRecognizer(tapGesture)
         ViewImage.isUserInteractionEnabled = true
-    
-    ViewImage.layer.cornerRadius = ViewImage.frame.height / 2
-    
-//    ViewImage.layer.shadowColor = UIColor.black.cgColor
-//    ViewImage.layer.shadowOpacity = 0.7
-//   ViewImage.layer.shadowRadius = 6
-    ViewImage.layer.shadowOffset = .zero
-    
-    avaGroupImage.layer.cornerRadius = avaGroupImage.frame.height / 2
-    
+        
+        ViewImage.layer.cornerRadius = ViewImage.frame.height / 2
+        
+        //   ViewImage.layer.shadowColor = UIColor.black.cgColor
+        //   ViewImage.layer.shadowOpacity = 0.7
+        //   ViewImage.layer.shadowRadius = 6
+        ViewImage.layer.shadowOffset = .zero
+        
+        avaGroupImage.layer.cornerRadius = avaGroupImage.frame.height / 2
+        
     }
     
+    //функ-я обработки нажатия на иконку группы
     @objc func imageOnTap(){
         
         UIView.animate(withDuration: 0.2, delay: 0.0, animations: {

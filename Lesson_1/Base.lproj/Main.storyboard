@@ -136,7 +136,7 @@
         <scene sceneID="t40-wh-efe">
             <objects>
                 <tableViewController id="M2o-jd-cXK" customClass="FriendsController" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="aI1-VC-g7c">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="aI1-VC-g7c">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -147,36 +147,32 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriensCell" id="Fuw-rN-7dZ" customClass="FriensCell" customModule="Lesson_1" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="414" height="60.5"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fuw-rN-7dZ" id="80g-ee-Zny">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tri-te-4qf">
-                                            <rect key="frame" x="12" y="12" width="42" height="36.5"/>
+                                            <rect key="frame" x="12" y="12" width="42" height="36"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="hLw-Ra-Gbf"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TGB-Wb-FTO" customClass="ViewImage" customModule="Lesson_1" customModuleProvider="target">
-                                            <rect key="frame" x="334" y="0.0" width="60" height="60.5"/>
+                                            <rect key="frame" x="334" y="0.0" width="60" height="60"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zLa-tP-6Jo">
-                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="XAF-7L-yIU"/>
-                                                        <constraint firstAttribute="height" constant="60" id="lgH-F4-gQx"/>
-                                                    </constraints>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zLa-tP-6Jo">
+                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="zLa-tP-6Jo" secondAttribute="trailing" id="W9q-In-uHD"/>
-                                                <constraint firstItem="zLa-tP-6Jo" firstAttribute="leading" secondItem="TGB-Wb-FTO" secondAttribute="leading" id="bit-22-kRu"/>
                                                 <constraint firstAttribute="height" constant="60" id="nxH-qJ-Xzs"/>
-                                                <constraint firstItem="zLa-tP-6Jo" firstAttribute="top" secondItem="TGB-Wb-FTO" secondAttribute="top" id="p77-if-cTE"/>
-                                                <constraint firstAttribute="bottom" secondItem="zLa-tP-6Jo" secondAttribute="bottom" id="qgx-0d-q6H"/>
                                                 <constraint firstAttribute="width" constant="60" id="wmY-BV-jt1"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
@@ -511,7 +507,7 @@
         <scene sceneID="dGV-bm-agF">
             <objects>
                 <tableViewController id="BTs-QJ-8U0" customClass="MyGroupsController" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sZ7-Mr-K3Q">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sZ7-Mr-K3Q">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -521,37 +517,34 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyGroupCell" rowHeight="60.5" id="Iua-H6-yHB" customClass="MyGroupCell" customModule="Lesson_1" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="414" height="60.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyGroupCell" id="Iua-H6-yHB" customClass="MyGroupCell" customModule="Lesson_1" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Iua-H6-yHB" id="vWG-Zj-FDa">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dsq-5D-Rs9">
-                                            <rect key="frame" x="12" y="12" width="42" height="36.5"/>
+                                            <rect key="frame" x="12" y="12" width="42" height="36"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="L8I-px-tJ0"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e3x-SD-UtP" customClass="MyGroupViewImage" customModule="Lesson_1" customModuleProvider="target">
-                                            <rect key="frame" x="334" y="0.0" width="60" height="60.5"/>
+                                            <rect key="frame" x="334" y="0.0" width="60" height="60"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CJE-1f-x7H">
-                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="5jb-Vl-84R"/>
-                                                        <constraint firstAttribute="height" constant="60" id="HtF-GD-637"/>
-                                                    </constraints>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CJE-1f-x7H">
+                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
-                                                <constraint firstItem="CJE-1f-x7H" firstAttribute="leading" secondItem="e3x-SD-UtP" secondAttribute="leading" id="F3J-5X-64H"/>
-                                                <constraint firstItem="CJE-1f-x7H" firstAttribute="top" secondItem="e3x-SD-UtP" secondAttribute="top" id="N6Q-OU-XFH"/>
-                                                <constraint firstAttribute="trailing" secondItem="CJE-1f-x7H" secondAttribute="trailing" id="STo-1x-mHX"/>
-                                                <constraint firstAttribute="bottom" secondItem="CJE-1f-x7H" secondAttribute="bottom" id="dWJ-Gc-K0S"/>
-                                                <constraint firstAttribute="width" constant="60" id="f2P-Q5-dQN"/>
+                                                <constraint firstAttribute="height" constant="60" id="Mhj-eb-egB"/>
+                                                <constraint firstAttribute="width" constant="60" id="szb-J6-jDp"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
@@ -604,43 +597,39 @@
         <scene sceneID="Z24-If-pVg">
             <objects>
                 <tableViewController id="ycp-LK-HOi" customClass="AvailableGroupsController" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="N8z-o4-oNC">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="N8z-o4-oNC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AvailableGroupsCell" rowHeight="60.5" id="AVm-Ya-bMZ" customClass="AvailableGroupsCell" customModule="Lesson_1" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="60.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AvailableGroupsCell" id="AVm-Ya-bMZ" customClass="AvailableGroupsCell" customModule="Lesson_1" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AVm-Ya-bMZ" id="jYs-XW-FqO">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LTK-11-mwF">
-                                            <rect key="frame" x="12" y="12" width="42" height="36.5"/>
+                                            <rect key="frame" x="12" y="12" width="42" height="36"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="hV0-oI-EOR"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDo-6C-Fzr" customClass="AvailableGroupViewImage" customModule="Lesson_1" customModuleProvider="target">
-                                            <rect key="frame" x="334" y="0.0" width="60" height="60.5"/>
+                                            <rect key="frame" x="334" y="0.0" width="60" height="60"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kg4-Gt-gOc">
-                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="h47-E6-Doe"/>
-                                                        <constraint firstAttribute="width" constant="60" id="s3y-2Y-8pZ"/>
-                                                    </constraints>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kg4-Gt-gOc">
+                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="Aqf-xu-tfg"/>
-                                                <constraint firstItem="Kg4-Gt-gOc" firstAttribute="leading" secondItem="gDo-6C-Fzr" secondAttribute="leading" id="CCv-Ty-GCE"/>
                                                 <constraint firstAttribute="height" constant="60" id="HWj-wM-f4D"/>
-                                                <constraint firstItem="Kg4-Gt-gOc" firstAttribute="top" secondItem="gDo-6C-Fzr" secondAttribute="top" id="Jbt-qW-K9D"/>
-                                                <constraint firstAttribute="bottom" secondItem="Kg4-Gt-gOc" secondAttribute="bottom" id="VLZ-V9-xRH"/>
-                                                <constraint firstAttribute="trailing" secondItem="Kg4-Gt-gOc" secondAttribute="trailing" id="zoC-aT-Ftf"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
