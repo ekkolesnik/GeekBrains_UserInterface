@@ -16,10 +16,15 @@ class DetailedCell: UICollectionViewCell {
     
     @IBOutlet weak var LastNameLabelDetail: UILabel!
     
+    @IBOutlet weak var galleryButton: UIButton!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         DetailedImage.layer.cornerRadius = DetailedImage.frame.height / 2
+        
+        galleryButton.layer.cornerRadius = galleryButton.frame.height / 2
         
     }
     

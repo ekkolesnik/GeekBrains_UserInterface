@@ -32,6 +32,7 @@
 		85E67BC523ED76840079590C /* FriensCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BC423ED76840079590C /* FriensCell.swift */; };
 		85E67BC723F09B040079590C /* MyGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BC623F09B040079590C /* MyGroupCell.swift */; };
 		85E67BC923F0ABD70079590C /* AvailableGroupsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BC823F0ABD70079590C /* AvailableGroupsCell.swift */; };
+		85FDE27E2406460C00571AA0 /* DetailUserGalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDE27D2406460C00571AA0 /* DetailUserGalleryController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		85E67BC423ED76840079590C /* FriensCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriensCell.swift; sourceTree = "<group>"; };
 		85E67BC623F09B040079590C /* MyGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupCell.swift; sourceTree = "<group>"; };
 		85E67BC823F0ABD70079590C /* AvailableGroupsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableGroupsCell.swift; sourceTree = "<group>"; };
+		85FDE27D2406460C00571AA0 /* DetailUserGalleryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserGalleryController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 				85E67BC123ED499B0079590C /* FriendsController.swift */,
 				85E67BBF23ED49320079590C /* DetailedController.swift */,
 				85E67BBD23ED46AB0079590C /* AvailableGroupsController.swift */,
+				85FDE27D2406460C00571AA0 /* DetailUserGalleryController.swift */,
 				857CC3B223FD67610023A73B /* NewsController.swift */,
 				85E67BBB23ED45A80079590C /* MyGroupsController.swift */,
 			);
@@ -228,6 +231,7 @@
 				854BF4CA23F9DD74008850BB /* HeartLike.swift in Sources */,
 				85E67BC023ED49320079590C /* DetailedController.swift in Sources */,
 				857CC3B323FD67610023A73B /* NewsController.swift in Sources */,
+				85FDE27E2406460C00571AA0 /* DetailUserGalleryController.swift in Sources */,
 				85E67BC523ED76840079590C /* FriensCell.swift in Sources */,
 				855FC85F23F189100088E39D /* DetailedCell.swift in Sources */,
 				857CC3B523FE5EBE0023A73B /* NewsCell.swift in Sources */,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Id7-SM-LSx">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -279,6 +279,18 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0NF-JQ-bEz">
+                                            <rect key="frame" x="50" y="170" width="70" height="30"/>
+                                            <color key="backgroundColor" red="0.52798050640825323" green="1" blue="0.73094390537870157" alpha="0.23317101883561639" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="70" id="A4W-77-J2h"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
+                                            <state key="normal" title="Gallery"/>
+                                            <connections>
+                                                <segue destination="mqe-m6-H0l" kind="show" id="UIY-cs-L1M"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="EoQ-lD-3FP" firstAttribute="leading" relation="lessThanOrEqual" secondItem="6Pv-Cp-2cQ" secondAttribute="trailing" constant="31" id="2rR-4h-4dS"/>
@@ -288,14 +300,16 @@
                                         <constraint firstItem="cd7-DP-Dje" firstAttribute="top" secondItem="lha-Cy-XSe" secondAttribute="bottom" id="Avn-Tq-fo4"/>
                                         <constraint firstAttribute="trailing" secondItem="hvy-kV-ibI" secondAttribute="trailing" constant="20" symbolic="YES" id="B5h-Hd-xR2"/>
                                         <constraint firstItem="hvy-kV-ibI" firstAttribute="top" secondItem="6Py-Pv-yU4" secondAttribute="top" constant="30" id="GoM-iN-MAU"/>
-                                        <constraint firstAttribute="bottom" secondItem="6Pv-Cp-2cQ" secondAttribute="bottom" constant="50" id="Hcb-ws-GkP"/>
                                         <constraint firstAttribute="trailing" secondItem="cd7-DP-Dje" secondAttribute="trailing" id="IMG-YD-FGN"/>
                                         <constraint firstAttribute="bottom" secondItem="cd7-DP-Dje" secondAttribute="bottom" constant="58" id="Itk-VE-va9"/>
                                         <constraint firstItem="6Pv-Cp-2cQ" firstAttribute="leading" secondItem="6Py-Pv-yU4" secondAttribute="leading" constant="20" symbolic="YES" id="KnW-1G-FMN"/>
+                                        <constraint firstAttribute="bottom" secondItem="0NF-JQ-bEz" secondAttribute="bottom" id="RMi-RI-too"/>
                                         <constraint firstItem="cd7-DP-Dje" firstAttribute="leading" relation="lessThanOrEqual" secondItem="6Pv-Cp-2cQ" secondAttribute="trailing" constant="31" id="RnU-bT-CGK"/>
+                                        <constraint firstItem="0NF-JQ-bEz" firstAttribute="centerX" secondItem="6Pv-Cp-2cQ" secondAttribute="centerX" id="Va9-PV-fQ0"/>
                                         <constraint firstItem="hvy-kV-ibI" firstAttribute="leading" relation="lessThanOrEqual" secondItem="6Pv-Cp-2cQ" secondAttribute="trailing" constant="31" id="Wzc-GP-yiM"/>
                                         <constraint firstItem="6Pv-Cp-2cQ" firstAttribute="top" secondItem="6Py-Pv-yU4" secondAttribute="top" constant="20" symbolic="YES" id="mh1-6h-luN"/>
                                         <constraint firstItem="STb-Ch-jfN" firstAttribute="leading" secondItem="6Py-Pv-yU4" secondAttribute="leading" constant="100" id="oiF-9E-7PK"/>
+                                        <constraint firstItem="0NF-JQ-bEz" firstAttribute="top" secondItem="6Pv-Cp-2cQ" secondAttribute="bottom" constant="20" id="paf-cZ-bbX"/>
                                         <constraint firstItem="lha-Cy-XSe" firstAttribute="top" secondItem="EoQ-lD-3FP" secondAttribute="bottom" constant="14" id="uoh-1F-6gN"/>
                                         <constraint firstItem="EoQ-lD-3FP" firstAttribute="top" secondItem="hvy-kV-ibI" secondAttribute="bottom" id="vAc-vZ-WvH"/>
                                         <constraint firstAttribute="trailing" secondItem="EoQ-lD-3FP" secondAttribute="trailing" id="wlU-U1-fK3"/>
@@ -307,6 +321,7 @@
                                     <outlet property="DetailedImage" destination="6Pv-Cp-2cQ" id="DCJ-ns-RpH"/>
                                     <outlet property="LastNameLabelDetail" destination="cd7-DP-Dje" id="OW9-yN-R7i"/>
                                     <outlet property="NameLabelDetail" destination="EoQ-lD-3FP" id="bIA-2i-mgT"/>
+                                    <outlet property="galleryButton" destination="0NF-JQ-bEz" id="kU7-d9-Ega"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -320,6 +335,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UUv-kd-QlV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3724.6376811594205" y="121.875"/>
+        </scene>
+        <!--Detail User Gallery Controller-->
+        <scene sceneID="uyJ-nn-CxW">
+            <objects>
+                <viewController id="mqe-m6-H0l" customClass="DetailUserGalleryController" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1hn-s6-LY9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="landscape0" translatesAutoresizingMaskIntoConstraints="NO" id="Csc-OK-ffB">
+                                <rect key="frame" x="0.0" y="214" width="414" height="414"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Csc-OK-ffB" secondAttribute="height" multiplier="1:1" id="QP5-JG-3yu"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Csc-OK-ffB" firstAttribute="centerX" secondItem="1hn-s6-LY9" secondAttribute="centerX" id="Avs-P9-Yam"/>
+                            <constraint firstItem="Csc-OK-ffB" firstAttribute="leading" secondItem="IZ2-Pe-qFh" secondAttribute="leading" id="CB4-wN-IQ9"/>
+                            <constraint firstItem="Csc-OK-ffB" firstAttribute="centerY" secondItem="1hn-s6-LY9" secondAttribute="centerY" id="Ce8-By-srD"/>
+                            <constraint firstItem="Csc-OK-ffB" firstAttribute="trailing" secondItem="IZ2-Pe-qFh" secondAttribute="trailing" id="fym-jX-q6W"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="IZ2-Pe-qFh"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="tMM-ia-ngw"/>
+                    <connections>
+                        <outlet property="galleryImage" destination="Csc-OK-ffB" id="pvJ-Tb-8A2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HtX-WY-5k9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4531.884057971015" y="121.875"/>
         </scene>
         <!--Friends-->
         <scene sceneID="Ucy-qC-1c8">
@@ -824,6 +872,7 @@
         <image name="doc.richtext" catalog="system" width="56" height="64"/>
         <image name="eye" catalog="system" width="64" height="40"/>
         <image name="img2" width="400" height="401"/>
+        <image name="landscape0" width="375" height="250"/>
         <image name="newsPic" width="414" height="423.5"/>
         <image name="person.3" catalog="system" width="72" height="35"/>
         <image name="person.crop.circle" catalog="system" width="64" height="60"/>
