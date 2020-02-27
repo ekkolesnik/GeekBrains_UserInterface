@@ -18,18 +18,58 @@ class DetailUserGalleryController: UIViewController {
 
     @IBOutlet weak var galleryImage: UIImageView!
     
+    @IBOutlet weak var galleryImageAfterSwipe: UIImageView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //Свайпы по слайдеру
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swipeImage(_ :)))
         swipeRight.direction = .right
-        galleryImage.addGestureRecognizer(swipeRight)
+        galleryImageAfterSwipe.addGestureRecognizer(swipeRight)
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeImage(_ :)))
         swipeLeft.direction = .left
-        galleryImage.addGestureRecognizer(swipeLeft)
+        galleryImageAfterSwipe.addGestureRecognizer(swipeLeft)
         
+    }
+    
+    //анимация появления фото с лева на право
+    func animationFotoLeftToRight() {
+        galleryImageAfterSwipe.transform = CGAffineTransform(translationX: -view.bounds.width, y: 0)
+        
+        UIView.animate(withDuration: 0.6,
+                       delay: 1,
+                       options: .curveEaseInOut,
+                       animations: {
+            self.galleryImageAfterSwipe.transform = .identity
+        })
+    }
+    
+    //анимация появления фото с права на лево
+    func animationFotoRightToLeft() {
+        galleryImageAfterSwipe.transform = CGAffineTransform(translationX: view.bounds.width, y: 0)
+        
+        UIView.animate(withDuration: 0.6,
+                       delay: 1,
+                       options: .curveEaseInOut,
+                       animations: {
+            self.galleryImageAfterSwipe.transform = .identity
+        })
+    }
+    
+    //анимация уменьшения фото
+    func animationFotoSize() {
+        let scaleAnimation = CASpringAnimation(keyPath: "transform.scale")
+        scaleAnimation.duration = 1
+        scaleAnimation.fromValue = 1
+        scaleAnimation.toValue = 0.7
+        scaleAnimation.stiffness = 100
+        scaleAnimation.mass = 2
+        scaleAnimation.beginTime = CACurrentMediaTime() + 0.6
+        
+        galleryImage.layer.add(scaleAnimation, forKey: nil)
     }
     
     //обработка свайпов
@@ -37,16 +77,32 @@ class DetailUserGalleryController: UIViewController {
              
         if gesture.direction == .left {
             if indexArray >= 0 && indexArray != imageArray.count - 1 {
-                indexArray += 1
+                
                 galleryImage.image = UIImage(named: "landscape\(indexArray)")
+                animationFotoSize()
+                
+                indexArray += 1
+                
+                galleryImageAfterSwipe.image = UIImage(named: "landscape\(indexArray)")
+                animationFotoRightToLeft()
+                
+                
             } else {
                 galleryImage.image = UIImage(named: "landscape\(indexArray)")
             }
             
         } else if gesture.direction == .right {
             if indexArray > 0 {
-                indexArray -= 1
+                
                 galleryImage.image = UIImage(named: "landscape\(indexArray)")
+                animationFotoSize()
+                
+                indexArray -= 1
+                
+                galleryImageAfterSwipe.image = UIImage(named: "landscape\(indexArray)")
+                animationFotoLeftToRight()
+                
+                
             } else {
                 galleryImage.image = UIImage(named: "landscape\(indexArray)")
             }

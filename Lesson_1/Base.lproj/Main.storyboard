@@ -350,19 +350,30 @@
                                     <constraint firstAttribute="width" secondItem="Csc-OK-ffB" secondAttribute="height" multiplier="1:1" id="QP5-JG-3yu"/>
                                 </constraints>
                             </imageView>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="smr-8i-2wF">
+                                <rect key="frame" x="0.0" y="214" width="414" height="414"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="smr-8i-2wF" secondAttribute="height" multiplier="1:1" id="eOT-je-RTq"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="smr-8i-2wF" firstAttribute="centerY" secondItem="1hn-s6-LY9" secondAttribute="centerY" id="5lR-Ya-Ir2"/>
+                            <constraint firstItem="IZ2-Pe-qFh" firstAttribute="trailing" secondItem="smr-8i-2wF" secondAttribute="trailing" id="7pV-sb-HbP"/>
                             <constraint firstItem="Csc-OK-ffB" firstAttribute="centerX" secondItem="1hn-s6-LY9" secondAttribute="centerX" id="Avs-P9-Yam"/>
                             <constraint firstItem="Csc-OK-ffB" firstAttribute="leading" secondItem="IZ2-Pe-qFh" secondAttribute="leading" id="CB4-wN-IQ9"/>
                             <constraint firstItem="Csc-OK-ffB" firstAttribute="centerY" secondItem="1hn-s6-LY9" secondAttribute="centerY" id="Ce8-By-srD"/>
                             <constraint firstItem="Csc-OK-ffB" firstAttribute="trailing" secondItem="IZ2-Pe-qFh" secondAttribute="trailing" id="fym-jX-q6W"/>
+                            <constraint firstItem="smr-8i-2wF" firstAttribute="leading" secondItem="IZ2-Pe-qFh" secondAttribute="leading" id="hk9-oS-owe"/>
+                            <constraint firstItem="smr-8i-2wF" firstAttribute="centerX" secondItem="1hn-s6-LY9" secondAttribute="centerX" id="wOs-pI-n6Z"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IZ2-Pe-qFh"/>
                     </view>
                     <navigationItem key="navigationItem" id="tMM-ia-ngw"/>
                     <connections>
                         <outlet property="galleryImage" destination="Csc-OK-ffB" id="pvJ-Tb-8A2"/>
+                        <outlet property="galleryImageAfterSwipe" destination="smr-8i-2wF" id="WrH-6L-Rac"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HtX-WY-5k9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
