@@ -28,19 +28,42 @@ class DetailUserGalleryController: UIViewController {
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swipeImage(_ :)))
         swipeRight.direction = .right
         galleryImageAfterSwipe.addGestureRecognizer(swipeRight)
-        
+
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeImage(_ :)))
         swipeLeft.direction = .left
         galleryImageAfterSwipe.addGestureRecognizer(swipeLeft)
         
+//        let gesture = UIPanGestureRecognizer(target: self, action: #selector(onPan(_:)))
+//        galleryImageAfterSwipe.addGestureRecognizer(gesture)
+        
     }
+    
+//    var interactivAnimatior: UIViewPropertyAnimator!
+//
+//    @objc func onPan(_ gesture: UIPanGestureRecognizer){
+//        switch gesture.state {
+//        case .began:
+//            interactivAnimatior = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut, animations: {
+//                self.galleryImage.frame = self.galleryImage.frame.offsetBy(dx: 500, dy: 0)
+//            })
+//            interactivAnimatior.pauseAnimation()
+//        case .changed:
+//            let translation = gesture.translation(in: view)
+//            interactivAnimatior.fractionComplete = translation.y / 100
+//        case .ended:
+//            interactivAnimatior.continueAnimation(withTimingParameters: nil, durationFactor: 0)
+//            
+//        default:
+//            return
+//        }
+//    }
     
     //анимация появления фото с лева на право
     func animationFotoLeftToRight() {
         galleryImageAfterSwipe.transform = CGAffineTransform(translationX: -view.bounds.width, y: 0)
         
         UIView.animate(withDuration: 0.6,
-                       delay: 1,
+                       delay: 0,
                        options: .curveEaseInOut,
                        animations: {
             self.galleryImageAfterSwipe.transform = .identity
@@ -52,7 +75,7 @@ class DetailUserGalleryController: UIViewController {
         galleryImageAfterSwipe.transform = CGAffineTransform(translationX: view.bounds.width, y: 0)
         
         UIView.animate(withDuration: 0.6,
-                       delay: 1,
+                       delay: 0,
                        options: .curveEaseInOut,
                        animations: {
             self.galleryImageAfterSwipe.transform = .identity
@@ -67,7 +90,7 @@ class DetailUserGalleryController: UIViewController {
         scaleAnimation.toValue = 0.7
         scaleAnimation.stiffness = 100
         scaleAnimation.mass = 2
-        scaleAnimation.beginTime = CACurrentMediaTime() + 0.6
+        scaleAnimation.beginTime = CACurrentMediaTime()
         
         galleryImage.layer.add(scaleAnimation, forKey: nil)
     }
