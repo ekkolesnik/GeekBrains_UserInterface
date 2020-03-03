@@ -33,7 +33,6 @@ class NewsController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
 
     }
-
 }
 
 extension NewsController: UITableViewDataSource, UITableViewDelegate {

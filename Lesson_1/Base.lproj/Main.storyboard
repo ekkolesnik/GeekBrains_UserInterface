@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Id7-SM-LSx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -283,7 +283,7 @@
                                             <rect key="frame" x="50" y="170" width="70" height="30"/>
                                             <color key="backgroundColor" red="0.52798050640825323" green="1" blue="0.73094390537870157" alpha="0.23317101883561639" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="70" id="A4W-77-J2h"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="A4W-77-J2h"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
                                             <state key="normal" title="Gallery"/>
@@ -383,7 +383,7 @@
         <!--Friends-->
         <scene sceneID="Ucy-qC-1c8">
             <objects>
-                <navigationController modalPresentationStyle="fullScreen" id="aRR-gE-Dvq" sceneMemberID="viewController">
+                <navigationController modalPresentationStyle="fullScreen" id="aRR-gE-Dvq" customClass="CustomNavigationController" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Friends" image="person.crop.circle" catalog="system" id="MPR-Ll-Kvp"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UZK-8W-61T">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -474,6 +474,9 @@
                                                     </constraints>
                                                     <color key="tintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                     <state key="normal" image="arrowshape.turn.up.right" catalog="system"/>
+                                                    <connections>
+                                                        <segue destination="vYJ-uL-YSj" kind="show" id="nCq-vW-JnK"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oYK-Lk-GAx">
                                                     <rect key="frame" x="359" y="498" width="35" height="35"/>
@@ -540,6 +543,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ISY-Kd-p1O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1914.4927536231885" y="-586.60714285714278"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="SXH-ih-aIa">
+            <objects>
+                <viewController id="vYJ-uL-YSj" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="H6Y-RJ-j7W">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Экран для теста UIScreenEdgePanGestureRecognizer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afk-Fo-mZZ">
+                                <rect key="frame" x="27" y="354.5" width="360" height="133"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="133" id="R3K-lN-ASR"/>
+                                    <constraint firstAttribute="width" constant="360" id="Rs3-j0-TLK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Afk-Fo-mZZ" firstAttribute="centerY" secondItem="H6Y-RJ-j7W" secondAttribute="centerY" id="GA3-dj-3Qu"/>
+                            <constraint firstItem="Afk-Fo-mZZ" firstAttribute="centerX" secondItem="H6Y-RJ-j7W" secondAttribute="centerX" id="iAB-le-qYa"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wST-Ar-sxy"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="UqW-JT-TUl"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fl8-HR-U0k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2747.826086956522" y="-587.27678571428567"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="S98-ZB-quw">
@@ -859,7 +894,7 @@
         <!--News-->
         <scene sceneID="Ubl-E1-sqI">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MfP-Hd-sxA" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MfP-Hd-sxA" customClass="CustomNavigationNews" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="News" image="doc.richtext" catalog="system" id="W6f-f2-96W"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ymV-5i-r7r">
