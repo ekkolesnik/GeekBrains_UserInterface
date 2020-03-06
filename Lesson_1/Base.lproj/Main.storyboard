@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Id7-SM-LSx">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -218,7 +218,7 @@
             </objects>
             <point key="canvasLocation" x="2830.434782608696" y="121.875"/>
         </scene>
-        <!--Detailed Controller-->
+        <!--Детали-->
         <scene sceneID="LLc-tG-Qef">
             <objects>
                 <collectionViewController id="sud-KF-Knq" customClass="DetailedController" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
@@ -330,7 +330,7 @@
                             <outlet property="delegate" destination="sud-KF-Knq" id="HWp-UZ-5tY"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="vBh-To-wOY"/>
+                    <navigationItem key="navigationItem" title="Детали" id="vBh-To-wOY"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UUv-kd-QlV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -379,6 +379,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HtX-WY-5k9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4531.884057971015" y="121.875"/>
+        </scene>
+        <!--Image Full Screen Controller-->
+        <scene sceneID="QIB-mM-r3b">
+            <objects>
+                <viewController restorationIdentifier="ImageFullScreenController" storyboardIdentifier="ImageFullScreenController" id="cjs-0R-l9l" customClass="ImageFullScreenController" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lgl-Gw-ouW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5k9-zT-As5">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="5k9-zT-As5" secondAttribute="trailing" id="3G1-rq-UZn"/>
+                            <constraint firstItem="5k9-zT-As5" firstAttribute="top" secondItem="Lgl-Gw-ouW" secondAttribute="top" id="BcH-fL-HGS"/>
+                            <constraint firstAttribute="bottom" secondItem="5k9-zT-As5" secondAttribute="bottom" id="a8U-d3-Mcd"/>
+                            <constraint firstItem="5k9-zT-As5" firstAttribute="leading" secondItem="Lgl-Gw-ouW" secondAttribute="leading" id="bJ5-a4-HMk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PeA-ER-1ul"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ukk-nK-gs7"/>
+                    <connections>
+                        <outlet property="imageFull" destination="5k9-zT-As5" id="Szb-xn-Vwb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o4O-3W-vdm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5388" y="122"/>
         </scene>
         <!--Friends-->
         <scene sceneID="Ucy-qC-1c8">

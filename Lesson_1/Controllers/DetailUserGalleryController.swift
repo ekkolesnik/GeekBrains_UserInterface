@@ -33,30 +33,26 @@ class DetailUserGalleryController: UIViewController {
         swipeLeft.direction = .left
         galleryImageAfterSwipe.addGestureRecognizer(swipeLeft)
         
-//        let gesture = UIPanGestureRecognizer(target: self, action: #selector(onPan(_:)))
-//        galleryImageAfterSwipe.addGestureRecognizer(gesture)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openFullScreen))
+        galleryImageAfterSwipe.addGestureRecognizer(tapGesture)
         
     }
     
-//    var interactivAnimatior: UIViewPropertyAnimator!
-//
-//    @objc func onPan(_ gesture: UIPanGestureRecognizer){
-//        switch gesture.state {
-//        case .began:
-//            interactivAnimatior = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut, animations: {
-//                self.galleryImage.frame = self.galleryImage.frame.offsetBy(dx: 500, dy: 0)
-//            })
-//            interactivAnimatior.pauseAnimation()
-//        case .changed:
-//            let translation = gesture.translation(in: view)
-//            interactivAnimatior.fractionComplete = translation.y / 100
-//        case .ended:
-//            interactivAnimatior.continueAnimation(withTimingParameters: nil, durationFactor: 0)
-//            
-//        default:
-//            return
-//        }
-//    }
+    @objc func openFullScreen(){
+        guard let viewController = storyboard?.instantiateViewController(withIdentifier: "ImageFullScreenController") else { return }
+        present(viewController, animated: true, completion: nil)
+        
+        //определяем куда переходим
+        guard let destination = viewController as? ImageFullScreenController else { return }
+        
+        var image: UIImage?
+        //получаем картинку, которая на данный момент отображается в галлерее
+        image = imageArray[indexArray]
+        
+        // Передаём картинку на другой контроллер
+        destination.imageFull.image = image
+        
+    }
     
     //анимация появления фото с лева на право
     func animationFotoLeftToRight() {

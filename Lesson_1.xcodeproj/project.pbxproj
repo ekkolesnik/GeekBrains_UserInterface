@@ -37,6 +37,7 @@
 		85E67BC723F09B040079590C /* MyGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BC623F09B040079590C /* MyGroupCell.swift */; };
 		85E67BC923F0ABD70079590C /* AvailableGroupsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BC823F0ABD70079590C /* AvailableGroupsCell.swift */; };
 		85FDE27E2406460C00571AA0 /* DetailUserGalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDE27D2406460C00571AA0 /* DetailUserGalleryController.swift */; };
+		85FE24782411AB9E006B15E7 /* ImageFullScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FE24772411AB9E006B15E7 /* ImageFullScreenController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		85E67BC623F09B040079590C /* MyGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupCell.swift; sourceTree = "<group>"; };
 		85E67BC823F0ABD70079590C /* AvailableGroupsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableGroupsCell.swift; sourceTree = "<group>"; };
 		85FDE27D2406460C00571AA0 /* DetailUserGalleryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserGalleryController.swift; sourceTree = "<group>"; };
+		85FE24772411AB9E006B15E7 /* ImageFullScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFullScreenController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 				85FDE27D2406460C00571AA0 /* DetailUserGalleryController.swift */,
 				857CC3B223FD67610023A73B /* NewsController.swift */,
 				85E67BBB23ED45A80079590C /* MyGroupsController.swift */,
+				85FE24772411AB9E006B15E7 /* ImageFullScreenController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				85E67BC923F0ABD70079590C /* AvailableGroupsCell.swift in Sources */,
 				8519BA23240D871D00E0B8E8 /* CustomNavigationController.swift in Sources */,
 				85C725D924044103008B03BF /* LoadingScenController.swift in Sources */,
+				85FE24782411AB9E006B15E7 /* ImageFullScreenController.swift in Sources */,
 				857641E1240E1A9B00466BC0 /* CloseAnimation.swift in Sources */,
 				85E67BC223ED499B0079590C /* FriendsController.swift in Sources */,
 				85CB9BE923E02F33007E105D /* SceneDelegate.swift in Sources */,
