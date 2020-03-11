@@ -21,6 +21,7 @@
 		85A0FF50240193310046E8C2 /* FriendCellXIBView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85A0FF4F240193310046E8C2 /* FriendCellXIBView.xib */; };
 		85A0FF52240197180046E8C2 /* FriendsCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A0FF51240197180046E8C2 /* FriendsCellHeader.swift */; };
 		85B03FFA23F1EE0E00EE4F3D /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B03FF923F1EE0E00EE4F3D /* Users.swift */; };
+		85C3110D2418968B0087CB40 /* SessionSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3110C2418968B0087CB40 /* SessionSingleton.swift */; };
 		85C725D924044103008B03BF /* LoadingScenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C725D824044103008B03BF /* LoadingScenController.swift */; };
 		85CB9BE723E02F33007E105D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB9BE623E02F33007E105D /* AppDelegate.swift */; };
 		85CB9BE923E02F33007E105D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB9BE823E02F33007E105D /* SceneDelegate.swift */; };
@@ -55,6 +56,7 @@
 		85A0FF4F240193310046E8C2 /* FriendCellXIBView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCellXIBView.xib; sourceTree = "<group>"; };
 		85A0FF51240197180046E8C2 /* FriendsCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCellHeader.swift; sourceTree = "<group>"; };
 		85B03FF923F1EE0E00EE4F3D /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		85C3110C2418968B0087CB40 /* SessionSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSingleton.swift; sourceTree = "<group>"; };
 		85C725D824044103008B03BF /* LoadingScenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScenController.swift; sourceTree = "<group>"; };
 		85CB9BE323E02F33007E105D /* Lesson_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lesson_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85CB9BE623E02F33007E105D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		85C3110B2418963C0087CB40 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				85C3110C2418968B0087CB40 /* SessionSingleton.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		85CB9BDA23E02F33007E105D = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +140,7 @@
 		85CB9BE523E02F33007E105D /* Lesson_1 */ = {
 			isa = PBXGroup;
 			children = (
+				85C3110B2418963C0087CB40 /* Network */,
 				85CB9BFA23E03CD7007E105D /* img */,
 				85CB9BE623E02F33007E105D /* AppDelegate.swift */,
 				85CB9BE823E02F33007E105D /* SceneDelegate.swift */,
@@ -267,6 +278,7 @@
 				8519BA26240D8CDE00E0B8E8 /* CustomPopPushTransitioning.swift in Sources */,
 				85CB9BE723E02F33007E105D /* AppDelegate.swift in Sources */,
 				85E67BC923F0ABD70079590C /* AvailableGroupsCell.swift in Sources */,
+				85C3110D2418968B0087CB40 /* SessionSingleton.swift in Sources */,
 				8519BA23240D871D00E0B8E8 /* CustomNavigationController.swift in Sources */,
 				85C725D924044103008B03BF /* LoadingScenController.swift in Sources */,
 				85FE24782411AB9E006B15E7 /* ImageFullScreenController.swift in Sources */,
