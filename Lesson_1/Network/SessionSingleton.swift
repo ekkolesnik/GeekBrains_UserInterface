@@ -12,9 +12,9 @@ class Session {
 
     static let connect: Session = .init()
     var token: String?
-    var userId: Int?
+    var userId: String?
     
-    func addTokenUserId( token: String, userId: Int) {
+    func addTokenUserId( token: String, userId: String) {
         self.token = token
         self.userId = userId
     }
