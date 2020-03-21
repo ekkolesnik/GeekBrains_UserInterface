@@ -16,6 +16,10 @@ class VkLoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        if Session.shared.token != "" {
+            performSegue(withIdentifier: "ShowTabBarController", sender: AnyObject.self)
+        }
+        
         var components = URLComponents()
         components.scheme = "https"
         components.host = "oauth.vk.com"
@@ -25,7 +29,7 @@ class VkLoginViewController: UIViewController {
             URLQueryItem(name: "client_id", value: "7359424"),
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
-            URLQueryItem(name: "scope", value: "262150"), //указываем необходимые доступа
+            URLQueryItem(name: "scope", value: "users,friends,groups,photos"), //указываем необходимые доступа
             URLQueryItem(name: "response_type", value: "token"),
             URLQueryItem(name: "v", value: "5.103"),
         ]
@@ -33,6 +37,17 @@ class VkLoginViewController: UIViewController {
         let request = URLRequest(url: components.url!)
         webView.navigationDelegate = self
         webView.load(request)
+        
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        
+        if Session.shared.token != "" {
+            return true
+        } else {
+            print("Token NON")
+            return false
+        }
         
     }
 }
@@ -56,10 +71,10 @@ extension VkLoginViewController: WKNavigationDelegate {
             return dict
         }
         
-        guard let user_id = params["user_id"] else { return }
-        guard let token = params["access_token"] else { return }
-        Session.connect.addTokenUserId(token: token, userId: user_id)
+        Session.shared.token = params["access_token"]!
+        print("TOKEN: \(Session.shared.token)")
         decisionHandler(.cancel)
+        performSegue(withIdentifier: "ShowTabBarController", sender: AnyObject.self)
     }
     
 }

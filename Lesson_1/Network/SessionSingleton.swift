@@ -9,16 +9,13 @@
 import UIKit
 
 class Session {
-
-    static let connect: Session = .init()
-    var token: String?
-    var userId: String?
     
-    func addTokenUserId( token: String, userId: String) {
-        self.token = token
-        self.userId = userId
-    }
+    var token: String = .init()
+    var userId: Int = .init()
     
     private init() {}
+    
+    static let shared: Session = .init()
+    
 }
 

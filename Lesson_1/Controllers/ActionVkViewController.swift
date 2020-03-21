@@ -13,8 +13,8 @@ class ActionVkViewController: UIViewController {
     @IBOutlet weak var groupTextField: UITextField!
     
     let friendPhoto: ActionServiceProtocol = GetFriendPhoto()
-    let friendList: ActionServiceProtocol = LoadFriendList()
-    let friendGroup: ActionServiceProtocol = GetFriendGroup()
+  //  let friendList: LoadDataUserProtocol = LoadFriendList(parser: UsersSwiftyJSONParser())
+  //  let friendGroup: ActionServiceProtocol = GetFriendGroup()
     let searchGroup: SearchProtocol = SearchGroup()
 
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class ActionVkViewController: UIViewController {
     }
     
     @IBAction func friendListButtonAction(_ sender: Any) {
-        friendList.loadDataFromVK()
+     //   friendList.loadDataFromVK(completion: ([User]) -> Void)
     }
     
     @IBAction func friendPhotoButton(_ sender: Any) {
@@ -31,7 +31,7 @@ class ActionVkViewController: UIViewController {
     }
     
     @IBAction func friendGroupButton(_ sender: Any) {
-        friendGroup.loadDataFromVK()
+     //   friendGroup.loadDataFromVK()
     }
     
     @IBAction func searchGroupButton(_ sender: Any) {

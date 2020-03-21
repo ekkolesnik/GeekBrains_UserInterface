@@ -8,7 +8,11 @@
 
 import UIKit
 
-struct Groups {
-    let name: String
-    let image: UIImage
+struct Groups: Equatable {
+    var name: String = ""
+    var image: String = ""
+    
+    static func == (lhs: Groups, rhs: Groups) -> Bool {
+        lhs.name == rhs.name
+    }
 }
