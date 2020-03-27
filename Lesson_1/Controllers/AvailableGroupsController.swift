@@ -11,6 +11,12 @@ import UIKit
 class AvailableGroupsController: UITableViewController {
     
     let avaGroup = [Groups]()
+//        Groups(name: "Мужики за 40", image: UIImage(named: "img11")!),
+//        Groups(name: "Автобарахолка", image: UIImage(named: "img12")!),
+//        Groups(name: "Сериалы", image: UIImage(named: "img13")!),
+//        Groups(name: "Новости недели", image: UIImage(named: "img14")!),
+//        Groups(name: "Комиксы", image: UIImage(named: "img15")!)
+//    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +45,7 @@ class AvailableGroupsController: UITableViewController {
 
         let nameAvaGroups = avaGroup[indexPath.row]
         cell.avaGroupName.text = nameAvaGroups.name
-     //   cell.avaGroupImage.image = nameAvaGroups.image
+ //       cell.avaGroupImage.image = nameAvaGroups.image
 
         return cell
     }

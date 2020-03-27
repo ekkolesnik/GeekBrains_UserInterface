@@ -3,15 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		850F6E3F241E87530018F992 /* ActionVkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850F6E3E241E87530018F992 /* ActionVkViewController.swift */; };
 		850F6E41241E8AB40018F992 /* ActionVK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850F6E40241E8AB40018F992 /* ActionVK.swift */; };
 		8519BA23240D871D00E0B8E8 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8519BA22240D871D00E0B8E8 /* CustomNavigationController.swift */; };
 		8519BA26240D8CDE00E0B8E8 /* CustomPopPushTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8519BA25240D8CDE00E0B8E8 /* CustomPopPushTransitioning.swift */; };
 		8526B743241E5311002BAF77 /* VkLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8526B742241E5311002BAF77 /* VkLoginViewController.swift */; };
+		852FD4822427E50900EE38D6 /* EnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852FD4812427E50900EE38D6 /* EnterViewController.swift */; };
 		85454CB3240E218500A426E9 /* CustomNavigationNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85454CB2240E218500A426E9 /* CustomNavigationNews.swift */; };
 		854BF4CA23F9DD74008850BB /* HeartLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854BF4C923F9DD74008850BB /* HeartLike.swift */; };
 		855FC85F23F189100088E39D /* DetailedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855FC85E23F189100088E39D /* DetailedCell.swift */; };
@@ -33,6 +33,7 @@
 		85CB9BF023E02F34007E105D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85CB9BEF23E02F34007E105D /* Assets.xcassets */; };
 		85CB9BF323E02F34007E105D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85CB9BF123E02F34007E105D /* LaunchScreen.storyboard */; };
 		85CB9BFC23E03D0D007E105D /* After Noon.png in Resources */ = {isa = PBXBuildFile; fileRef = 85CB9BFB23E03D0D007E105D /* After Noon.png */; };
+		85E0FFE2242D5B1C00EB3A2A /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E0FFE1242D5B1C00EB3A2A /* Photo.swift */; };
 		85E67BBC23ED45A80079590C /* MyGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BBB23ED45A80079590C /* MyGroupsController.swift */; };
 		85E67BBE23ED46AB0079590C /* AvailableGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BBD23ED46AB0079590C /* AvailableGroupsController.swift */; };
 		85E67BC023ED49320079590C /* DetailedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BBF23ED49320079590C /* DetailedController.swift */; };
@@ -46,11 +47,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		850F6E3E241E87530018F992 /* ActionVkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionVkViewController.swift; sourceTree = "<group>"; };
 		850F6E40241E8AB40018F992 /* ActionVK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionVK.swift; sourceTree = "<group>"; };
 		8519BA22240D871D00E0B8E8 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		8519BA25240D8CDE00E0B8E8 /* CustomPopPushTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopPushTransitioning.swift; sourceTree = "<group>"; };
 		8526B742241E5311002BAF77 /* VkLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkLoginViewController.swift; sourceTree = "<group>"; };
+		852FD4812427E50900EE38D6 /* EnterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterViewController.swift; sourceTree = "<group>"; };
 		85454CB2240E218500A426E9 /* CustomNavigationNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationNews.swift; sourceTree = "<group>"; };
 		854BF4C923F9DD74008850BB /* HeartLike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartLike.swift; sourceTree = "<group>"; };
 		855FC85E23F189100088E39D /* DetailedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedCell.swift; sourceTree = "<group>"; };
@@ -74,6 +75,7 @@
 		85CB9BF223E02F34007E105D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85CB9BF423E02F34007E105D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85CB9BFB23E03D0D007E105D /* After Noon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "After Noon.png"; sourceTree = "<group>"; };
+		85E0FFE1242D5B1C00EB3A2A /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		85E67BBB23ED45A80079590C /* MyGroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsController.swift; sourceTree = "<group>"; };
 		85E67BBD23ED46AB0079590C /* AvailableGroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableGroupsController.swift; sourceTree = "<group>"; };
 		85E67BBF23ED49320079590C /* DetailedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedController.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				8519BA24240D873200E0B8E8 /* CustomNavigation */,
 				854BF4C923F9DD74008850BB /* HeartLike.swift */,
 				857641E0240E1A9B00466BC0 /* CloseAnimation.swift */,
+				85E0FFE1242D5B1C00EB3A2A /* Photo.swift */,
 				85B03FF923F1EE0E00EE4F3D /* Users.swift */,
 				8566F83423F4017500EBD6DE /* Groups.swift */,
 				8566F83323F3FEDB00EBD6DE /* Cell */,
@@ -204,7 +207,7 @@
 				85E67BBB23ED45A80079590C /* MyGroupsController.swift */,
 				85FE24772411AB9E006B15E7 /* ImageFullScreenController.swift */,
 				8526B742241E5311002BAF77 /* VkLoginViewController.swift */,
-				850F6E3E241E87530018F992 /* ActionVkViewController.swift */,
+				852FD4812427E50900EE38D6 /* EnterViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -215,7 +218,6 @@
 				95C9CF14E66E5091A86000AF /* Pods-Lesson_1.debug.xcconfig */,
 				BF4BACBEFF7CF8FD23224A90 /* Pods-Lesson_1.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -347,11 +349,11 @@
 				85FDE27E2406460C00571AA0 /* DetailUserGalleryController.swift in Sources */,
 				85E67BC523ED76840079590C /* FriensCell.swift in Sources */,
 				855FC85F23F189100088E39D /* DetailedCell.swift in Sources */,
+				852FD4822427E50900EE38D6 /* EnterViewController.swift in Sources */,
 				857CC3B523FE5EBE0023A73B /* NewsCell.swift in Sources */,
 				8566F83523F4017500EBD6DE /* Groups.swift in Sources */,
 				85B03FFA23F1EE0E00EE4F3D /* Users.swift in Sources */,
 				85E67BC723F09B040079590C /* MyGroupCell.swift in Sources */,
-				850F6E3F241E87530018F992 /* ActionVkViewController.swift in Sources */,
 				85E67BBE23ED46AB0079590C /* AvailableGroupsController.swift in Sources */,
 				85E67BBC23ED45A80079590C /* MyGroupsController.swift in Sources */,
 				85454CB3240E218500A426E9 /* CustomNavigationNews.swift in Sources */,
@@ -362,6 +364,7 @@
 				8519BA23240D871D00E0B8E8 /* CustomNavigationController.swift in Sources */,
 				85C725D924044103008B03BF /* LoadingScenController.swift in Sources */,
 				85FE24782411AB9E006B15E7 /* ImageFullScreenController.swift in Sources */,
+				85E0FFE2242D5B1C00EB3A2A /* Photo.swift in Sources */,
 				857641E1240E1A9B00466BC0 /* CloseAnimation.swift in Sources */,
 				8526B743241E5311002BAF77 /* VkLoginViewController.swift in Sources */,
 				85E67BC223ED499B0079590C /* FriendsController.swift in Sources */,

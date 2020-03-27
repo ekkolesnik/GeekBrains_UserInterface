@@ -7,120 +7,150 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class FriendsController: UITableViewController {
-    let friendList: LoadDataUserProtocol = LoadFriendList(parser: UsersSwiftyJSONParser())
+    let FriendService: LoadFriendProtocol = LoadFriendList(parser: SwiftyJSONParserLoadFriend())
     
     @IBOutlet weak var SearchBarFriends: UISearchBar!
     
-    var friends = [User]()
+    private var friendsArray : [User] = []
+    private var friends: [String: [User]] = [:]
+    private var filteredFriends: [String: [User]] = [:]
+    private let searchController: UISearchController = .init()
     
-    // создаем массив для алфавитного указателя
-    var friendsNamesAlphabet = [String]()
+    var sections: [String] {
+        return Array ( searchController.isActive ? filteredFriends.keys : friends.keys ).sorted ()
+    }
     
-    //словарь с именами пользователей
-    var friendsNamesArray = [[String]]()
+    func getFriend ( section: Int, row: Int ) -> User? {
+        let friendsArray = searchController.isActive ? filteredFriends : friends
+        let sectionTitle = sections[section]
+        let section = friendsArray[sectionTitle]
+        return section?[row]
+    }
     
-    //словарь с именами пользователей
-    var defaultfriendsNamesArray = [[String]]()
-        
+    func parseFriendList ( json: JSON ) {
+        for item in json.arrayValue {
+            let firstName = item["first_name"].stringValue
+            let lastName = item["last_name"].stringValue
+            let photoImage = item["photo_100"].stringValue
+            let letter = String ( firstName.first ?? "-" )
+//            let friend = User( firstName: firstName, lastName: lastName, image: photoImage )
+            let friend = User()
+            friend.firstName = firstName
+            friend.lastName = lastName
+            friend.image = photoImage
+            friendsArray.append ( friend )
+            if ( friends [letter] == nil ) {
+                friends [letter] = [friend]
+            }
+            else {
+                friends [letter]?.append(friend)
+            }
+        }
+
+        DispatchQueue.main.async {
+            self.tableView.reloadData ()
+
+        }
+    }
+    
+    var cachedAvatars = [String: UIImage]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        friendList.loadDataFromVK() { (users) in
-            self.friends = users
-            self.fillFriendsNamesAlphabet()
-            self.fillFriendsNamesArray()
-            self.defaultfriendsNamesArray = self.friendsNamesArray
-            self.tableView.reloadData()
-        }
+        Session.connect.receiveFriendList(completion: parseFriendList)
+        
+        searchController.searchResultsUpdater = self
+        
+        tableView.tableHeaderView = searchController.searchBar
         
         //регистрируем  xib header
         tableView.register(UINib(nibName: "FriendCellXIBView", bundle: nil), forHeaderFooterViewReuseIdentifier: "headerView")
         
     }
     
-    func fillFriendsNamesAlphabet() {
-        for index in 0..<friends.count {
-            guard let firstCharacter = friends[index].name.first else { return } //забираем первые символы
-                friendsNamesAlphabet.append(String(firstCharacter))
-            }
-        
-        friendsNamesAlphabet = Array(Set(friendsNamesAlphabet)).sorted()
-    }
-    
-    func fillFriendsNamesArray() {
-        for section in 0..<friendsNamesAlphabet.count {
-            var tempString = [String]() //временный массив накопления имен
-            
-            for index in 0..<friends.count {
-                if String(friends[index].name.first!) == friendsNamesAlphabet[section] {
-                    tempString.append(String(friends[index].name))
-                }
-            }
-            
-            friendsNamesArray.append(tempString)
-        }
-    }
-    
     // MARK: - Подготовка к перходу на CollectionView
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Получаем ссылку на контроллер, с которого осуществлен переход
+        guard let destination = segue.destination as? DetailedController,
+            let cell = sender as? FriensCell
+                    else { return }
         
-        if segue.identifier == "DetailCon" {
-            guard let friendProfileController = segue.destination as? DetailedController,
-                let cell = sender as? FriensCell
-                else { return }
-            
-            friendProfileController.nameLabelDetail = cell.FriendsLabel.text
-            friendProfileController.image = cell.ImagePic.image
-        }
+//        let friend = getFriend ( section: indexPath.section, row: indexPath.row )
+//        cell.FriendsLabel.text = friend!.firstName + " " + friend!.lastName
+        
+        destination.nameLabelDetail = cell.FriendsLabel.text
+        destination.image = cell.ImagePic.image
+//        destination.lastNameLabelDetail = cell.
+        
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-        return friendsNamesArray.count
+        return sections.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friendsNamesArray[section].count
-
+        let title = sections[section]
+        let array = searchController.isActive ? filteredFriends : friends
+        return ( array[title] )?.count ?? 0
     }
     
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return friendsNamesAlphabet
+        return sections
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerView")
     }
     
+    //определяем нажатую ячейку для передачи её через метод "prepare"
+//    var selectedRowSuper: String?
+//
+//    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+//        selectedRowSuper = sections[indexPath.section][indexPath.row]
+//        return indexPath
+//    }
+    
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard let headerTitle = friendsNamesArray[section].first?.first else { return nil }
-        return "\(headerTitle)"
+        return sections[section]
     }
     
+    private func downloadImage( for url: String, indexPath: IndexPath ) {
+        DispatchQueue.global().async {
+            if let image = getImageByURL(imageUrl: url) {
+                self.cachedAvatars[url] = image
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                }
+            }
+        }
+    }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriensCell", for: indexPath) as? FriensCell else {
             preconditionFailure("Can't create FriensCell")
         }
         
-        let friendName = friendsNamesArray[indexPath.section][indexPath.row]
-        var friendImage: UIImage = .remove //заглушка по умолчанию
+        let friend = getFriend ( section: indexPath.section, row: indexPath.row )
+        cell.FriendsLabel.text = friend!.firstName + " " + friend!.lastName
+ //       cell.ImagePic.image = getImageByURL(imageUrl: friend!.image)
         
-        //ищем в исходных данных аватар соответствующий имени пользователя
-        for index in 0..<friends.count {
-            if friendName == friends[index].name {
-                friendImage = getImageByURL(imageUrl: friends[index].image)
-            }
+        let url = friend?.image
+        
+        if let cached = cachedAvatars[url!] {
+            cell.ImagePic.image = cached
         }
-
-        //заполнение ячейки
-        cell.FriendsLabel.text = friendName
-        cell.ImagePic.image = friendImage
+        else {
+            downloadImage(for: url!, indexPath: indexPath)
+        }
         
         return cell
     }
@@ -151,17 +181,25 @@ class FriendsController: UITableViewController {
 
 // MARK: - UISearchBarDelegate
 
-extension FriendsController: UISearchBarDelegate {
-
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-    
-    for index in 0..<friendsNamesArray.count {
-        friendsNamesArray[index] = friendsNamesArray[index].filter { $0.range(of: searchText, options: .caseInsensitive) != nil }
+extension FriendsController : UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        filteredFriends = friends.reduce([String: [User]](), { (result, arg) in
+            let (key, value) = arg
+            var dict = result
+            
+            let filtered = value.filter{
+                $0.firstName.lowercased().contains(text.lowercased()) ||
+                    $0.lastName.lowercased().contains(text.lowercased())
+            }
+            
+            if !filtered.isEmpty {
+                dict[key] = filtered
+            }
+            
+            return dict
+        })
+        
+        tableView.reloadData()
     }
-    if searchText == "" {
-        friendsNamesArray = defaultfriendsNamesArray
-    }
-    
-    tableView.reloadData()
-        }
 }

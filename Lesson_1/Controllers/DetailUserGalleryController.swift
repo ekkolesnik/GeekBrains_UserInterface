@@ -9,9 +9,12 @@
 import UIKit
 
 class DetailUserGalleryController: UIViewController {
+    let photoService: LoadPhotoProtocol = GetFriendPhoto(parser: SwiftyJSONParserLoadPhoto())
     
     //массив картинок пользователя
-    let imageArray = [UIImage(named: "landscape0"), UIImage(named: "landscape1"), UIImage(named: "landscape2"), UIImage(named: "landscape3")]
+    
+    var imageArray = [Photo]()
+//    let imageArray = [UIImage(named: "landscape0"), UIImage(named: "landscape1"), UIImage(named: "landscape2"), UIImage(named: "landscape3")]
     
     //индекс для слайдера
     var indexArray = 0
@@ -23,6 +26,18 @@ class DetailUserGalleryController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        photoService.loadDataFromVK { (photos) in
+            self.imageArray = photos
+         //   print(photos)
+  //          self.galleryImage.image = getImageByURL(imageUrl: self.imageArray[self.indexArray].image)
+       //     self.view
+
+            
+        }
+//        print(imageArray)
         
         //Свайпы по слайдеру
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swipeImage(_ :)))
@@ -47,7 +62,8 @@ class DetailUserGalleryController: UIViewController {
         
         var image: UIImage?
         //получаем картинку, которая на данный момент отображается в галлерее
-        image = imageArray[indexArray]
+        image = getImageByURL(imageUrl: imageArray[indexArray].image)
+ //       imageArray[indexArray]
         
         // Передаём картинку на другой контроллер
         destination.imageFull.image = image
@@ -97,28 +113,33 @@ class DetailUserGalleryController: UIViewController {
         if gesture.direction == .left {
             if indexArray >= 0 && indexArray != imageArray.count - 1 {
                 
-                galleryImage.image = UIImage(named: "landscape\(indexArray)")
+//                galleryImage.image = UIImage(named: "landscape\(indexArray)")
+                galleryImage.image = getImageByURL(imageUrl: self.imageArray[self.indexArray].image)
                 animationFotoSize()
                 
                 indexArray += 1
                 
-                galleryImageAfterSwipe.image = UIImage(named: "landscape\(indexArray)")
+//                galleryImageAfterSwipe.image = UIImage(named: "landscape\(indexArray)")
+                galleryImageAfterSwipe.image = getImageByURL(imageUrl: imageArray[indexArray].image)
                 animationFotoRightToLeft()
                 
                 
             } else {
-                galleryImage.image = UIImage(named: "landscape\(indexArray)")
+//                galleryImage.image = UIImage(named: "landscape\(indexArray)")
+                galleryImage.image = getImageByURL(imageUrl: imageArray[indexArray].image)
             }
             
         } else if gesture.direction == .right {
             if indexArray > 0 {
                 
-                galleryImage.image = UIImage(named: "landscape\(indexArray)")
+                galleryImage.image = getImageByURL(imageUrl: imageArray[indexArray].image)
+//                galleryImage.image = UIImage(named: "landscape\(indexArray)")
                 animationFotoSize()
                 
                 indexArray -= 1
                 
-                galleryImageAfterSwipe.image = UIImage(named: "landscape\(indexArray)")
+                galleryImageAfterSwipe.image = getImageByURL(imageUrl: imageArray[indexArray].image)
+//                galleryImageAfterSwipe.image = UIImage(named: "landscape\(indexArray)")
                 animationFotoLeftToRight()
                 
                 

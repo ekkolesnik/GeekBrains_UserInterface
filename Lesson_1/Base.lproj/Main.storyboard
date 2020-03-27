@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="48v-bR-QGH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MeF-sv-4zz">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -130,78 +130,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4" y="122"/>
-        </scene>
-        <!--Action-->
-        <scene sceneID="8y1-o0-L7J">
-            <objects>
-                <viewController id="vTA-vg-7LG" customClass="ActionVkViewController" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="NYi-Oj-jNn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="Zjp-VD-ZQN">
-                                <rect key="frame" x="100.5" y="298" width="213" height="246"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="COZ-la-Fak">
-                                        <rect key="frame" x="52.5" y="0.0" width="108" height="34"/>
-                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Список друзей"/>
-                                        <connections>
-                                            <action selector="friendListButtonAction:" destination="vTA-vg-7LG" eventType="touchUpInside" id="1Hj-Cm-9R5"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y0q-jw-jbu">
-                                        <rect key="frame" x="0.0" y="53" width="213" height="34"/>
-                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Получаем фото пользователя"/>
-                                        <connections>
-                                            <action selector="friendPhotoButton:" destination="vTA-vg-7LG" eventType="touchUpInside" id="gqw-B7-PGa"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VBz-yj-wKS">
-                                        <rect key="frame" x="42.5" y="106" width="128" height="34"/>
-                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Получаем группы"/>
-                                        <connections>
-                                            <action selector="friendGroupButton:" destination="vTA-vg-7LG" eventType="touchUpInside" id="Hdx-vx-7ja"/>
-                                        </connections>
-                                    </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="группа" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LTu-ie-7DR">
-                                        <rect key="frame" x="69.5" y="159" width="74.5" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ic-67-0EU">
-                                        <rect key="frame" x="56" y="212" width="101" height="34"/>
-                                        <state key="normal" title="Поиск группы"/>
-                                        <connections>
-                                            <action selector="searchGroupButton:" destination="vTA-vg-7LG" eventType="touchUpInside" id="ETq-Lz-fx2"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="Zjp-VD-ZQN" firstAttribute="centerX" secondItem="NYi-Oj-jNn" secondAttribute="centerX" id="HZM-la-SCJ"/>
-                            <constraint firstItem="Zjp-VD-ZQN" firstAttribute="centerY" secondItem="NYi-Oj-jNn" secondAttribute="centerY" id="o99-Sk-SqI"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="qv7-AL-6Tz"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Action" image="globe" catalog="system" id="pvN-sz-pA4"/>
-                    <connections>
-                        <outlet property="groupTextField" destination="LTu-ie-7DR" id="QlJ-OG-heM"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6Gi-1z-zr1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-4.3478260869565224" y="1591.7410714285713"/>
+            <point key="canvasLocation" x="-1894" y="-931"/>
         </scene>
         <!--Auth-->
         <scene sceneID="Dq9-hI-uvK">
             <objects>
-                <viewController id="48v-bR-QGH" customClass="VkLoginViewController" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="48v-bR-QGH" customClass="VkLoginViewController" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t3Z-Sl-Eqf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -225,14 +159,48 @@
                         <viewLayoutGuide key="safeArea" id="ldP-cj-SwC"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Auth" image="lock.fill" catalog="system" id="4Fm-4s-T66"/>
+                    <navigationItem key="navigationItem" id="tMH-ts-SaO"/>
                     <connections>
                         <outlet property="webView" destination="n1d-Gm-xcx" id="ae8-3A-jnb"/>
-                        <segue destination="Id7-SM-LSx" kind="show" identifier="ShowTabBarController" id="kgZ-yy-jA1"/>
+                        <segue destination="Id7-SM-LSx" kind="show" identifier="LoginToTabBar" id="LGM-d1-omX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C8U-nh-PLb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4" y="858"/>
+            <point key="canvasLocation" x="-4" y="122"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="quy-cD-TKT">
+            <objects>
+                <viewController id="MeF-sv-4zz" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rmz-rw-8kH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5JN-Ea-SPD">
+                                <rect key="frame" x="132" y="433" width="150" height="30"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="4gS-hY-SAL"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="48v-bR-QGH" kind="show" id="4Cd-XU-bIo"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="5JN-Ea-SPD" firstAttribute="centerX" secondItem="rmz-rw-8kH" secondAttribute="centerX" id="RXC-HH-haq"/>
+                            <constraint firstItem="5JN-Ea-SPD" firstAttribute="centerY" secondItem="rmz-rw-8kH" secondAttribute="centerY" id="ptP-fm-uBC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YkV-kL-iCl"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i98-QM-LZJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-981.15942028985512" y="121.875"/>
         </scene>
         <!--Friends-->
         <scene sceneID="t40-wh-efe">
@@ -723,7 +691,6 @@
                         <segue destination="aRR-gE-Dvq" kind="relationship" relationship="viewControllers" id="XYJ-7n-ONI"/>
                         <segue destination="vAa-pI-CTB" kind="relationship" relationship="viewControllers" id="tQp-CL-vVv"/>
                         <segue destination="MfP-Hd-sxA" kind="relationship" relationship="viewControllers" id="kJu-mI-lBa"/>
-                        <segue destination="vTA-vg-7LG" kind="relationship" relationship="viewControllers" id="RrN-f8-6FZ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="euG-a1-SvW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1022,7 +989,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jrO-8P-2e8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4.3478260869565224" y="-574.55357142857144"/>
+            <point key="canvasLocation" x="-1020" y="-931"/>
         </scene>
         <!--News-->
         <scene sceneID="Ubl-E1-sqI">
@@ -1044,22 +1011,21 @@
             <point key="canvasLocation" x="1004.3478260869566" y="-586.60714285714278"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="hAt-P0-ndH"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="After Noon.png" width="375" height="667"/>
-        <image name="arrowshape.turn.up.right" catalog="system" width="64" height="52"/>
-        <image name="bubble.left.and.bubble.right" catalog="system" width="64" height="48"/>
-        <image name="doc.richtext" catalog="system" width="56" height="64"/>
-        <image name="eye" catalog="system" width="64" height="40"/>
-        <image name="globe" catalog="system" width="64" height="60"/>
+        <image name="arrowshape.turn.up.right" catalog="system" width="128" height="106"/>
+        <image name="bubble.left.and.bubble.right" catalog="system" width="128" height="96"/>
+        <image name="doc.richtext" catalog="system" width="115" height="128"/>
+        <image name="eye" catalog="system" width="128" height="81"/>
         <image name="img2" width="400" height="401"/>
         <image name="landscape0" width="375" height="250"/>
-        <image name="lock.fill" catalog="system" width="64" height="64"/>
+        <image name="lock.fill" catalog="system" width="128" height="128"/>
         <image name="newsPic" width="414" height="423.5"/>
-        <image name="person.3" catalog="system" width="72" height="35"/>
-        <image name="person.crop.circle" catalog="system" width="64" height="60"/>
+        <image name="person.3" catalog="system" width="128" height="62"/>
+        <image name="person.crop.circle" catalog="system" width="128" height="121"/>
         <image name="point" width="10" height="10"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="kgZ-yy-jA1"/>
-    </inferredMetricsTieBreakers>
 </document>

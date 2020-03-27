@@ -1,29 +1,21 @@
 //
-//  ImageFullScreenController.swift
+//  EnterViewController.swift
 //  Lesson_1
 //
-//  Created by Evgeny Kolesnik on 06.03.2020.
+//  Created by Evgeny Kolesnik on 22.03.2020.
 //  Copyright © 2020 Evgeny Kolesnik. All rights reserved.
 //
 
 import UIKit
 
-class ImageFullScreenController: UIViewController {
-    let photoService: LoadPhotoProtocol = GetFriendPhoto(parser: SwiftyJSONParserLoadPhoto())
-    
-    let imageArray = [UIImage(named: "landscape0"), UIImage(named: "landscape1"), UIImage(named: "landscape2"), UIImage(named: "landscape3")]
-    
-    @IBOutlet weak var imageFull: UIImageView!
-    
-    var image: UIImage?
+class EnterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        imageFull.image = image
 
         // Do any additional setup after loading the view.
     }
+    
 
     /*
     // MARK: - Navigation

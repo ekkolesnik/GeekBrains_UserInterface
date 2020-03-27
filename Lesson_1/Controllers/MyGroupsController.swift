@@ -7,24 +7,32 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class MyGroupsController: UITableViewController {
-    let groupList: LoadDataGroupsProtocol = LoadGroupsList(parser: GroupsSwiftyJSONParser())
+    let groupService: LoadGroupProtocol = GetFriendGroup(parser: SwiftyJSONParserLoadGroup())
     
     @IBOutlet weak var SearchBar: UISearchBar!
     
+
     var myGroups = [Groups]()
+    
+    var filterGroup = [Groups]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        groupList.loadGroupsData() { (groups) in
-            
+        groupService.loadDataFromVK { (groups) in
             self.myGroups = groups
+            self.filterGroup = self.myGroups
             self.tableView.reloadData()
+//            print(self.filterGroup)
+            
         }
         
         self.SearchBar.delegate = self
+        
+//        self.filterGroup = myGroups
 
     }
 
@@ -35,7 +43,7 @@ class MyGroupsController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myGroups.count
+        return filterGroup.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -43,8 +51,10 @@ class MyGroupsController: UITableViewController {
             preconditionFailure("Can't create MyGroupCell")
         }
 
-            cell.MyGroupNameLabel.text = myGroups[indexPath.row].name
-            cell.MyGroupImage.image = getImageByURL(imageUrl: myGroups[indexPath.row].image)
+        let nameMyGroup = filterGroup[indexPath.row]
+        cell.MyGroupNameLabel.text = nameMyGroup.name
+        cell.MyGroupImage.image = getImageByURL(imageUrl: nameMyGroup.image)
+//        cell.MyGroupImage.image = nameMyGroup.image
 
         return cell
     }
@@ -62,9 +72,9 @@ class MyGroupsController: UITableViewController {
                 // Получаем город по индексу
                 let groups = availableGroupController.avaGroup[indexPath.row]
                 // Проверяем, что такого города нет в списке
-                if !myGroups.contains(where: { $0.name == groups.name }) {
+                if !filterGroup.contains(where: { $0.name == groups.name }) {
                     // Добавляем город в список выбранных
-                    myGroups.append(groups)
+                    filterGroup.append(groups)
                     // Обновляем таблицу
                     tableView.reloadData()
                 }
@@ -76,7 +86,7 @@ class MyGroupsController: UITableViewController {
         // Если была нажата кнопка «Удалить»
         if editingStyle == .delete {
         // Удаляем город из массива
-            myGroups.remove(at: indexPath.row)
+            filterGroup.remove(at: indexPath.row)
         // И удаляем строку из таблицы
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
@@ -111,10 +121,10 @@ extension MyGroupsController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         
-        self.myGroups.removeAll()
+        self.filterGroup.removeAll()
         
         if searchText == "" || searchText == " " {
-           // self.myGroups = myGroups
+            self.filterGroup = myGroups
             self.tableView.reloadData()
             return
         }
@@ -124,7 +134,7 @@ extension MyGroupsController: UISearchBarDelegate {
             let isArrayContain = item.name.lowercased().range(of: text)
             
             if isArrayContain != nil {
-                myGroups.append(item)
+                filterGroup.append(item)
             }
         }
         self.tableView.reloadData()

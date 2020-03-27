@@ -9,50 +9,63 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import RealmSwift
 
-//потом убрать
-protocol ActionServiceProtocol {
-    func loadDataFromVK()
-}
-
-protocol LoadDataUserProtocol {
+protocol LoadFriendProtocol {
+    //Дожидаемся загрузки данных из интернета (completion: @escaping ...)
     func loadDataFromVK(completion: @escaping ([User]) -> Void)
 }
 
-protocol UserParser {
-    func parse(data: Data) -> [User]
+//Превращение Data в массив друзей
+protocol FriendParser {
+    func parse( data: Data ) -> [User]
 }
 
-protocol LoadDataGroupsProtocol {
-    func loadGroupsData(completion: @escaping ([Groups]) -> Void)
+protocol LoadGroupProtocol {
+    //Дожидаемся загрузки данных из интернета (completion: @escaping ...)
+    func loadDataFromVK(completion: @escaping ([Groups]) -> Void)
 }
 
-protocol GroupsParser {
-    func parse(data: Data) -> [Groups]
+//Превращение Data в массив друзей
+protocol GroupParser {
+    func parse( data: Data ) -> [Groups]
+}
+
+protocol LoadPhotoProtocol {
+    //Дожидаемся загрузки данных из интернета (completion: @escaping ...)
+    func loadDataFromVK(completion: @escaping ([Photo]) -> Void)
+}
+
+//Превращение Data в массив друзей
+protocol PhotoParser {
+    func parse( data: Data ) -> [Photo]
+}
+
+//к удалению
+protocol ActionServiceProtocol {
+    func loadDataFromVK()
 }
 
 protocol SearchProtocol {
     func loadDataFromVK(_ name: String)
 }
 
-class LoadFriendList: LoadDataUserProtocol {
+class LoadFriendList: LoadFriendProtocol {
     let baseUrl = "https://api.vk.com"
-    let parser: UserParser
+    let parser: FriendParser
     
-    init(parser: UserParser) {
+    init(parser: FriendParser) {
         self.parser = parser
     }
     
-    let apiKey = Session.shared.token
-    
     func loadDataFromVK(completion: @escaping ([User]) -> Void) {
+        guard let apiKey = Session.connect.token else { return }
         let path = "/method/friends.get"
         
-        let parameters: Parameters = [
-            "user_id": String(Session.shared.userId),
-            "fields" : "photo_100",
+        let parameters = [
+            "user_id": Session.connect.userId,
             "order": "random",
-            "count": "20",
+            "fields" : "photo_100",
             "access_token": apiKey,
             "v": "5.103"
         ]
@@ -65,17 +78,17 @@ class LoadFriendList: LoadDataUserProtocol {
             } else {
                 guard let data = response.data else { return }
                 
-                let users: [User] = self.parser.parse(data: data)
+                let friends: [User] = self.parser.parse(data: data)
                 
-                completion(users)
                 
-                print(response)
+                
+                completion(friends)
             }
         }
     }
 }
 
-class UsersSwiftyJSONParser: UserParser {
+class SwiftyJSONParserLoadFriend: FriendParser {
     
     func parse(data: Data) -> [User] {
         do {
@@ -85,13 +98,85 @@ class UsersSwiftyJSONParser: UserParser {
             let result = array.map { item -> User in
                 
                 let user = User()
-                user.name = item["first_name"].stringValue + " " + item["last_name"].stringValue
-               // user.lastname = item["last_name"].stringValue
+                user.firstName = item["first_name"].stringValue
+                user.lastName = item["last_name"].stringValue
                 user.image = item["photo_100"].stringValue
                 
                 return user
             }
+
+            return result
+        }
+        catch {
+            print(error.localizedDescription)
+            return []
+        }
+    }
+}
+
+class GetFriendPhoto: LoadPhotoProtocol {
+    let baseUrl = "https://api.vk.com"
+    let parser: PhotoParser
+    let db: PhotoDataBase = .init()
+    
+    init(parser: PhotoParser) {
+        self.parser = parser
+    }
+    
+    func loadDataFromVK(completion: @escaping ([Photo]) -> Void) {
+        guard let apiKey = Session.connect.token else { return }
+        let path = "/method/photos.get"
+        
+        let parameters = [
+            "owner_id": Session.connect.userId,
+            "album_id" : "profile",
+            "access_token": apiKey,
+            "v": "5.103"
+        ]
+        
+        let url = baseUrl + path
+        
+        AF.request(url, parameters: parameters).responseJSON { [completion] (response) in
+            if let error = response.error {
+                print(error)
+            } else {
+                guard let data = response.data else { return }
+                
+                let photos: [Photo] = self.parser.parse(data: data)
+                
+                do {
+                    try self.db.save(photos: photos)
+                } catch {
+//                                        print(self.db.photoExport())
+                }
+                
+                completion(photos)
+            }
+        }
+    }
+}
+
+class SwiftyJSONParserLoadPhoto: PhotoParser {
+    
+    func parse(data: Data) -> [Photo] {
+        do {
+            let json = try JSON(data: data)
+            let array = json["response"]["items"].arrayValue
+            print(array)
             
+            let result = array.map { item -> Photo in
+                
+                let photos = Photo()
+//                photos.image = item["url"].stringValue
+                
+                let sizeValues = item["sizes"].arrayValue
+                if let first = sizeValues.first(where: { $0["type"].stringValue == "r" }) {
+                    photos.image = first["url"].stringValue
+                }
+//                print(photos)
+                return photos
+            }
+
             return result
             
         } catch {
@@ -101,29 +186,27 @@ class UsersSwiftyJSONParser: UserParser {
     }
 }
 
-class LoadGroupsList: LoadDataGroupsProtocol {
+class GetFriendGroup: LoadGroupProtocol {
+    let baseUrl = "https://api.vk.com"
+    let parser: GroupParser
+    let db: DataBase = .init()
     
-    let baseUrl = "https://api.vk.com/method/"
-    let parser: GroupsParser
-    
-    init(parser: GroupsParser) {
+    init(parser: GroupParser) {
         self.parser = parser
     }
     
-    let apiKey = Session.shared.token
-    
-    func loadGroupsData(completion: @escaping ([Groups]) -> Void) {
+    func loadDataFromVK(completion: @escaping ([Groups]) -> Void) {
+        guard let apiKey = Session.connect.token else { return }
+        let path = "/method/groups.get"
         
-        let parameters: Parameters = [
-            "extended" : 1,
-            "order" : "random",
-            "access_token" : apiKey,
-            "v" : "5.103"
+        let parameters = [
+            "user_id": Session.connect.userId,
+            "extended": "1",
+            "access_token": apiKey,
+            "v": "5.103"
         ]
         
-        let method = "groups.get"
-        
-        let url = baseUrl + method
+        let url = baseUrl + path
         
         AF.request(url, parameters: parameters).responseJSON { [completion] (response) in
             if let error = response.error {
@@ -132,14 +215,19 @@ class LoadGroupsList: LoadDataGroupsProtocol {
                 guard let data = response.data else { return }
                 
                 let groups: [Groups] = self.parser.parse(data: data)
-                
+                do {
+                    try self.db.save(groups: groups)
+                } catch {
+//                    print(self.db.groupExport())
+                }
                 completion(groups)
+//                completion(self.db.groupExport())
             }
         }
     }
 }
 
-class GroupsSwiftyJSONParser: GroupsParser {
+class SwiftyJSONParserLoadGroup: GroupParser {
     
     func parse(data: Data) -> [Groups] {
         do {
@@ -147,46 +235,19 @@ class GroupsSwiftyJSONParser: GroupsParser {
             let array = json["response"]["items"].arrayValue
             
             let result = array.map { item -> Groups in
-    
-                var group = Groups()
-                group.name = item["name"].stringValue
-                group.image = item["photo_100"].stringValue
                 
-                return group
+                let groups = Groups()
+                groups.name = item["name"].stringValue
+                groups.image = item["photo_100"].stringValue
+                
+                return groups
             }
-            
+
             return result
-            
-        } catch {
+        }
+        catch {
             print(error.localizedDescription)
             return []
-        }
-    }
-}
-
-class GetFriendPhoto: ActionServiceProtocol {
-    let baseUrl = "https://api.vk.com"
-    
-    let apiKey = Session.shared.token
-    
-    func loadDataFromVK() {
-        let path = "/method/photos.getAll"
-        
-        let parameters = [
-            "owner_id": String(Session.shared.userId),
-            "count": "20",
-            "access_token": apiKey,
-            "v": "5.103"
-        ]
-        
-        let url = baseUrl + path
-        
-        AF.request(url, parameters: parameters).responseJSON { (response) in
-            if let error = response.error {
-                print(error)
-            } else {
-                print(response)
-            }
         }
     }
 }
@@ -194,9 +255,8 @@ class GetFriendPhoto: ActionServiceProtocol {
 class SearchGroup: SearchProtocol {
     let baseUrl = "https://api.vk.com"
     
-    let apiKey = Session.shared.token
-    
     func loadDataFromVK(_ name: String) {
+        guard let apiKey = Session.connect.token else { return }
         let path = "/method/groups.search"
         
         let parameters = [
@@ -217,14 +277,51 @@ class SearchGroup: SearchProtocol {
     }
 }
 
-func getImageByURL(imageUrl: String) -> UIImage {
+func getImageByURL(imageUrl: String) -> UIImage? {
     let urlString = imageUrl
-    let url = NSURL(string: urlString)! as URL
-    var image: UIImage = .init()
+    guard let url = URL(string: urlString) else { return nil }
     
-    if let imageData: NSData = NSData(contentsOf: url) {
-        image = UIImage(data: imageData as Data)!
+    if let imageData: Data = try? Data(contentsOf: url) {
+        return UIImage(data: imageData)
     }
     
-    return image
+    return nil
+}
+
+class DataBase {
+    func save( groups: [Groups] ) throws {
+        let realm = try Realm()
+        realm.beginWrite()
+        realm.add(groups)
+        try realm.commitWrite()
+    }
+    
+    func groupExport() -> [Groups] {
+        do {
+            let realm = try Realm()
+            let objects = realm.objects(Groups.self)
+            return Array(objects)
+        } catch {
+            return []
+        }
+    }
+}
+
+class PhotoDataBase {
+    func save( photos: [Photo] ) throws {
+        let realm = try Realm()
+        realm.beginWrite()
+        realm.add(photos)
+        try realm.commitWrite()
+    }
+    
+    func photoExport() -> [Photo] {
+        do {
+            let realm = try Realm()
+            let objects = realm.objects(Photo.self)
+            return Array(objects)
+        } catch {
+            return []
+        }
+    }
 }
