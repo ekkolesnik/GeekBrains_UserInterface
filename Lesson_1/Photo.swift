@@ -11,6 +11,12 @@ import RealmSwift
 
 class Photo: Object {
     
-    @objc dynamic var image: String = ""
+    @objc dynamic var id: Int = 0
+    @objc dynamic var ownerId: Int = 0
+    @objc dynamic var imageURL: String = ""
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
     
 }

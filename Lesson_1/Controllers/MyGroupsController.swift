@@ -7,10 +7,11 @@
 //
 
 import UIKit
-import SwiftyJSON
+//import SwiftyJSON
 
 class MyGroupsController: UITableViewController {
-    let groupService: LoadGroupProtocol = GetFriendGroup(parser: SwiftyJSONParserLoadGroup())
+        let groupService: ServiceProtocol = DataForServiceProtocol()
+//    let groupService: LoadGroupProtocol = GetFriendGroup(parser: SwiftyJSONParserLoadGroup())
     
     @IBOutlet weak var SearchBar: UISearchBar!
     
@@ -22,7 +23,7 @@ class MyGroupsController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        groupService.loadDataFromVK { (groups) in
+        groupService.loadGroups() { (groups) in
             self.myGroups = groups
             self.filterGroup = self.myGroups
             self.tableView.reloadData()
@@ -53,7 +54,19 @@ class MyGroupsController: UITableViewController {
 
         let nameMyGroup = filterGroup[indexPath.row]
         cell.MyGroupNameLabel.text = nameMyGroup.name
-        cell.MyGroupImage.image = getImageByURL(imageUrl: nameMyGroup.image)
+//        cell.MyGroupImage.image = self.groupService.getImageByURL(imageURL: nameMyGroup.image)
+        
+        let url = filterGroup[indexPath.row].image
+        
+        DispatchQueue.global().async {
+            if let image = self.groupService.getImageByURL(imageURL: url) {
+                
+                DispatchQueue.main.async {
+                    cell.MyGroupImage.image = image
+                }
+            }
+        }
+        
 //        cell.MyGroupImage.image = nameMyGroup.image
 
         return cell
@@ -140,3 +153,5 @@ extension MyGroupsController: UISearchBarDelegate {
         self.tableView.reloadData()
     }
 }
+
+

@@ -12,4 +12,9 @@ import RealmSwift
 class Groups: Object {
     @objc dynamic var name: String = ""
     @objc dynamic var image: String = ""
+    @objc dynamic var id: Int = 0
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
 }

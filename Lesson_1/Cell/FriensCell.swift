@@ -16,6 +16,8 @@ class FriensCell: UITableViewCell {
     
     @IBOutlet weak var ViewImage: UIView!
     
+    var id = 0
+    
     //возвращение  нормального состояния ячейки при переиспользовании
     override func prepareForReuse() {
         super.prepareForReuse()

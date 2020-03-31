@@ -14,6 +14,8 @@
 		852FD4822427E50900EE38D6 /* EnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852FD4812427E50900EE38D6 /* EnterViewController.swift */; };
 		85454CB3240E218500A426E9 /* CustomNavigationNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85454CB2240E218500A426E9 /* CustomNavigationNews.swift */; };
 		854BF4CA23F9DD74008850BB /* HeartLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854BF4C923F9DD74008850BB /* HeartLike.swift */; };
+		855317FA24315CFE00190803 /* GalleryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855317F924315CFE00190803 /* GalleryCollectionViewController.swift */; };
+		855317FC24315D4900190803 /* FriendGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855317FB24315D4900190803 /* FriendGalleryCell.swift */; };
 		855FC85F23F189100088E39D /* DetailedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855FC85E23F189100088E39D /* DetailedCell.swift */; };
 		8566F83523F4017500EBD6DE /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8566F83423F4017500EBD6DE /* Groups.swift */; };
 		8569251A23E6A35B007FD8F9 /* friends.png in Resources */ = {isa = PBXBuildFile; fileRef = 8569251823E6A35B007FD8F9 /* friends.png */; };
@@ -54,6 +56,8 @@
 		852FD4812427E50900EE38D6 /* EnterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterViewController.swift; sourceTree = "<group>"; };
 		85454CB2240E218500A426E9 /* CustomNavigationNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationNews.swift; sourceTree = "<group>"; };
 		854BF4C923F9DD74008850BB /* HeartLike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartLike.swift; sourceTree = "<group>"; };
+		855317F924315CFE00190803 /* GalleryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewController.swift; sourceTree = "<group>"; };
+		855317FB24315D4900190803 /* FriendGalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendGalleryCell.swift; sourceTree = "<group>"; };
 		855FC85E23F189100088E39D /* DetailedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedCell.swift; sourceTree = "<group>"; };
 		8566F83423F4017500EBD6DE /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
 		8569251823E6A35B007FD8F9 /* friends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friends.png; sourceTree = "<group>"; };
@@ -130,6 +134,7 @@
 				85E67BC423ED76840079590C /* FriensCell.swift */,
 				857CC3B423FE5EBE0023A73B /* NewsCell.swift */,
 				855FC85E23F189100088E39D /* DetailedCell.swift */,
+				855317FB24315D4900190803 /* FriendGalleryCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 				85FE24772411AB9E006B15E7 /* ImageFullScreenController.swift */,
 				8526B742241E5311002BAF77 /* VkLoginViewController.swift */,
 				852FD4812427E50900EE38D6 /* EnterViewController.swift */,
+				855317F924315CFE00190803 /* GalleryCollectionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -354,6 +360,7 @@
 				8566F83523F4017500EBD6DE /* Groups.swift in Sources */,
 				85B03FFA23F1EE0E00EE4F3D /* Users.swift in Sources */,
 				85E67BC723F09B040079590C /* MyGroupCell.swift in Sources */,
+				855317FC24315D4900190803 /* FriendGalleryCell.swift in Sources */,
 				85E67BBE23ED46AB0079590C /* AvailableGroupsController.swift in Sources */,
 				85E67BBC23ED45A80079590C /* MyGroupsController.swift in Sources */,
 				85454CB3240E218500A426E9 /* CustomNavigationNews.swift in Sources */,
@@ -365,6 +372,7 @@
 				85C725D924044103008B03BF /* LoadingScenController.swift in Sources */,
 				85FE24782411AB9E006B15E7 /* ImageFullScreenController.swift in Sources */,
 				85E0FFE2242D5B1C00EB3A2A /* Photo.swift in Sources */,
+				855317FA24315CFE00190803 /* GalleryCollectionViewController.swift in Sources */,
 				857641E1240E1A9B00466BC0 /* CloseAnimation.swift in Sources */,
 				8526B743241E5311002BAF77 /* VkLoginViewController.swift in Sources */,
 				85E67BC223ED499B0079590C /* FriendsController.swift in Sources */,

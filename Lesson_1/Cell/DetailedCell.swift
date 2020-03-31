@@ -14,8 +14,6 @@ class DetailedCell: UICollectionViewCell {
     
     @IBOutlet weak var NameLabelDetail: UILabel!
     
-    @IBOutlet weak var LastNameLabelDetail: UILabel!
-    
     @IBOutlet weak var galleryButton: UIButton!
     
     

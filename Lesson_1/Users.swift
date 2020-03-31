@@ -14,8 +14,13 @@ class User: Object, Comparable {
         return lhs.firstName < rhs.firstName
     }
     
+    @objc dynamic var id: Int = 0
     @objc dynamic var firstName: String = ""
     @objc dynamic var lastName: String = ""
     @objc dynamic var image: String = ""
-//    let id: Int
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
+
 }

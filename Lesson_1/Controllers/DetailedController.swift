@@ -13,6 +13,7 @@ class DetailedController: UICollectionViewController {
     var image: UIImage?
     var nameLabelDetail: String?
     var lastNameLabelDetail: String?
+    var id: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,11 +38,15 @@ class DetailedController: UICollectionViewController {
         
         cell.DetailedImage.image = image
         cell.NameLabelDetail.text = nameLabelDetail
-        cell.LastNameLabelDetail.text = lastNameLabelDetail
         
         return cell
     }
 
-    // MARK: UICollectionViewDelegate
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Получаем ссылку на контроллер, на который осуществлен переход
+        guard let destination = segue.destination as? GalleryCollectionViewController else { return }
+        
+        destination.id = id
+    }
 
 }
