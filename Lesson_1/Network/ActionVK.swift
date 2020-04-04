@@ -13,7 +13,7 @@ import RealmSwift
 
 protocol ServiceProtocol {
     func loadUsers(completion: @escaping ([User]) -> Void)
-    func loadGroups(completion: @escaping ([Groups]) -> Void)
+    func loadGroups()
     func loadPhotos(addParameters: [String: String], completion: @escaping ([Photo]) -> Void)
     func getImageByURL(imageURL: String) -> UIImage?
 }
@@ -60,7 +60,7 @@ class DataForServiceProtocol: ServiceProtocol {
     }
     
 // Загрузка групп
-    func loadGroups(completion: @escaping ([Groups]) -> Void) {
+    func loadGroups() {
         
         let path = "/method/groups.get"
         let db: GroupsDataBase = .init()
@@ -74,7 +74,7 @@ class DataForServiceProtocol: ServiceProtocol {
         
         let url = baseUrl + path
         
-        AF.request(url, parameters: parameters).responseJSON { [completion] (response) in
+        AF.request(url, parameters: parameters).responseJSON { (response) in
             if let error = response.error {
                 print(error)
             } else {
@@ -86,7 +86,6 @@ class DataForServiceProtocol: ServiceProtocol {
                 } catch {
 
                 }
-                completion(db.groupExport())
 
             }
         }
