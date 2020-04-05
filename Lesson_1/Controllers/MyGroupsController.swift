@@ -25,10 +25,9 @@ class MyGroupsController: UITableViewController {
         
         observeMyGroup()
         
-        groupService.loadGroups() { (groups) in
-            self.myGroups = groups
-            self.tableView.reloadData()
-        }
+        groupService.loadGroups()
+        
+        self.tableView.reloadData()
         
         self.SearchBar.delegate = self
 
@@ -52,6 +51,7 @@ class MyGroupsController: UITableViewController {
                         self.tableView.insertRows(at: insertions.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
                         self.tableView.reloadRows(at: modifications.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
                         self.filterGroup.append(contentsOf: myRealmGroup)
+                        self.myGroups = self.filterGroup
                     }, completion: nil)
                     
                 case .error(let error):
