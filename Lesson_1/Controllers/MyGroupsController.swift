@@ -25,22 +25,12 @@ class MyGroupsController: UITableViewController {
         
         observeMyGroup()
         
-        groupService.loadGroups()
-        
-//        groupService.loadGroups() { (groups) in
-//                    self.myGroups = groups
-//                    self.filterGroup = self.myGroups
-//                    print(self.filterGroup)
-//                    self.tableView.reloadData()
-//                }
-        
-//        print(filterGroup)
-        
-//        tableView.reloadData()
+        groupService.loadGroups() { (groups) in
+            self.myGroups = groups
+            self.tableView.reloadData()
+        }
         
         self.SearchBar.delegate = self
-        
-//        self.filterGroup = myGroups
 
     }
     
@@ -48,27 +38,31 @@ class MyGroupsController: UITableViewController {
         do {
             let realm = try Realm()
             let myRealmGroup = realm.objects(Groups.self)
+
             filterGroup.append(contentsOf: myRealmGroup)
-     //       print(filterGroup)
+
             notoficationToken = myRealmGroup.observe { (changes) in
                 switch changes {
                 case .initial:
+                    
                     self.tableView.reloadData()
                 case .update(_, let deletions, let insertions, let modifications):
-                    self.tableView.beginUpdates()
-                    self.tableView.deleteRows(at: deletions.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
-                    self.tableView.insertRows(at: insertions.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
-                    self.tableView.reloadRows(at: modifications.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
-                    self.tableView.endUpdates()
+                    self.tableView.performBatchUpdates({
+                        self.tableView.deleteRows(at: deletions.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self.tableView.insertRows(at: insertions.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self.tableView.reloadRows(at: modifications.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self.filterGroup.append(contentsOf: myRealmGroup)
+                    }, completion: nil)
+                    
                 case .error(let error):
                     print(error.localizedDescription)
                 }
-                
             }
         } catch {
             print(error.localizedDescription)
         }
     }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -168,11 +162,16 @@ extension MyGroupsController: UISearchBarDelegate {
         
         self.filterGroup.removeAll()
         
-        if searchText == "" || searchText == " " {
+        let text = searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        if text.isEmpty {
             self.filterGroup = myGroups
             self.tableView.reloadData()
-            return
         }
+//        if searchText == "" || searchText == " " {
+//            self.filterGroup = myGroups
+//            self.tableView.reloadData()
+//            return
+//        }
         
         for item in myGroups {
             let text = searchText.lowercased()

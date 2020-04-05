@@ -13,7 +13,7 @@ import RealmSwift
 
 protocol ServiceProtocol {
     func loadUsers(completion: @escaping ([User]) -> Void)
-    func loadGroups()
+    func loadGroups(completion: @escaping ([Groups]) -> Void)
     func loadPhotos(addParameters: [String: String], completion: @escaping ([Photo]) -> Void)
     func getImageByURL(imageURL: String) -> UIImage?
 }
@@ -60,7 +60,7 @@ class DataForServiceProtocol: ServiceProtocol {
     }
     
 // Загрузка групп
-    func loadGroups() {
+    func loadGroups(completion: @escaping ([Groups]) -> Void) {
         
         let path = "/method/groups.get"
         let db: GroupsDataBase = .init()
@@ -74,19 +74,20 @@ class DataForServiceProtocol: ServiceProtocol {
         
         let url = baseUrl + path
         
-        AF.request(url, parameters: parameters).responseJSON { (response) in
+        AF.request(url, parameters: parameters).responseJSON { [completion] (response) in
             if let error = response.error {
                 print(error)
             } else {
                 guard let data = response.data else { return }
                 
                 let groups: [Groups] = self.groupsParser(data: data)
+                //print(groups)
                 do {
                     try db.save(groups: groups)
                 } catch {
 
                 }
-
+                completion(db.groupExport())
             }
         }
     }
@@ -114,9 +115,11 @@ class DataForServiceProtocol: ServiceProtocol {
                 guard let data = response.data else { return }
                 
                 let photos: [Photo] = self.photosParser(data: data)
+//                print(photos)
                 
                 do {
                     try db.save(photos: photos)
+                    
                 } catch {
                     // print(self.db.photoExport())
                 }
@@ -272,6 +275,7 @@ class UsersDataBase {
 class GroupsDataBase {
     func save( groups: [Groups] ) throws {
         let realm = try Realm()
+      //  print(realm.configuration.fileURL)
         realm.beginWrite()
         realm.add(groups, update: .modified)
         try realm.commitWrite()
