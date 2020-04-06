@@ -10,48 +10,36 @@ import UIKit
 import RealmSwift
 
 class MyGroupsController: UITableViewController {
-        let groupService: ServiceProtocol = DataForServiceProtocol()
-    
-    @IBOutlet weak var SearchBar: UISearchBar!
-    
-    var myGroups = [Groups]()
-    
-    var filterGroup = [Groups]()
-    
+    let groupService: ServiceProtocol = DataForServiceProtocol()
+    var groups: Results<Groups>?
+    var filteredGroup = [Groups]()
     var notoficationToken: NotificationToken?
-
+    let searchController = UISearchController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         observeMyGroup()
-        
         groupService.loadGroups()
-        
+        searchController.searchResultsUpdater = self
+        tableView.tableHeaderView = searchController.searchBar
         self.tableView.reloadData()
-        
-        self.SearchBar.delegate = self
-
     }
     
     func observeMyGroup() {
         do {
             let realm = try Realm()
-            let myRealmGroup = realm.objects(Groups.self)
-
-            filterGroup.append(contentsOf: myRealmGroup)
-
-            notoficationToken = myRealmGroup.observe { (changes) in
+            groups = realm.objects(Groups.self)
+            
+            notoficationToken = groups?.observe { (changes) in
                 switch changes {
                 case .initial:
-                    
                     self.tableView.reloadData()
                 case .update(_, let deletions, let insertions, let modifications):
                     self.tableView.performBatchUpdates({
                         self.tableView.deleteRows(at: deletions.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
                         self.tableView.insertRows(at: insertions.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
                         self.tableView.reloadRows(at: modifications.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
-                        self.filterGroup.append(contentsOf: myRealmGroup)
-                        self.myGroups = self.filterGroup
                     }, completion: nil)
                     
                 case .error(let error):
@@ -64,25 +52,25 @@ class MyGroupsController: UITableViewController {
     }
     
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filterGroup.count
+        return searchController.isActive ? filteredGroup.count : groups?.count ?? 0
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyGroupCell", for: indexPath) as? MyGroupCell else {
             preconditionFailure("Can't create MyGroupCell")
         }
-
-        let nameMyGroup = filterGroup[indexPath.row]
-        cell.MyGroupNameLabel.text = nameMyGroup.name
-//        cell.MyGroupImage.image = self.groupService.getImageByURL(imageURL: nameMyGroup.image)
         
-        let url = filterGroup[indexPath.row].image
+        let array = searchController.isActive ? filteredGroup : Array(groups!)
+        let nameMyGroup = array[indexPath.row]
+        cell.MyGroupNameLabel.text = nameMyGroup.name
+        
+        let url = array[indexPath.row].image
         
         DispatchQueue.global().async {
             if let image = self.groupService.getImageByURL(imageURL: url) {
@@ -93,8 +81,6 @@ class MyGroupsController: UITableViewController {
             }
         }
         
-//        cell.MyGroupImage.image = nameMyGroup.image
-
         return cell
     }
     
@@ -111,26 +97,26 @@ class MyGroupsController: UITableViewController {
                 // Получаем город по индексу
                 let groups = availableGroupController.avaGroup[indexPath.row]
                 // Проверяем, что такого города нет в списке
-                if !filterGroup.contains(where: { $0.name == groups.name }) {
+                if !filteredGroup.contains(where: { $0.name == groups.name }) {
                     // Добавляем город в список выбранных
-                    filterGroup.append(groups)
+                    filteredGroup.append(groups)
                     // Обновляем таблицу
                     tableView.reloadData()
                 }
             }
         }
     }
-
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        // Если была нажата кнопка «Удалить»
-        if editingStyle == .delete {
-        // Удаляем город из массива
-            filterGroup.remove(at: indexPath.row)
-        // И удаляем строку из таблицы
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-    }
-
+    
+    //    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    //        // Если была нажата кнопка «Удалить»
+    //        if editingStyle == .delete {
+    //        // Удаляем город из массива
+    //            filteredGroup.remove(at: indexPath.row)
+    //        // И удаляем строку из таблицы
+    //            tableView.deleteRows(at: [indexPath], with: .fade)
+    //        }
+    //    }
+    
 }
 
 @IBDesignable class MyGroupViewImage: UIView {
@@ -156,33 +142,17 @@ class MyGroupsController: UITableViewController {
 
 // MARK: - UISearchBarDelegate
 
-extension MyGroupsController: UISearchBarDelegate {
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+extension MyGroupsController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let groups = groups, let text = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() else { return }
         
-        self.filterGroup.removeAll()
-        
-        let text = searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         if text.isEmpty {
-            self.filterGroup = myGroups
-            self.tableView.reloadData()
+            filteredGroup = Array(groups)
+            tableView.reloadData()
         }
-//        if searchText == "" || searchText == " " {
-//            self.filterGroup = myGroups
-//            self.tableView.reloadData()
-//            return
-//        }
         
-        for item in myGroups {
-            let text = searchText.lowercased()
-            let isArrayContain = item.name.lowercased().range(of: text)
-            
-            if isArrayContain != nil {
-                filterGroup.append(item)
-            }
-        }
+        filteredGroup = groups.filter{ $0.name.lowercased().contains(text) }
         self.tableView.reloadData()
     }
 }
-
 
