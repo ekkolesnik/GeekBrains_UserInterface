@@ -12,7 +12,7 @@ import SwiftyJSON
 import RealmSwift
 
 protocol ServiceProtocol {
-    func loadUsers(completion: @escaping ([User]) -> Void)
+    func loadUsers(completion: @escaping () -> Void)
     func loadGroups()
     func loadPhotos(addParameters: [String: String], completion: @escaping ([Photo]) -> Void)
     func getImageByURL(imageURL: String) -> UIImage?
@@ -26,7 +26,7 @@ class DataForServiceProtocol: ServiceProtocol {
     private let baseUrl = "https://api.vk.com"
 
 // Загрузка друзей
-    func loadUsers(completion: @escaping ([User]) -> Void) {
+    func loadUsers(completion: @escaping () -> Void) {
         
         let path = "/method/friends.get"
         let db: UsersDataBase = .init()
@@ -41,7 +41,7 @@ class DataForServiceProtocol: ServiceProtocol {
         
         let url = baseUrl + path
         
-        AF.request(url, parameters: parameters).responseJSON { [completion] (response) in
+        AF.request(url, parameters: parameters).responseJSON { (response) in
             if let error = response.error {
                 print(error)
             } else {
@@ -53,8 +53,7 @@ class DataForServiceProtocol: ServiceProtocol {
                 } catch {
 
                 }
-                
-                completion(db.userExport())
+                completion()
             }
         }
     }

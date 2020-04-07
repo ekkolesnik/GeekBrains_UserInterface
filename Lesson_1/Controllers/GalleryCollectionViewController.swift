@@ -65,7 +65,7 @@ class GalleryCollectionViewController: UICollectionViewController {
         return cell
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {  // UIStoryboardSegue
         // Получаем ссылку на контроллер, на который осуществлен переход
         guard let destination = segue.destination as? ImageFullScreenController,
             let cell = sender as? FriendGalleryCell else { return }

@@ -15,8 +15,10 @@ class DetailedController: UICollectionViewController {
     var lastNameLabelDetail: String?
     var id: Int?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(id!)
         
     }
 
@@ -43,9 +45,9 @@ class DetailedController: UICollectionViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Получаем ссылку на контроллер, на который осуществлен переход
+//         Получаем ссылку на контроллер, на который осуществлен переход
         guard let destination = segue.destination as? GalleryCollectionViewController else { return }
-        
+
         destination.id = id
     }
 

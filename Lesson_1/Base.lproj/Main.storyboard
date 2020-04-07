@@ -222,17 +222,14 @@
             </objects>
             <point key="canvasLocation" x="-981.15942028985512" y="121.875"/>
         </scene>
-        <!--Friends-->
+        <!--Friends Controller-->
         <scene sceneID="t40-wh-efe">
             <objects>
-                <tableViewController id="M2o-jd-cXK" customClass="FriendsController" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController modalPresentationStyle="fullScreen" id="M2o-jd-cXK" userLabel="Friends Controller" customClass="FriendsController" customModule="Lesson_1" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="aI1-VC-g7c">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="sectionIndexColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="sectionIndexTrackingBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Поиск ..." id="b5f-ds-xQz">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -287,7 +284,6 @@
                                         <constraint firstAttribute="bottom" secondItem="TGB-Wb-FTO" secondAttribute="bottom" constant="5" id="Yea-Sj-SLX"/>
                                         <constraint firstItem="tri-te-4qf" firstAttribute="top" secondItem="80g-ee-Zny" secondAttribute="top" constant="17" id="Z6m-u2-2UD"/>
                                         <constraint firstAttribute="trailing" secondItem="TGB-Wb-FTO" secondAttribute="trailing" constant="20" symbolic="YES" id="eXy-UZ-fSB"/>
-                                        <constraint firstAttribute="bottom" secondItem="tri-te-4qf" secondAttribute="bottom" constant="17" id="mla-ci-hxh"/>
                                         <constraint firstItem="TGB-Wb-FTO" firstAttribute="top" secondItem="80g-ee-Zny" secondAttribute="top" constant="5" id="qpy-Vo-rfP"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -461,7 +457,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l7Y-rI-N4A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4531.884057971015" y="857.8125"/>
+            <point key="canvasLocation" x="4532" y="122"/>
         </scene>
         <!--Detail User Gallery Controller-->
         <scene sceneID="uyJ-nn-CxW">
@@ -505,7 +501,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HtX-WY-5k9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4531.884057971015" y="121.875"/>
+            <point key="canvasLocation" x="4532" y="-587"/>
         </scene>
         <!--Image Full Screen Controller-->
         <scene sceneID="QIB-mM-r3b">
