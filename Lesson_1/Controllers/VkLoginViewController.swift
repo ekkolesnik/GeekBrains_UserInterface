@@ -8,8 +8,14 @@
 
 import UIKit
 import WebKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class VkLoginViewController: UIViewController {
+    
+    var requestHandler: UInt = 0
+//    var idIndex: Int = 0
+//    var uid = ""
     
     @IBOutlet weak var webView: WKWebView!
     
@@ -17,6 +23,25 @@ class VkLoginViewController: UIViewController {
         super.viewDidLoad()
         
         if Session.connect.token != "" {
+            
+            //Получаем данные по анонимному пользователю
+            Auth.auth().signInAnonymously() { (authResult, error) in
+                guard let user = authResult?.user else { return }
+//                let isAnonymous = user.isAnonymous  // true
+                let uid = user.uid
+                //print(uid)
+                
+                let db = Database.database().reference()
+                
+                //записываем а базу зашедшего пользователя
+                db.child("UID").childByAutoId().setValue(uid)
+                
+                //выводим содержимое массива
+//                self.requestHandler = db.child("UID").observe(.value) { ( snapshot ) in
+//                    guard let countID = snapshot.value as? [String] else { return }
+//                }
+            }
+            
             performSegue(withIdentifier: "LoginToTabBar", sender: AnyObject.self)
         }
         

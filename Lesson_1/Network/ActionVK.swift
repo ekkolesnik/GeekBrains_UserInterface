@@ -181,7 +181,6 @@ class DataForServiceProtocol: ServiceProtocol {
                 
                 return group
             }
-            
             return result
             
         } catch {

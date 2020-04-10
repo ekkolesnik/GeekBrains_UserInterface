@@ -12,6 +12,7 @@
 		8519BA26240D8CDE00E0B8E8 /* CustomPopPushTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8519BA25240D8CDE00E0B8E8 /* CustomPopPushTransitioning.swift */; };
 		8526B743241E5311002BAF77 /* VkLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8526B742241E5311002BAF77 /* VkLoginViewController.swift */; };
 		852FD4822427E50900EE38D6 /* EnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852FD4812427E50900EE38D6 /* EnterViewController.swift */; };
+		8540FB3B243E2C56003CA328 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8540FB3A243E2C56003CA328 /* GoogleService-Info.plist */; };
 		85454CB3240E218500A426E9 /* CustomNavigationNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85454CB2240E218500A426E9 /* CustomNavigationNews.swift */; };
 		854BF4CA23F9DD74008850BB /* HeartLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854BF4C923F9DD74008850BB /* HeartLike.swift */; };
 		855317FA24315CFE00190803 /* GalleryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855317F924315CFE00190803 /* GalleryCollectionViewController.swift */; };
@@ -54,6 +55,7 @@
 		8519BA25240D8CDE00E0B8E8 /* CustomPopPushTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopPushTransitioning.swift; sourceTree = "<group>"; };
 		8526B742241E5311002BAF77 /* VkLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkLoginViewController.swift; sourceTree = "<group>"; };
 		852FD4812427E50900EE38D6 /* EnterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterViewController.swift; sourceTree = "<group>"; };
+		8540FB3A243E2C56003CA328 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		85454CB2240E218500A426E9 /* CustomNavigationNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationNews.swift; sourceTree = "<group>"; };
 		854BF4C923F9DD74008850BB /* HeartLike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartLike.swift; sourceTree = "<group>"; };
 		855317F924315CFE00190803 /* GalleryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewController.swift; sourceTree = "<group>"; };
@@ -70,7 +72,7 @@
 		85B03FF923F1EE0E00EE4F3D /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		85C3110C2418968B0087CB40 /* SessionSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSingleton.swift; sourceTree = "<group>"; };
 		85C725D824044103008B03BF /* LoadingScenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScenController.swift; sourceTree = "<group>"; };
-		85CB9BE323E02F33007E105D /* Lesson_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lesson_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		85CB9BE323E02F33007E105D /* VK clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VK clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85CB9BE623E02F33007E105D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85CB9BE823E02F33007E105D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		85CB9BEA23E02F33007E105D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -161,7 +163,7 @@
 		85CB9BE423E02F33007E105D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				85CB9BE323E02F33007E105D /* Lesson_1.app */,
+				85CB9BE323E02F33007E105D /* VK clone.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -169,6 +171,7 @@
 		85CB9BE523E02F33007E105D /* Lesson_1 */ = {
 			isa = PBXGroup;
 			children = (
+				8540FB3A243E2C56003CA328 /* GoogleService-Info.plist */,
 				85C3110B2418963C0087CB40 /* Network */,
 				85CB9BFA23E03CD7007E105D /* img */,
 				85CB9BE623E02F33007E105D /* AppDelegate.swift */,
@@ -246,7 +249,7 @@
 			);
 			name = Lesson_1;
 			productName = Lesson_1;
-			productReference = 85CB9BE323E02F33007E105D /* Lesson_1.app */;
+			productReference = 85CB9BE323E02F33007E105D /* VK clone.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -288,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85CB9BF323E02F34007E105D /* LaunchScreen.storyboard in Resources */,
+				8540FB3B243E2C56003CA328 /* GoogleService-Info.plist in Resources */,
 				85A0FF50240193310046E8C2 /* FriendCellXIBView.xib in Resources */,
 				85CB9BFC23E03D0D007E105D /* After Noon.png in Resources */,
 				8569251A23E6A35B007FD8F9 /* friends.png in Resources */,
@@ -528,8 +532,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "EK.Lesson-1";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.EK.Lesson-1";
+				PRODUCT_NAME = "VK clone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -547,8 +551,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "EK.Lesson-1";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.EK.Lesson-1";
+				PRODUCT_NAME = "VK clone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
