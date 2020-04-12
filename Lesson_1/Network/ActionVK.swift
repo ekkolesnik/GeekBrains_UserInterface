@@ -24,6 +24,7 @@ class DataForServiceProtocol: ServiceProtocol {
     
     private let apiKey = Session.connect.token
     private let baseUrl = "https://api.vk.com"
+    private let firebaseServise: FirebaseServise = .init()
 
 // Загрузка друзей
     func loadUsers(completion: @escaping () -> Void) {
@@ -41,7 +42,7 @@ class DataForServiceProtocol: ServiceProtocol {
         
         let url = baseUrl + path
         
-        AF.request(url, parameters: parameters).responseJSON { (response) in
+        AF.request(url, parameters: parameters).responseJSON { [completion] (response) in
             if let error = response.error {
                 print(error)
             } else {
@@ -179,6 +180,8 @@ class DataForServiceProtocol: ServiceProtocol {
                 group.image = item["photo_100"].stringValue
                 group.id = item["id"].intValue
                 
+                firebaseServise.firebaseAddGroup(group: group)
+                
                 return group
             }
             return result
@@ -217,35 +220,6 @@ class DataForServiceProtocol: ServiceProtocol {
         }
     }
 }
-
-//protocol SearchProtocol {
-//    func loadDataFromVK(_ name: String)
-//}
-
-//class SearchGroup: SearchProtocol {
-//    let baseUrl = "https://api.vk.com"
-//
-//    func loadDataFromVK(_ name: String) {
-//        guard let apiKey = Session.connect.token else { return }
-//        let path = "/method/groups.search"
-//
-//        let parameters = [
-//            "q": "Плавание",
-//            "access_token": apiKey,
-//            "v": "5.103"
-//        ]
-//
-//        let url = baseUrl + path
-//
-//        AF.request(url, parameters: parameters).responseJSON { (response) in
-//            if let error = response.error {
-//                print(error)
-//            } else {
-//                print(response)
-//            }
-//        }
-//    }
-//}
 
 // MARK: - Class DataBase for REALM
 

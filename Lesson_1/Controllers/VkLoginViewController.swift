@@ -12,6 +12,7 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class VkLoginViewController: UIViewController {
+    let firebaseServise: FirebaseServise = .init()
     
     var requestHandler: UInt = 0
 //    var idIndex: Int = 0
@@ -24,23 +25,38 @@ class VkLoginViewController: UIViewController {
         
         if Session.connect.token != "" {
             
-            //Получаем данные по анонимному пользователю
-            Auth.auth().signInAnonymously() { (authResult, error) in
-                guard let user = authResult?.user else { return }
-//                let isAnonymous = user.isAnonymous  // true
-                let uid = user.uid
-                //print(uid)
-                
-                let db = Database.database().reference()
-                
-                //записываем а базу зашедшего пользователя
-                db.child("UID").childByAutoId().setValue(uid)
-                
-                //выводим содержимое массива
-//                self.requestHandler = db.child("UID").observe(.value) { ( snapshot ) in
-//                    guard let countID = snapshot.value as? [String] else { return }
+            firebaseServise.firebaseAuth()
+            
+//            //Получаем данные по анонимному пользователю
+//            Auth.auth().signInAnonymously() { (authResult, error) in
+//                guard let user = authResult?.user else { return }
+////                let isAnonymous = user.isAnonymous  // true
+//                let uid = user.uid
+//                //print(uid)
+//
+//                let db = Database.database().reference()
+//
+//                //-----
+//
+//                let appUsersPath = db.child("UID")
+//                print(appUsersPath)
+//
+//                if appUsersPath.isEqual( "\(uid)" ) == false {
+//
+//                    appUsersPath.child("\(uid)").updateChildValues([ "device" : "\(uid)" ])
+//
 //                }
-            }
+//
+//                //-----
+//
+//                //записываем а базу зашедшего пользователя
+//                db.child("UID").childByAutoId().setValue(uid)
+//
+//                //выводим содержимое массива
+////                self.requestHandler = db.child("UID").observe(.value) { ( snapshot ) in
+////                    guard let countID = snapshot.value as? [String] else { return }
+////                }
+//            }
             
             performSegue(withIdentifier: "LoginToTabBar", sender: AnyObject.self)
         }

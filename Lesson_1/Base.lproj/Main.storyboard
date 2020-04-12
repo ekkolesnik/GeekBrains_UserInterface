@@ -226,7 +226,7 @@
         <scene sceneID="t40-wh-efe">
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="M2o-jd-cXK" userLabel="Friends Controller" customClass="FriendsController" customModule="VK_clone" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="aI1-VC-g7c">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" id="aI1-VC-g7c">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -239,7 +239,7 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriensCell" id="Fuw-rN-7dZ" customClass="FriensCell" customModule="VK_clone" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriensCell" rowHeight="70" id="Fuw-rN-7dZ" customClass="FriensCell" customModule="VK_clone" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="414" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fuw-rN-7dZ" id="80g-ee-Zny">
@@ -249,7 +249,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tri-te-4qf">
                                             <rect key="frame" x="12" y="17" width="42" height="36"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="36" id="hLw-Ra-Gbf"/>
+                                                <constraint firstAttribute="height" constant="36" id="mOO-h7-cH5"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -265,17 +265,9 @@
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="60" id="nxH-qJ-Xzs"/>
-                                                <constraint firstAttribute="width" constant="60" id="wmY-BV-jt1"/>
+                                                <constraint firstAttribute="height" constant="60" id="1xI-le-Bgn"/>
+                                                <constraint firstAttribute="width" constant="60" id="i7x-bK-Wd1"/>
                                             </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                    <real key="value" value="6"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
                                     <constraints>
@@ -367,7 +359,7 @@
                                             <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
                                             <state key="normal" title="Gallery"/>
                                             <connections>
-                                                <segue destination="XFV-ia-VaB" kind="show" identifier="gallerySegue" destinationCreationSelector="gallerySegue" id="TFp-Hw-Vu6"/>
+                                                <segue destination="XFV-ia-VaB" kind="show" identifier="" id="TFp-Hw-Vu6"/>
                                             </connections>
                                         </button>
                                     </subviews>

@@ -12,6 +12,7 @@
 		8519BA26240D8CDE00E0B8E8 /* CustomPopPushTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8519BA25240D8CDE00E0B8E8 /* CustomPopPushTransitioning.swift */; };
 		8526B743241E5311002BAF77 /* VkLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8526B742241E5311002BAF77 /* VkLoginViewController.swift */; };
 		852FD4822427E50900EE38D6 /* EnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852FD4812427E50900EE38D6 /* EnterViewController.swift */; };
+		8537DD6324439E1F00533D74 /* FirebaseConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8537DD6224439E1F00533D74 /* FirebaseConnect.swift */; };
 		8540FB3B243E2C56003CA328 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8540FB3A243E2C56003CA328 /* GoogleService-Info.plist */; };
 		85454CB3240E218500A426E9 /* CustomNavigationNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85454CB2240E218500A426E9 /* CustomNavigationNews.swift */; };
 		854BF4CA23F9DD74008850BB /* HeartLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854BF4C923F9DD74008850BB /* HeartLike.swift */; };
@@ -55,6 +56,7 @@
 		8519BA25240D8CDE00E0B8E8 /* CustomPopPushTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopPushTransitioning.swift; sourceTree = "<group>"; };
 		8526B742241E5311002BAF77 /* VkLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkLoginViewController.swift; sourceTree = "<group>"; };
 		852FD4812427E50900EE38D6 /* EnterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterViewController.swift; sourceTree = "<group>"; };
+		8537DD6224439E1F00533D74 /* FirebaseConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConnect.swift; sourceTree = "<group>"; };
 		8540FB3A243E2C56003CA328 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		85454CB2240E218500A426E9 /* CustomNavigationNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationNews.swift; sourceTree = "<group>"; };
 		854BF4C923F9DD74008850BB /* HeartLike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartLike.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			children = (
 				85C3110C2418968B0087CB40 /* SessionSingleton.swift */,
 				850F6E40241E8AB40018F992 /* ActionVK.swift */,
+				8537DD6224439E1F00533D74 /* FirebaseConnect.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				85FE24782411AB9E006B15E7 /* ImageFullScreenController.swift in Sources */,
 				85E0FFE2242D5B1C00EB3A2A /* Photo.swift in Sources */,
 				855317FA24315CFE00190803 /* GalleryCollectionViewController.swift in Sources */,
+				8537DD6324439E1F00533D74 /* FirebaseConnect.swift in Sources */,
 				857641E1240E1A9B00466BC0 /* CloseAnimation.swift in Sources */,
 				8526B743241E5311002BAF77 /* VkLoginViewController.swift in Sources */,
 				85E67BC223ED499B0079590C /* FriendsController.swift in Sources */,
