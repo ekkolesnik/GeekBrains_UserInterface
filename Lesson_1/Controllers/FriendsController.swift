@@ -21,6 +21,8 @@ class FriendsController: UITableViewController {
         searchController.isActive ? filteredSections : sections
     }
     
+    var cachedAvatars = [String: UIImage]()
+    
     let searchController: UISearchController = .init()
     
     //функция подготавливающая секции
@@ -126,6 +128,27 @@ class FriendsController: UITableViewController {
         return Array(set).sorted()
     }
     
+    //функция загрузки иконок если они отсутствуют в кэше
+    let queue = DispatchQueue(label: "download_queue")
+    private func downloadImage( for url: String, indexPath: IndexPath ) {
+        queue.async {
+            if self.cachedAvatars[url] == nil {
+                if let image = self.friendService.getImageByURL(imageURL: url) {
+                    self.cachedAvatars[url] = image
+                    
+                    DispatchQueue.main.async {
+                        self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                    }
+                }
+            }
+            else {
+                DispatchQueue.main.async {
+                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                }
+            }
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriensCell", for: indexPath) as? FriensCell else {
             preconditionFailure("Can't create FriensCell")
@@ -139,13 +162,11 @@ class FriendsController: UITableViewController {
         cell.FriendsLabel.text = friend.firstName + " " + friend.lastName
         cell.id = friend.id
         
-        DispatchQueue.global().async {
-            if let image = self.friendService.getImageByURL(imageURL: url) {
-                
-                DispatchQueue.main.async {
-                    cell.ImagePic.image = image
-                }
-            }
+        //применяем кэширование иконок групп
+        if let cached = cachedAvatars[url] {
+            cell.ImagePic.image = cached
+        } else {
+            downloadImage(for: url, indexPath: indexPath)
         }
         return cell
     }

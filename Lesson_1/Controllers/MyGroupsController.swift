@@ -15,6 +15,7 @@ class MyGroupsController: UITableViewController {
     var filteredGroup = [Groups]()
     var notoficationToken: NotificationToken?
     let searchController = UISearchController()
+    var cachedAvatars = [String: UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +62,28 @@ class MyGroupsController: UITableViewController {
         return searchController.isActive ? filteredGroup.count : groups?.count ?? 0
     }
     
+    
+    //функция загрузки иконок если они отсутствуют в кэше
+    let queue = DispatchQueue(label: "download_queue")
+    private func downloadImage( for url: String, indexPath: IndexPath ) {
+        queue.async {
+            if self.cachedAvatars[url] == nil {
+                if let image = self.groupService.getImageByURL(imageURL: url) {
+                    self.cachedAvatars[url] = image
+                    
+                    DispatchQueue.main.async {
+                        self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                    }
+                }
+            }
+            else {
+                DispatchQueue.main.async {
+                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                }
+            }
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyGroupCell", for: indexPath) as? MyGroupCell else {
             preconditionFailure("Can't create MyGroupCell")
@@ -72,15 +95,12 @@ class MyGroupsController: UITableViewController {
         
         let url = array[indexPath.row].image
         
-        DispatchQueue.global().async {
-            if let image = self.groupService.getImageByURL(imageURL: url) {
-                
-                DispatchQueue.main.async {
-                    cell.MyGroupImage.image = image
-                }
-            }
+        //применяем кэширование иконок групп
+        if let cached = cachedAvatars[url] {
+            cell.MyGroupImage.image = cached
+        } else {
+            downloadImage(for: url, indexPath: indexPath)
         }
-        
         return cell
     }
     
