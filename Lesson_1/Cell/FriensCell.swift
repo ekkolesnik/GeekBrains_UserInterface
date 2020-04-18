@@ -18,6 +18,9 @@ class FriensCell: UITableViewCell {
     
     var id = 0
     
+    var firstName = ""
+    var lastName = ""
+    
     //возвращение  нормального состояния ячейки при переиспользовании
     override func prepareForReuse() {
         super.prepareForReuse()

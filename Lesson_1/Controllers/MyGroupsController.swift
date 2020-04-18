@@ -21,10 +21,23 @@ class MyGroupsController: UITableViewController {
         super.viewDidLoad()
         
         observeMyGroup()
-        groupService.loadGroups()
+        groupService.loadGroups { }
         searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
         tableView.tableHeaderView = searchController.searchBar
+        
+        //Обновление данных методом свайпа вниз
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(updateGroup), for: .valueChanged)
+        
         self.tableView.reloadData()
+    }
+    
+    //функция для обновления данных методом свайпа вниз
+    @objc func updateGroup() {
+        groupService.loadGroups() { [weak self] in
+            self?.refreshControl?.endRefreshing()
+        }
     }
     
     func observeMyGroup() {
@@ -53,6 +66,11 @@ class MyGroupsController: UITableViewController {
     }
     
     // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let group = filteredGroup[indexPath.row]
+        print(group)
+    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

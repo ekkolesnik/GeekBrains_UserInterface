@@ -16,6 +16,8 @@ class DetailedCell: UICollectionViewCell {
     
     @IBOutlet weak var galleryButton: UIButton!
     
+    @IBOutlet weak var lastNameDetail: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

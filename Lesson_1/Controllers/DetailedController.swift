@@ -37,6 +37,7 @@ class DetailedController: UICollectionViewController {
         
         cell.DetailedImage.image = image
         cell.NameLabelDetail.text = nameLabelDetail
+        cell.lastNameDetail.text = lastNameLabelDetail
         
         return cell
     }

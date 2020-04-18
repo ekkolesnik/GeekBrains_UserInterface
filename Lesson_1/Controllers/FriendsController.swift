@@ -49,7 +49,7 @@ class FriendsController: UITableViewController {
             results.observe { (changes) in
                 switch changes {
                 case .initial:
-                    //перезагрузаем не всю таблицу а определённую секцию, так как знаем её номер
+                    //перезагружаем не всю таблицу а определённую секцию, так как знаем её номер
                     self.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
                     
                 case .update(_, let deletions, let insertions, let modifications):
@@ -90,9 +90,10 @@ class FriendsController: UITableViewController {
         guard let destination = segue.destination as? DetailedController,
             let cell = sender as? FriensCell else { return }
         
-        destination.nameLabelDetail = cell.FriendsLabel.text
+        destination.nameLabelDetail = cell.firstName
         destination.image = cell.ImagePic.image
         destination.id = cell.id
+        destination.lastNameLabelDetail = cell.lastName
         
     }
     
@@ -161,6 +162,8 @@ class FriendsController: UITableViewController {
         //заполнение ячейки
         cell.FriendsLabel.text = friend.firstName + " " + friend.lastName
         cell.id = friend.id
+        cell.firstName = friend.firstName
+        cell.lastName = friend.lastName
         
         //применяем кэширование иконок групп
         if let cached = cachedAvatars[url] {
