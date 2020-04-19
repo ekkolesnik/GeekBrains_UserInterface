@@ -12,7 +12,10 @@ import RealmSwift
 class MyGroupsController: UITableViewController {
     let groupService: ServiceProtocol = DataForServiceProtocol()
     var groups: Results<Groups>?
-    var filteredGroup = [Groups]()
+    var groupForSearch = [Groups]()
+    var filteredGroup: [Groups] {
+        return Array(searchController.isActive ? groupForSearch : myGroupArray)
+    }
     var notoficationToken: NotificationToken?
     let searchController = UISearchController()
     var cachedAvatars = [String: UIImage]()
@@ -77,7 +80,8 @@ class MyGroupsController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchController.isActive ? filteredGroup.count : groups?.count ?? 0
+        return filteredGroup.count
+//        return searchController.isActive ? filteredGroup.count : groups?.count ?? 0
     }
     
     
@@ -107,11 +111,10 @@ class MyGroupsController: UITableViewController {
             preconditionFailure("Can't create MyGroupCell")
         }
         
-        let array = searchController.isActive ? filteredGroup : Array(groups!)
-        let nameMyGroup = array[indexPath.row]
+        let nameMyGroup = filteredGroup[indexPath.row]
         cell.MyGroupNameLabel.text = nameMyGroup.name
         
-        let url = array[indexPath.row].image
+        let url = filteredGroup[indexPath.row].image
         
         //применяем кэширование иконок групп
         if let cached = cachedAvatars[url] {
@@ -137,7 +140,7 @@ class MyGroupsController: UITableViewController {
                 // Проверяем, что такого города нет в списке
                 if !filteredGroup.contains(where: { $0.name == groups.name }) {
                     // Добавляем город в список выбранных
-                    filteredGroup.append(groups)
+                    groupForSearch.append(groups)
                     // Обновляем таблицу
                     tableView.reloadData()
                 }
@@ -182,15 +185,26 @@ class MyGroupsController: UITableViewController {
 
 extension MyGroupsController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        guard let groups = groups, let text = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() else { return }
         
-        if text.isEmpty {
-            filteredGroup = Array(groups)
+        guard let text = searchController.searchBar.text else { return }
+            groupForSearch = myGroupArray.filter({ $0.name.range(of: text, options: .caseInsensitive) != nil })
             tableView.reloadData()
-        }
         
-        filteredGroup = groups.filter{ $0.name.lowercased().contains(text) }
-        self.tableView.reloadData()
+//        guard let groups = groups, let text = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() else { return }
+//
+//        if text.isEmpty {
+//            groupForSearch = Array(groups)
+//            tableView.reloadData()
+//        }
+//
+//        groupForSearch = groups.filter{ $0.name.lowercased().contains(text) }
+//        self.tableView.reloadData()
     }
 }
 
+extension MyGroupsController {
+    var myGroupArray: [Groups] {
+        guard let groups = groups else { return [] }
+        return Array(groups)
+    }
+}

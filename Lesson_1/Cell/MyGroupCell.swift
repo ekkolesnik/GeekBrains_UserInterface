@@ -17,11 +17,11 @@ class MyGroupCell: UITableViewCell {
     @IBOutlet weak var ViewImage: UIView!
     
     //возвращение  нормального состояния ячейки при переиспользовании
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//        MyGroupImage.image = nil
-//        MyGroupNameLabel.text = ""
-//    }
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        MyGroupImage.image = nil
+        MyGroupNameLabel.text = ""
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
