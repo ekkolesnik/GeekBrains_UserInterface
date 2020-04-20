@@ -12,6 +12,7 @@ import SwiftyJSON
 import RealmSwift
 
 protocol ServiceProtocol {
+    func loadNews(completion: @escaping () -> Void)
     func loadUsers(completion: @escaping () -> Void)
     func loadGroups(handler: @escaping () -> Void)
     func loadPhotos(addParameters: [String: String], completion: @escaping ([Photo]) -> Void)
@@ -128,6 +129,38 @@ class DataForServiceProtocol: ServiceProtocol {
             }
         }
     }
+    
+    func loadNews(completion: @escaping () -> Void) {
+        let path = "/method/newsfeed.get"
+        let db: NewsDataBase = .init()
+        
+        let parameters = [
+            "user_id": Session.connect.userId,
+            "filters": "post,photo",
+            "access_token": apiKey,
+            "v": "5.103"
+        ]
+        
+        let url = baseUrl + path
+        
+        AF.request(url, parameters: parameters).responseJSON { [completion] (response) in
+            if let error = response.error {
+                print(error)
+            } else {
+                guard let data = response.data else { return }
+                
+                let news: [News] = self.newsParser(data: data)
+            //    print(news)
+                
+                do {
+                    try db.save(news: news)
+                } catch {
+                    
+                }
+                completion()
+            }
+        }
+    }
 
 // Функ-я перевода URL в картинку
     func getImageByURL(imageURL: String) -> UIImage? {
@@ -166,6 +199,43 @@ class DataForServiceProtocol: ServiceProtocol {
             return []
         }
     }
+    
+    private func newsParser(data: Data) -> [News] {
+        
+        do {
+            let json = try JSON(data: data)
+            let array = json["response"]["items"].arrayValue
+            
+            let result = array.map { item -> News in
+                
+                let news = News()
+                
+                news.postId = item["post_id"].intValue
+                news.sourceId = item["source_id"].intValue
+                news.date = item["date"].doubleValue
+                news.text = item["text"].stringValue
+                
+                let photoSet = item["attachments"].arrayValue.first?["photo"]["sizes"].arrayValue
+                if let first = photoSet?.first (where: { $0["type"].stringValue == "z" } ) {
+                    news.imageURL = first["url"].stringValue
+                }
+                
+                news.views = item["views"]["count"].intValue
+                news.likes = item["likes"]["count"].intValue
+                news.comments = item["comments"]["count"].intValue
+                news.reposts = item["reposts"]["count"].intValue
+                
+                return news
+            }
+            
+            return result
+            
+        } catch {
+            print(error.localizedDescription)
+            return []
+        }
+    }
+    
 // Парсинг груп
     private func groupsParser(data: Data) -> [Groups] {
         
@@ -278,6 +348,26 @@ class PhotoDataBase {
         do {
             let realm = try Realm()
             let objects = realm.objects(Photo.self)  //.filter("ownerId = %@", id)
+            return Array(objects)
+        } catch {
+            return []
+        }
+    }
+}
+class NewsDataBase {
+    func save( news: [News] ) throws {
+        let realm = try Realm()
+        realm.beginWrite()
+        let oldPhoto = realm.objects(News.self)
+        realm.delete(oldPhoto)
+        realm.add(news)
+        try realm.commitWrite()
+    }
+    
+    func newsExport() -> [News] {
+        do {
+            let realm = try Realm()
+            let objects = realm.objects(News.self)  //.filter("ownerId = %@", id)
             return Array(objects)
         } catch {
             return []

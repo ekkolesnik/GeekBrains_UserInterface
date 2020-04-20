@@ -9,6 +9,7 @@
 import UIKit
 
 class NewsController: UIViewController {
+    let newsService: ServiceProtocol = DataForServiceProtocol()
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -28,6 +29,8 @@ class NewsController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        newsService.loadNews { }
         
         // Автоматический подбор высоты ячейки по содержанию
         tableView.rowHeight = UITableView.automaticDimension
