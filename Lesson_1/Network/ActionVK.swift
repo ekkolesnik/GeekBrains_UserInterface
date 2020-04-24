@@ -12,16 +12,21 @@ import SwiftyJSON
 import RealmSwift
 
 protocol ServiceProtocol {
-    func loadNews(completion: @escaping () -> Void)
+    func loadNewsPhoto(completion: @escaping () -> Void)
+    func loadNewsPost(completion: @escaping () -> Void)
     func loadUsers(completion: @escaping () -> Void)
     func loadGroups(handler: @escaping () -> Void)
     func loadPhotos(addParameters: [String: String], completion: @escaping ([Photo]) -> Void)
     func getImageByURL(imageURL: String) -> UIImage?
+    func getGroupById(id: Int) -> Groups?
+    func getUserById(id: Int) -> User?
 }
 
 // MARK: - Class DataForServiceProtocol: ServiceProtocol (API + Parse)
 
 class DataForServiceProtocol: ServiceProtocol {
+    
+    let queue = DispatchQueue(label: "queueService")
     
     private let apiKey = Session.connect.token
     private let baseUrl = "https://api.vk.com"
@@ -130,13 +135,49 @@ class DataForServiceProtocol: ServiceProtocol {
         }
     }
     
-    func loadNews(completion: @escaping () -> Void) {
+    func loadNewsPost(completion: @escaping () -> Void) {
         let path = "/method/newsfeed.get"
-        let db: NewsDataBase = .init()
+        let db: NewsPostDataBase = .init()
         
         let parameters = [
             "user_id": Session.connect.userId,
-            "filters": "post,photo",
+            "filters": "post",
+            "access_token": apiKey,
+            "v": "5.103"
+        ]
+        
+        let url = baseUrl + path
+        
+        queue.async {
+            AF.request(url, parameters: parameters).responseJSON { [completion] (response) in
+                if let error = response.error {
+                    print(error)
+                } else {
+                    guard let data = response.data else { return }
+                    
+                    let news: [NewsPost] = self.newsPostParser(data: data)
+                    DispatchQueue.main.async {
+                    do {
+                        
+                            try db.save(news: news)
+                        
+                    } catch {
+                        
+                    }
+                        }
+                    completion()
+                }
+            }
+        }
+    }
+    
+    func loadNewsPhoto(completion: @escaping () -> Void) {
+        let path = "/method/newsfeed.get"
+        let db: NewsPhotoDataBase = .init()
+        
+        let parameters = [
+            "user_id": Session.connect.userId,
+            "filters": "photo",
             "access_token": apiKey,
             "v": "5.103"
         ]
@@ -149,8 +190,8 @@ class DataForServiceProtocol: ServiceProtocol {
             } else {
                 guard let data = response.data else { return }
                 
-                let news: [News] = self.newsParser(data: data)
-            //    print(news)
+                let news: [NewsPhoto] = self.newsPhotoParser(data: data)
+                print(news)
                 
                 do {
                     try db.save(news: news)
@@ -172,6 +213,33 @@ class DataForServiceProtocol: ServiceProtocol {
         }
         
         return nil
+    }
+    
+    func getGroupById(id: Int) -> Groups? {
+        do {
+            let realm = try Realm()
+            let group = realm.objects(Groups.self).filter("id = %@", abs(id)).first
+            return group
+            
+        } catch {
+            print(error.localizedDescription)
+            return Groups()
+        }
+
+    }
+    
+    
+    func getUserById(id: Int) -> User? {
+        do {
+            let realm = try Realm()
+            let user = realm.objects(User.self).filter("id = %@", abs(id)).first
+            return user
+            
+        } catch {
+            print(error.localizedDescription)
+            return User()
+        }
+
     }
 
 // Парсинг друзей
@@ -200,15 +268,49 @@ class DataForServiceProtocol: ServiceProtocol {
         }
     }
     
-    private func newsParser(data: Data) -> [News] {
+    private func newsPhotoParser(data: Data) -> [NewsPhoto] {
         
         do {
             let json = try JSON(data: data)
             let array = json["response"]["items"].arrayValue
             
-            let result = array.map { item -> News in
+            let result = array.map { item -> NewsPhoto in
                 
-                let news = News()
+                let news = NewsPhoto()
+                
+                news.postId = item["post_id"].intValue
+                news.sourceId = item["source_id"].intValue
+                news.date = item["date"].doubleValue
+                
+                let photo = item["photos"]["items"].arrayValue.first?["sizes"].arrayValue
+                if let first = photo?.first (where: { $0["type"].stringValue == "z" } ) {
+                news.imageURL = first["url"].stringValue
+                }
+                
+                news.likes = item["photos"]["items"].arrayValue.first!["likes"]["count"].intValue
+                news.comments = item["photos"]["items"].arrayValue.first!["comments"]["count"].intValue
+                news.reposts = item["photos"]["items"].arrayValue.first!["reposts"]["count"].intValue
+                
+                return news
+            }
+            
+            return result
+            
+        } catch {
+            print(error.localizedDescription)
+            return []
+        }
+    }
+    
+    private func newsPostParser(data: Data) -> [NewsPost] {
+        
+        do {
+            let json = try JSON(data: data)
+            let array = json["response"]["items"].arrayValue
+            
+            let result = array.map { item -> NewsPost in
+                
+                let news = NewsPost()
                 
                 news.postId = item["post_id"].intValue
                 news.sourceId = item["source_id"].intValue
@@ -225,6 +327,7 @@ class DataForServiceProtocol: ServiceProtocol {
                 news.comments = item["comments"]["count"].intValue
                 news.reposts = item["reposts"]["count"].intValue
                 
+                print(news)
                 return news
             }
             
@@ -354,23 +457,41 @@ class PhotoDataBase {
         }
     }
 }
-class NewsDataBase {
-    func save( news: [News] ) throws {
+class NewsPostDataBase {
+    func save( news: [NewsPost] ) throws {
         let realm = try Realm()
         realm.beginWrite()
-        let oldPhoto = realm.objects(News.self)
-        realm.delete(oldPhoto)
         realm.add(news)
         try realm.commitWrite()
     }
     
-    func newsExport() -> [News] {
+    func newsExport() -> [NewsPost] {
         do {
             let realm = try Realm()
-            let objects = realm.objects(News.self)  //.filter("ownerId = %@", id)
+            let objects = realm.objects(NewsPost.self)  //.filter("ownerId = %@", id)
             return Array(objects)
         } catch {
             return []
         }
     }
 }
+
+class NewsPhotoDataBase {
+    func save( news: [NewsPhoto] ) throws {
+        let realm = try Realm()
+        realm.beginWrite()
+        realm.add(news)
+        try realm.commitWrite()
+    }
+    
+    func newsExport() -> [NewsPhoto] {
+        do {
+            let realm = try Realm()
+            let objects = realm.objects(NewsPhoto.self)  //.filter("ownerId = %@", id)
+            return Array(objects)
+        } catch {
+            return []
+        }
+    }
+}
+

@@ -19,4 +19,14 @@ class NewsCell: UITableViewCell {
     
     @IBOutlet weak var TextNewsCell: UILabel!
     
+    @IBOutlet weak var imageNews: UIImageView!
+    
+    @IBOutlet weak var heartLikeCount: UILabel!
+    
+    @IBOutlet weak var commentCount: UILabel!
+    
+    @IBOutlet weak var repostCount: UILabel!
+    
+    @IBOutlet weak var viewsCount: UILabel!
+    
 }

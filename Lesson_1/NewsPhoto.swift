@@ -1,22 +1,20 @@
 //
-//  News.swift
+//  NewsPhoto.swift
 //  Lesson_1
 //
-//  Created by Evgeny Kolesnik on 20.04.2020.
+//  Created by Evgeny Kolesnik on 22.04.2020.
 //  Copyright © 2020 Evgeny Kolesnik. All rights reserved.
 //
 
 import UIKit
 import RealmSwift
 
-class News: Object {
+class NewsPhoto: Object {
     
     @objc dynamic var postId: Int = 0
     @objc dynamic var sourceId: Int = 0
     @objc dynamic var date: Double = 0
-    @objc dynamic var text: String = ""
     @objc dynamic var imageURL: String = ""
-    @objc dynamic var views: Int = 0
     @objc dynamic var likes: Int = 0
     @objc dynamic var comments: Int = 0
     @objc dynamic var reposts: Int = 0
@@ -26,4 +24,3 @@ class News: Object {
     }
     
 }
-

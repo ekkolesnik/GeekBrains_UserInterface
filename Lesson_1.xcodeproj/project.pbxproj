@@ -10,9 +10,10 @@
 		850F6E41241E8AB40018F992 /* ActionVK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850F6E40241E8AB40018F992 /* ActionVK.swift */; };
 		8519BA23240D871D00E0B8E8 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8519BA22240D871D00E0B8E8 /* CustomNavigationController.swift */; };
 		8519BA26240D8CDE00E0B8E8 /* CustomPopPushTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8519BA25240D8CDE00E0B8E8 /* CustomPopPushTransitioning.swift */; };
+		8523FC772450D70B00578E09 /* NewsPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8523FC762450D70B00578E09 /* NewsPhoto.swift */; };
 		8526B743241E5311002BAF77 /* VkLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8526B742241E5311002BAF77 /* VkLoginViewController.swift */; };
 		852FD4822427E50900EE38D6 /* EnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852FD4812427E50900EE38D6 /* EnterViewController.swift */; };
-		8536C80F244D07F00052F7B4 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8536C80E244D07F00052F7B4 /* News.swift */; };
+		8536C80F244D07F00052F7B4 /* NewsPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8536C80E244D07F00052F7B4 /* NewsPost.swift */; };
 		8537DD6324439E1F00533D74 /* FirebaseConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8537DD6224439E1F00533D74 /* FirebaseConnect.swift */; };
 		8540FB3B243E2C56003CA328 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8540FB3A243E2C56003CA328 /* GoogleService-Info.plist */; };
 		85454CB3240E218500A426E9 /* CustomNavigationNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85454CB2240E218500A426E9 /* CustomNavigationNews.swift */; };
@@ -46,6 +47,7 @@
 		85E67BC523ED76840079590C /* FriensCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BC423ED76840079590C /* FriensCell.swift */; };
 		85E67BC723F09B040079590C /* MyGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BC623F09B040079590C /* MyGroupCell.swift */; };
 		85E67BC923F0ABD70079590C /* AvailableGroupsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BC823F0ABD70079590C /* AvailableGroupsCell.swift */; };
+		85F728702453575A009C9596 /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F7286F2453575A009C9596 /* NewsTableViewController.swift */; };
 		85FDE27E2406460C00571AA0 /* DetailUserGalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDE27D2406460C00571AA0 /* DetailUserGalleryController.swift */; };
 		85FE24782411AB9E006B15E7 /* ImageFullScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FE24772411AB9E006B15E7 /* ImageFullScreenController.swift */; };
 		C6645983004F923F12DA2AA3 /* Pods_Lesson_1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4391CAE24A39866F793E43 /* Pods_Lesson_1.framework */; };
@@ -55,9 +57,10 @@
 		850F6E40241E8AB40018F992 /* ActionVK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionVK.swift; sourceTree = "<group>"; };
 		8519BA22240D871D00E0B8E8 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		8519BA25240D8CDE00E0B8E8 /* CustomPopPushTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopPushTransitioning.swift; sourceTree = "<group>"; };
+		8523FC762450D70B00578E09 /* NewsPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPhoto.swift; sourceTree = "<group>"; };
 		8526B742241E5311002BAF77 /* VkLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkLoginViewController.swift; sourceTree = "<group>"; };
 		852FD4812427E50900EE38D6 /* EnterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterViewController.swift; sourceTree = "<group>"; };
-		8536C80E244D07F00052F7B4 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		8536C80E244D07F00052F7B4 /* NewsPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPost.swift; sourceTree = "<group>"; };
 		8537DD6224439E1F00533D74 /* FirebaseConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConnect.swift; sourceTree = "<group>"; };
 		8540FB3A243E2C56003CA328 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		85454CB2240E218500A426E9 /* CustomNavigationNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationNews.swift; sourceTree = "<group>"; };
@@ -93,6 +96,7 @@
 		85E67BC423ED76840079590C /* FriensCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriensCell.swift; sourceTree = "<group>"; };
 		85E67BC623F09B040079590C /* MyGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupCell.swift; sourceTree = "<group>"; };
 		85E67BC823F0ABD70079590C /* AvailableGroupsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableGroupsCell.swift; sourceTree = "<group>"; };
+		85F7286F2453575A009C9596 /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		85FDE27D2406460C00571AA0 /* DetailUserGalleryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserGalleryController.swift; sourceTree = "<group>"; };
 		85FE24772411AB9E006B15E7 /* ImageFullScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFullScreenController.swift; sourceTree = "<group>"; };
 		95C9CF14E66E5091A86000AF /* Pods-Lesson_1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lesson_1.debug.xcconfig"; path = "Target Support Files/Pods-Lesson_1/Pods-Lesson_1.debug.xcconfig"; sourceTree = "<group>"; };
@@ -187,7 +191,8 @@
 				854BF4C923F9DD74008850BB /* HeartLike.swift */,
 				857641E0240E1A9B00466BC0 /* CloseAnimation.swift */,
 				85E0FFE1242D5B1C00EB3A2A /* Photo.swift */,
-				8536C80E244D07F00052F7B4 /* News.swift */,
+				8536C80E244D07F00052F7B4 /* NewsPost.swift */,
+				8523FC762450D70B00578E09 /* NewsPhoto.swift */,
 				85B03FF923F1EE0E00EE4F3D /* Users.swift */,
 				8566F83423F4017500EBD6DE /* Groups.swift */,
 				8566F83323F3FEDB00EBD6DE /* Cell */,
@@ -219,6 +224,7 @@
 				85FDE27D2406460C00571AA0 /* DetailUserGalleryController.swift */,
 				857CC3B223FD67610023A73B /* NewsController.swift */,
 				85E67BBB23ED45A80079590C /* MyGroupsController.swift */,
+				85F7286F2453575A009C9596 /* NewsTableViewController.swift */,
 				85FE24772411AB9E006B15E7 /* ImageFullScreenController.swift */,
 				8526B742241E5311002BAF77 /* VkLoginViewController.swift */,
 				852FD4812427E50900EE38D6 /* EnterViewController.swift */,
@@ -362,13 +368,14 @@
 				85E67BC023ED49320079590C /* DetailedController.swift in Sources */,
 				850F6E41241E8AB40018F992 /* ActionVK.swift in Sources */,
 				857CC3B323FD67610023A73B /* NewsController.swift in Sources */,
-				8536C80F244D07F00052F7B4 /* News.swift in Sources */,
+				8536C80F244D07F00052F7B4 /* NewsPost.swift in Sources */,
 				85FDE27E2406460C00571AA0 /* DetailUserGalleryController.swift in Sources */,
 				85E67BC523ED76840079590C /* FriensCell.swift in Sources */,
 				855FC85F23F189100088E39D /* DetailedCell.swift in Sources */,
 				852FD4822427E50900EE38D6 /* EnterViewController.swift in Sources */,
 				857CC3B523FE5EBE0023A73B /* NewsCell.swift in Sources */,
 				8566F83523F4017500EBD6DE /* Groups.swift in Sources */,
+				8523FC772450D70B00578E09 /* NewsPhoto.swift in Sources */,
 				85B03FFA23F1EE0E00EE4F3D /* Users.swift in Sources */,
 				85E67BC723F09B040079590C /* MyGroupCell.swift in Sources */,
 				855317FC24315D4900190803 /* FriendGalleryCell.swift in Sources */,
@@ -388,6 +395,7 @@
 				857641E1240E1A9B00466BC0 /* CloseAnimation.swift in Sources */,
 				8526B743241E5311002BAF77 /* VkLoginViewController.swift in Sources */,
 				85E67BC223ED499B0079590C /* FriendsController.swift in Sources */,
+				85F728702453575A009C9596 /* NewsTableViewController.swift in Sources */,
 				85CB9BE923E02F33007E105D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

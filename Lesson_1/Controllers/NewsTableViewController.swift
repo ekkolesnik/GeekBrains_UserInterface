@@ -1,36 +1,19 @@
 //
-//  NewsController.swift
+//  NewsTableViewController.swift
 //  Lesson_1
 //
-//  Created by Evgeny Kolesnik on 19.02.2020.
+//  Created by Evgeny Kolesnik on 24.04.2020.
 //  Copyright © 2020 Evgeny Kolesnik. All rights reserved.
 //
 
 import UIKit
 import RealmSwift
 
-class NewsController: UIViewController {
+class NewsTableViewController: UITableViewController {
     let newsService: ServiceProtocol = DataForServiceProtocol()
-    
-    @IBOutlet weak var tableView: UITableView! {
-        didSet {
-            tableView.delegate = self
-            tableView.dataSource = self
-        }
-    }
-    
-    var refreshControl = UIRefreshControl()
-    
     var news: [Results<NewsPost>] = []
-    
-//    var source: Object?
-    
-//    var newsArray: [NewsPost] {
-//        guard let news = news else { return [] }
-//        return Array(news)
-//    }
-    
     var notoficationToken: [NotificationToken] = []
+    let queueImage = DispatchQueue(label: "NewsQueue")
     
     func prepareSections() {
         
@@ -67,7 +50,6 @@ class NewsController: UIViewController {
             }
         )
     }
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,40 +59,36 @@ class NewsController: UIViewController {
             self.prepareSections()
         }
         
-        
-        // Автоматический подбор высоты ячейки по содержанию
- //       tableView.rowHeight = UITableView.automaticDimension
-        
-        //Обновление данных методом свайпа вниз
-        refreshControl.addTarget(self, action: #selector(updateNews), for: .valueChanged)
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(updateNews), for: .valueChanged)
 
     }
     
-    //функция для обновления данных методом свайпа вниз
     @objc func updateNews() {
-        newsService.loadNewsPost() { [weak self] in
-            self?.refreshControl.endRefreshing()
+        newsService.loadNewsPost() {
+            self.tableView.reloadData()
+            self.prepareSections()
+            self.refreshControl?.endRefreshing()
         }
     }
-}
 
-extension NewsController: UITableViewDataSource, UITableViewDelegate {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
+    // MARK: - Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return news.count
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return news[section].count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell") as? NewsCell else {
-//            preconditionFailure("Can't create NewsCell")
-//        }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+       // let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+
+        // Configure the cell...
         
         let newss = news[indexPath.section][indexPath.row]
-        print(news)
         
         let dateFormatter = DateFormatter()
         let date = NSDate(timeIntervalSince1970: newss.date)
@@ -119,9 +97,19 @@ extension NewsController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = cellSelection(news: newss, indexPath: indexPath)
         
+        if newss.sourceId < 0 {
+            let group = self.newsService.getGroupById(id: newss.sourceId)
+            cell.FriendImageNewsCell.image = newsService.getImageByURL(imageURL: group?.image ?? "")
+            cell.NameLabelNewsCell.text = group?.name
+            
+        } else {
+            let user = self.newsService.getUserById(id: newss.sourceId)
+            cell.FriendImageNewsCell.image = newsService.getImageByURL(imageURL: user?.image ?? "")
+            cell.NameLabelNewsCell.text = user?.lastName
+        }
+        
         cell.DateNewsCell.text = stringDate
-        
-        
+
         return cell
     }
     
@@ -138,7 +126,7 @@ extension NewsController: UITableViewDataSource, UITableViewDelegate {
         } else if news.text == "" {
             
             cell = tableView.dequeueReusableCell(withIdentifier: "NewsCellNoText", for: indexPath) as! NewsCell
-            
+
             cell.imageNews.image = newsService.getImageByURL(imageURL: news.imageURL)
 
         } else {
@@ -146,6 +134,7 @@ extension NewsController: UITableViewDataSource, UITableViewDelegate {
             cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
             
             cell.TextNewsCell.text = news.text
+            
             cell.imageNews.image = newsService.getImageByURL(imageURL: news.imageURL)
             
         }
@@ -153,5 +142,4 @@ extension NewsController: UITableViewDataSource, UITableViewDelegate {
         return cell
         
     }
-    
 }
