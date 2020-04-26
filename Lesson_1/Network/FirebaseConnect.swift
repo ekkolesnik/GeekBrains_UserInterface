@@ -13,6 +13,7 @@ import FirebaseDatabase
 protocol FirebaseConnectProtocol {
     func firebaseAuth()
     func firebaseAddGroup(group: Groups)
+    func updateNewsSource(object: NewsEXT)
 }
 
 class FirebaseServise: FirebaseConnectProtocol {
@@ -40,4 +41,19 @@ class FirebaseServise: FirebaseConnectProtocol {
             db.child("USER/\(userID)/groups/\(group.id)").updateChildValues([ "name" : "\(group.name)" ])
         }
     }
+    
+    func updateNewsSource(object: NewsEXT) {
+        
+        
+        let newsSourcesPath = self.db.queryOrdered(byChild: "appusers/\(self.userID)/newsSources")
+        
+        if newsSourcesPath.isEqual("\(object.id)") == false {
+            
+            self.db.child("appusers/\(self.userID)/newsSources/\(object.id)").updateChildValues([ "id" : "\(object.id)" ])
+            self.db.child("appusers/\(self.userID)/newsSources/\(object.id)").updateChildValues([ "name" : "\(object.name)" ])
+            
+        }
+        
+    }
+    
 }

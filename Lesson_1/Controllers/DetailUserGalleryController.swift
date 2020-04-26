@@ -32,10 +32,10 @@ class DetailUserGalleryController: UIViewController {
             "owner_id" :  String(id!)
         ]
         
-        photoService.loadPhotos(addParameters: addID) { (photos) in
-            self.imageArray = photos
-            
-        }
+        photoService.loadPhotos(addParameters: addID) { }
+//        photoService.loadPhotos(addParameters: addID) { (photos) in
+//            self.imageArray = photos
+//        }
         
         //Свайпы по слайдеру
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swipeImage(_ :)))

@@ -25,10 +25,9 @@ class GalleryCollectionViewController: UICollectionViewController {
             "owner_id" :  String(id!)
         ]
         
-        photoService.loadPhotos(addParameters: addID) { (photos) in
-            self.imageArray = photos
-            self.collectionView.reloadData()
-        }
+        photoService.loadPhotos(addParameters: addID) { }
+        
+        self.collectionView.reloadData()
         
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)

@@ -31,6 +31,9 @@
 		85A0FF52240197180046E8C2 /* FriendsCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A0FF51240197180046E8C2 /* FriendsCellHeader.swift */; };
 		85B03FFA23F1EE0E00EE4F3D /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B03FF923F1EE0E00EE4F3D /* Users.swift */; };
 		85C3110D2418968B0087CB40 /* SessionSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3110C2418968B0087CB40 /* SessionSingleton.swift */; };
+		85C3479F2455C583006A3B61 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3479E2455C583006A3B61 /* RealmService.swift */; };
+		85C347A12455D880006A3B61 /* ParserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C347A02455D880006A3B61 /* ParserService.swift */; };
+		85C347A32455FE34006A3B61 /* NewsEXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C347A22455FE34006A3B61 /* NewsEXT.swift */; };
 		85C725D924044103008B03BF /* LoadingScenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C725D824044103008B03BF /* LoadingScenController.swift */; };
 		85CB9BE723E02F33007E105D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB9BE623E02F33007E105D /* AppDelegate.swift */; };
 		85CB9BE923E02F33007E105D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB9BE823E02F33007E105D /* SceneDelegate.swift */; };
@@ -78,6 +81,9 @@
 		85A0FF51240197180046E8C2 /* FriendsCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCellHeader.swift; sourceTree = "<group>"; };
 		85B03FF923F1EE0E00EE4F3D /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		85C3110C2418968B0087CB40 /* SessionSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSingleton.swift; sourceTree = "<group>"; };
+		85C3479E2455C583006A3B61 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		85C347A02455D880006A3B61 /* ParserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserService.swift; sourceTree = "<group>"; };
+		85C347A22455FE34006A3B61 /* NewsEXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsEXT.swift; sourceTree = "<group>"; };
 		85C725D824044103008B03BF /* LoadingScenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScenController.swift; sourceTree = "<group>"; };
 		85CB9BE323E02F33007E105D /* VK clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VK clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85CB9BE623E02F33007E105D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -154,7 +160,9 @@
 			children = (
 				85C3110C2418968B0087CB40 /* SessionSingleton.swift */,
 				850F6E40241E8AB40018F992 /* ActionVK.swift */,
+				85C347A02455D880006A3B61 /* ParserService.swift */,
 				8537DD6224439E1F00533D74 /* FirebaseConnect.swift */,
+				85C3479E2455C583006A3B61 /* RealmService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -194,6 +202,7 @@
 				8536C80E244D07F00052F7B4 /* NewsPost.swift */,
 				8523FC762450D70B00578E09 /* NewsPhoto.swift */,
 				85B03FF923F1EE0E00EE4F3D /* Users.swift */,
+				85C347A22455FE34006A3B61 /* NewsEXT.swift */,
 				8566F83423F4017500EBD6DE /* Groups.swift */,
 				8566F83323F3FEDB00EBD6DE /* Cell */,
 				85CB9BEF23E02F34007E105D /* Assets.xcassets */,
@@ -367,6 +376,7 @@
 				854BF4CA23F9DD74008850BB /* HeartLike.swift in Sources */,
 				85E67BC023ED49320079590C /* DetailedController.swift in Sources */,
 				850F6E41241E8AB40018F992 /* ActionVK.swift in Sources */,
+				85C347A12455D880006A3B61 /* ParserService.swift in Sources */,
 				857CC3B323FD67610023A73B /* NewsController.swift in Sources */,
 				8536C80F244D07F00052F7B4 /* NewsPost.swift in Sources */,
 				85FDE27E2406460C00571AA0 /* DetailUserGalleryController.swift in Sources */,
@@ -393,7 +403,9 @@
 				855317FA24315CFE00190803 /* GalleryCollectionViewController.swift in Sources */,
 				8537DD6324439E1F00533D74 /* FirebaseConnect.swift in Sources */,
 				857641E1240E1A9B00466BC0 /* CloseAnimation.swift in Sources */,
+				85C3479F2455C583006A3B61 /* RealmService.swift in Sources */,
 				8526B743241E5311002BAF77 /* VkLoginViewController.swift in Sources */,
+				85C347A32455FE34006A3B61 /* NewsEXT.swift in Sources */,
 				85E67BC223ED499B0079590C /* FriendsController.swift in Sources */,
 				85F728702453575A009C9596 /* NewsTableViewController.swift in Sources */,
 				85CB9BE923E02F33007E105D /* SceneDelegate.swift in Sources */,

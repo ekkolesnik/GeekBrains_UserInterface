@@ -11,84 +11,76 @@ import RealmSwift
 
 class NewsTableViewController: UITableViewController {
     let newsService: ServiceProtocol = DataForServiceProtocol()
-    var news: [Results<NewsPost>] = []
-    var notoficationToken: [NotificationToken] = []
-    let queueImage = DispatchQueue(label: "NewsQueue")
+    let realmService: RealmServiceProtocol = RealmService()
+    var news: Results<NewsPost>?
+    var notoficationToken: NotificationToken?
+    let queue = DispatchQueue(label: "NewsQueue")
     
-    func prepareSections() {
-        
+    var myNewsArray: [NewsPost] {
+        guard let news = news else { return [] }
+        return Array(news)
+    }
+    
+    func observeMyNews() {
         do {
-            notoficationToken.removeAll()
             let realm = try Realm()
-            news = Array( arrayLiteral: realm.objects(NewsPost.self).sorted(byKeyPath: "date", ascending: false) )
-            news.enumerated().forEach{ observeChanges(section: $0.offset, results: $0.element) }
-            tableView.reloadData()
+            news = realm.objects(NewsPost.self)
             
+            notoficationToken = news?.observe { (changes) in
+                switch changes {
+                case .initial:
+                    self.tableView.reloadData()
+                case .update(_, let deletions, let insertions, let modifications):
+                    self.tableView.performBatchUpdates({
+                        self.tableView.deleteRows(at: deletions.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self.tableView.insertRows(at: insertions.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self.tableView.reloadRows(at: modifications.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
+                    }, completion: nil)
+                    
+                case .error(let error):
+                    print(error.localizedDescription)
+                }
+            }
         } catch {
             print(error.localizedDescription)
         }
     }
     
-    func observeChanges(section: Int, results: Results<NewsPost>) {
-        notoficationToken.append(
-            results.observe { (changes) in
-                switch changes {
-                case .initial:
-                    self.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
-                    
-                case .update(_, let deletions, let insertions, let modifications):
-                    self.tableView.beginUpdates()
-                    self.tableView.deleteRows(at: deletions.map{ IndexPath(row: $0, section: section) }, with: .automatic)
-                    self.tableView.insertRows(at: insertions.map{ IndexPath(row: $0, section: section) }, with: .automatic)
-                    self.tableView.reloadRows(at: modifications.map{ IndexPath(row: $0, section: section) }, with: .automatic)
-                    self.tableView.endUpdates()
-                
-                case .error(let error):
-                    print(error.localizedDescription)
-                
-                }
-            }
-        )
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
         newsService.loadNewsPost {
-            self.tableView.reloadData()
-            self.prepareSections()
+            DispatchQueue.main.async {
+                self.observeMyNews()
+                self.tableView.reloadData()
+            }
         }
         
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(updateNews), for: .valueChanged)
-
+        
     }
     
     @objc func updateNews() {
         newsService.loadNewsPost() {
-            self.tableView.reloadData()
-            self.prepareSections()
+            self.observeMyNews()
             self.refreshControl?.endRefreshing()
         }
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return news.count
+        return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return news[section].count
+        return myNewsArray.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       // let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
         
-        let newss = news[indexPath.section][indexPath.row]
+        let newss = myNewsArray[indexPath.row]
         
         let dateFormatter = DateFormatter()
         let date = NSDate(timeIntervalSince1970: newss.date)
@@ -97,25 +89,35 @@ class NewsTableViewController: UITableViewController {
         
         let cell = cellSelection(news: newss, indexPath: indexPath)
         
-        if newss.sourceId < 0 {
-            let group = self.newsService.getGroupById(id: newss.sourceId)
-            cell.FriendImageNewsCell.image = newsService.getImageByURL(imageURL: group?.image ?? "")
-            cell.NameLabelNewsCell.text = group?.name
+        if let newsSource = self.realmService.getNewsSourceById(id: newss.sourceId) {
+            cell.NameLabelNewsCell.text = newsSource.name
             
-        } else {
-            let user = self.newsService.getUserById(id: newss.sourceId)
-            cell.FriendImageNewsCell.image = newsService.getImageByURL(imageURL: user?.image ?? "")
-            cell.NameLabelNewsCell.text = user?.lastName
+            let imageURL = newsSource.image
+            
+            queue.async {
+                if let image = self.newsService.getImageByURL(imageURL: imageURL) {
+                    
+                    DispatchQueue.main.async {
+                        cell.FriendImageNewsCell.image = image
+                    }
+                }
+            }
         }
         
         cell.DateNewsCell.text = stringDate
-
+        cell.viewsCount.text = "\(newss.views)"
+        cell.commentCount.text = "\(newss.comments)"
+        cell.repostCount.text = "\(newss.reposts)"
+        cell.heartLikeCount.text = "\(newss.likes)"
+        
         return cell
     }
     
     func cellSelection(news: NewsPost, indexPath: IndexPath) -> NewsCell {
         
-      var cell: NewsCell = .init()
+        var cell: NewsCell = .init()
+        
+        let imageURL = news.imageURL
         
         if news.imageURL == "" {
             
@@ -126,17 +128,28 @@ class NewsTableViewController: UITableViewController {
         } else if news.text == "" {
             
             cell = tableView.dequeueReusableCell(withIdentifier: "NewsCellNoText", for: indexPath) as! NewsCell
-
-            cell.imageNews.image = newsService.getImageByURL(imageURL: news.imageURL)
-
+            
+            queue.async {
+                if let image = self.newsService.getImageByURL(imageURL: imageURL) {
+                    DispatchQueue.main.async {
+                        cell.imageNews.image = image
+                    }
+                }
+            }
+            
         } else {
             
             cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsCell
             
             cell.TextNewsCell.text = news.text
             
-            cell.imageNews.image = newsService.getImageByURL(imageURL: news.imageURL)
-            
+            queue.async {
+                if let image = self.newsService.getImageByURL(imageURL: imageURL) {
+                    DispatchQueue.main.async {
+                        cell.imageNews.image = image
+                    }
+                }
+            } 
         }
         
         return cell
