@@ -12,6 +12,7 @@ private let reuseIdentifier = "Cell"
 
 class GalleryCollectionViewController: UICollectionViewController {
     
+    let realmService: RealmServiceProtocol = RealmService()
     let photoService: ServiceProtocol = DataForServiceProtocol()
         
     var id: Int?
@@ -25,9 +26,10 @@ class GalleryCollectionViewController: UICollectionViewController {
             "owner_id" :  String(id!)
         ]
         
-        photoService.loadPhotos(addParameters: addID) { }
-        
-        self.collectionView.reloadData()
+        photoService.loadPhotos(addParameters: addID) {
+            self.imageArray = self.realmService.getUserPhotos(ownerId: self.id!)
+            self.collectionView.reloadData()
+        }
         
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)

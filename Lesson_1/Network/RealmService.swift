@@ -14,6 +14,7 @@ protocol RealmServiceProtocol {
     func getUserById(id: Int) -> User?
     func saveObjects(objects: [Object]) throws
     func getNewsSourceById(id: Int) -> NewsEXT?
+    func getUserPhotos(ownerId: Int) -> [Photo]
 }
 
 class RealmService: RealmServiceProtocol {
@@ -28,9 +29,7 @@ class RealmService: RealmServiceProtocol {
             print(error.localizedDescription)
             return Groups()
         }
-
     }
-    
     
     func getUserById(id: Int) -> User? {
         do {
@@ -42,7 +41,6 @@ class RealmService: RealmServiceProtocol {
             print(error.localizedDescription)
             return User()
         }
-
     }
     
     func saveObjects(objects: [Object]) {
@@ -69,9 +67,18 @@ class RealmService: RealmServiceProtocol {
             print(error.localizedDescription)
             return NewsEXT()
         }
-
     }
     
+    func getUserPhotos(ownerId: Int) -> [Photo] {
+        do {
+            let realm = try Realm()
+            let photos = realm.objects(Photo.self).filter("ownerId = %@", ownerId)
+            return Array(photos)
+        } catch {
+            print(error.localizedDescription)
+            return []
+        }
+    }
 }
 
 

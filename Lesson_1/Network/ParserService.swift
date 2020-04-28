@@ -121,7 +121,6 @@ class ParserService: ParserServiceProtocol {
                 news.comments = item["comments"]["count"].intValue
                 news.reposts = item["reposts"]["count"].intValue
                 
-                print(news)
                 return news
             }
             
