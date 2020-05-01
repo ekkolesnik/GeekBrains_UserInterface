@@ -27,6 +27,9 @@
 		85A0FF50240193310046E8C2 /* FriendCellXIBView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85A0FF4F240193310046E8C2 /* FriendCellXIBView.xib */; };
 		85A0FF52240197180046E8C2 /* FriendsCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A0FF51240197180046E8C2 /* FriendsCellHeader.swift */; };
 		85B03FFA23F1EE0E00EE4F3D /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B03FF923F1EE0E00EE4F3D /* Users.swift */; };
+		85BC07D2245C4F1400D288C2 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BC07D1245C4F1400D288C2 /* AsyncOperation.swift */; };
+		85BC07D5245C578F00D288C2 /* FriendsDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BC07D4245C578F00D288C2 /* FriendsDataOperation.swift */; };
+		85BC07D7245C665D00D288C2 /* FriendsParserOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BC07D6245C665D00D288C2 /* FriendsParserOperation.swift */; };
 		85C3110D2418968B0087CB40 /* SessionSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3110C2418968B0087CB40 /* SessionSingleton.swift */; };
 		85C3479F2455C583006A3B61 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3479E2455C583006A3B61 /* RealmService.swift */; };
 		85C347A12455D880006A3B61 /* ParserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C347A02455D880006A3B61 /* ParserService.swift */; };
@@ -70,6 +73,9 @@
 		85A0FF4F240193310046E8C2 /* FriendCellXIBView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCellXIBView.xib; sourceTree = "<group>"; };
 		85A0FF51240197180046E8C2 /* FriendsCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCellHeader.swift; sourceTree = "<group>"; };
 		85B03FF923F1EE0E00EE4F3D /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		85BC07D1245C4F1400D288C2 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		85BC07D4245C578F00D288C2 /* FriendsDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsDataOperation.swift; sourceTree = "<group>"; };
+		85BC07D6245C665D00D288C2 /* FriendsParserOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsParserOperation.swift; sourceTree = "<group>"; };
 		85C3110C2418968B0087CB40 /* SessionSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSingleton.swift; sourceTree = "<group>"; };
 		85C3479E2455C583006A3B61 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		85C347A02455D880006A3B61 /* ParserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserService.swift; sourceTree = "<group>"; };
@@ -141,6 +147,16 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		85BC07D3245C507400D288C2 /* Operation */ = {
+			isa = PBXGroup;
+			children = (
+				85BC07D1245C4F1400D288C2 /* AsyncOperation.swift */,
+				85BC07D4245C578F00D288C2 /* FriendsDataOperation.swift */,
+				85BC07D6245C665D00D288C2 /* FriendsParserOperation.swift */,
+			);
+			path = Operation;
+			sourceTree = "<group>";
+		};
 		85C3110B2418963C0087CB40 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				8540FB3A243E2C56003CA328 /* GoogleService-Info.plist */,
+				85BC07D3245C507400D288C2 /* Operation */,
 				85C3110B2418963C0087CB40 /* Network */,
 				85CB9BE623E02F33007E105D /* AppDelegate.swift */,
 				85CB9BE823E02F33007E105D /* SceneDelegate.swift */,
@@ -352,6 +369,8 @@
 				8566F83523F4017500EBD6DE /* Groups.swift in Sources */,
 				8523FC772450D70B00578E09 /* NewsPhoto.swift in Sources */,
 				85B03FFA23F1EE0E00EE4F3D /* Users.swift in Sources */,
+				85BC07D7245C665D00D288C2 /* FriendsParserOperation.swift in Sources */,
+				85BC07D2245C4F1400D288C2 /* AsyncOperation.swift in Sources */,
 				85E67BC723F09B040079590C /* MyGroupCell.swift in Sources */,
 				855317FC24315D4900190803 /* FriendGalleryCell.swift in Sources */,
 				85E67BBE23ED46AB0079590C /* AvailableGroupsController.swift in Sources */,
@@ -359,6 +378,7 @@
 				85454CB3240E218500A426E9 /* CustomNavigationNews.swift in Sources */,
 				8519BA26240D8CDE00E0B8E8 /* CustomPopPushTransitioning.swift in Sources */,
 				85CB9BE723E02F33007E105D /* AppDelegate.swift in Sources */,
+				85BC07D5245C578F00D288C2 /* FriendsDataOperation.swift in Sources */,
 				85E67BC923F0ABD70079590C /* AvailableGroupsCell.swift in Sources */,
 				85C3110D2418968B0087CB40 /* SessionSingleton.swift in Sources */,
 				8519BA23240D871D00E0B8E8 /* CustomNavigationController.swift in Sources */,

@@ -12,6 +12,8 @@ import RealmSwift
 class FriendsController: UITableViewController {
     let friendService: ServiceProtocol = DataForServiceProtocol()
     
+    let path = "https://api.vk.com/method/friends.get"
+    
     var sections: [Results<User>] = []
     //массив NotificationToken так как несколько сейций
     var tokens: [NotificationToken] = []
@@ -25,16 +27,19 @@ class FriendsController: UITableViewController {
     
     let searchController: UISearchController = .init()
     
+    let operQueue = OperationQueue()
+    
     //функция подготавливающая секции
     func prepareSections() {
         do {
+            //очищаем масив с токенами если они там были
+            tokens.removeAll()
             let realm = try Realm()
             //получаем весь список букв всех друзей. При помощи Set и Array осталяем только уникальные буквы и сортируем
+            realm.refresh()
             let friendsABC = Array( Set( realm.objects(User.self).compactMap{ $0.firstName.first?.uppercased() } ) ).sorted()
             //делаем секции
             sections = friendsABC.map { realm.objects(User.self).filter("firstName BEGINSWITH[c] %@", $0) }
-            //очищаем масив с токенами если они там были
-            tokens.removeAll()
             //подписываемся в каждой секции
             sections.enumerated().forEach{ observeUser(section: $0.offset, results: $0.element) }
             tableView.reloadData()
@@ -71,13 +76,23 @@ class FriendsController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        operQueue.qualityOfService = .userInteractive
+        
+        let getData = FriendsDataOperation(reqest: path)
+        operQueue.addOperation(getData)
+        
+        let parseUser = FriendsParserOperation()
+        parseUser.addDependency(getData)
+        operQueue.addOperation(parseUser)
+        
+        parseUser.completionBlock = {
+            OperationQueue.main.addOperation {
+                self.prepareSections()
+            }
+        }
+        
         searchController.searchResultsUpdater = self
         tableView.tableHeaderView = searchController.searchBar
-        
-        friendService.loadUsers() {
-            self.prepareSections()
-            self.tableView.reloadData()
-        }
         
         //регистрируем xib header
         tableView.register(UINib(nibName: "FriendCellXIBView", bundle: nil), forHeaderFooterViewReuseIdentifier: "headerView")
@@ -187,20 +202,6 @@ extension FriendsController: UISearchResultsUpdating {
         }
     }
 }
-
-//extension MyGroupsController: UISearchResultsUpdating {
-//    func updateSearchResults(for searchController: UISearchController) {
-//        guard let groups = groups, let text = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() else { return }
-//
-//        if text.isEmpty {
-//            filteredGroup = Array(groups)
-//            tableView.reloadData()
-//        }
-//
-//        filteredGroup = groups.filter{ $0.name.lowercased().contains(text) }
-//        self.tableView.reloadData()
-//    }
-//}
 
 //Отображение изменения цвета, радиуса и прозрачности тени
 @IBDesignable class ViewImage: UIView {

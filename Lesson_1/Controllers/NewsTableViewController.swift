@@ -63,8 +63,10 @@ class NewsTableViewController: UITableViewController {
     
     @objc func updateNews() {
         newsService.loadNewsPost() {
-            self.observeMyNews()
-            self.refreshControl?.endRefreshing()
+            DispatchQueue.main.async {
+                self.observeMyNews()
+                self.refreshControl?.endRefreshing()
+            }
         }
     }
     
