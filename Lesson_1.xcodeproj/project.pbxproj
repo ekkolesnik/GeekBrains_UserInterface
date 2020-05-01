@@ -3,29 +3,103 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		850F6E41241E8AB40018F992 /* ActionVK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850F6E40241E8AB40018F992 /* ActionVK.swift */; };
+		8519BA23240D871D00E0B8E8 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8519BA22240D871D00E0B8E8 /* CustomNavigationController.swift */; };
+		8519BA26240D8CDE00E0B8E8 /* CustomPopPushTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8519BA25240D8CDE00E0B8E8 /* CustomPopPushTransitioning.swift */; };
+		8523FC772450D70B00578E09 /* NewsPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8523FC762450D70B00578E09 /* NewsPhoto.swift */; };
+		8526B743241E5311002BAF77 /* VkLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8526B742241E5311002BAF77 /* VkLoginViewController.swift */; };
+		852FD4822427E50900EE38D6 /* EnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852FD4812427E50900EE38D6 /* EnterViewController.swift */; };
+		8536C80F244D07F00052F7B4 /* NewsPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8536C80E244D07F00052F7B4 /* NewsPost.swift */; };
+		8537DD6324439E1F00533D74 /* FirebaseConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8537DD6224439E1F00533D74 /* FirebaseConnect.swift */; };
+		8540FB3B243E2C56003CA328 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8540FB3A243E2C56003CA328 /* GoogleService-Info.plist */; };
+		85454CB3240E218500A426E9 /* CustomNavigationNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85454CB2240E218500A426E9 /* CustomNavigationNews.swift */; };
+		854BF4CA23F9DD74008850BB /* HeartLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854BF4C923F9DD74008850BB /* HeartLike.swift */; };
+		855317FA24315CFE00190803 /* GalleryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855317F924315CFE00190803 /* GalleryCollectionViewController.swift */; };
+		855317FC24315D4900190803 /* FriendGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855317FB24315D4900190803 /* FriendGalleryCell.swift */; };
+		855FC85F23F189100088E39D /* DetailedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855FC85E23F189100088E39D /* DetailedCell.swift */; };
+		8566F83523F4017500EBD6DE /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8566F83423F4017500EBD6DE /* Groups.swift */; };
+		857641E1240E1A9B00466BC0 /* CloseAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857641E0240E1A9B00466BC0 /* CloseAnimation.swift */; };
+		857CC3B523FE5EBE0023A73B /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857CC3B423FE5EBE0023A73B /* NewsCell.swift */; };
+		85A0FF50240193310046E8C2 /* FriendCellXIBView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85A0FF4F240193310046E8C2 /* FriendCellXIBView.xib */; };
+		85A0FF52240197180046E8C2 /* FriendsCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A0FF51240197180046E8C2 /* FriendsCellHeader.swift */; };
+		85B03FFA23F1EE0E00EE4F3D /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B03FF923F1EE0E00EE4F3D /* Users.swift */; };
+		85BC07D2245C4F1400D288C2 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BC07D1245C4F1400D288C2 /* AsyncOperation.swift */; };
+		85BC07D5245C578F00D288C2 /* FriendsDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BC07D4245C578F00D288C2 /* FriendsDataOperation.swift */; };
+		85BC07D7245C665D00D288C2 /* FriendsParserOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BC07D6245C665D00D288C2 /* FriendsParserOperation.swift */; };
+		85C3110D2418968B0087CB40 /* SessionSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3110C2418968B0087CB40 /* SessionSingleton.swift */; };
+		85C3479F2455C583006A3B61 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3479E2455C583006A3B61 /* RealmService.swift */; };
+		85C347A12455D880006A3B61 /* ParserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C347A02455D880006A3B61 /* ParserService.swift */; };
+		85C347A32455FE34006A3B61 /* NewsEXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C347A22455FE34006A3B61 /* NewsEXT.swift */; };
 		85CB9BE723E02F33007E105D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB9BE623E02F33007E105D /* AppDelegate.swift */; };
 		85CB9BE923E02F33007E105D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB9BE823E02F33007E105D /* SceneDelegate.swift */; };
-		85CB9BEB23E02F33007E105D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CB9BEA23E02F33007E105D /* ViewController.swift */; };
 		85CB9BEE23E02F33007E105D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85CB9BEC23E02F33007E105D /* Main.storyboard */; };
 		85CB9BF023E02F34007E105D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85CB9BEF23E02F34007E105D /* Assets.xcassets */; };
 		85CB9BF323E02F34007E105D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85CB9BF123E02F34007E105D /* LaunchScreen.storyboard */; };
-		85CB9BFC23E03D0D007E105D /* After Noon.png in Resources */ = {isa = PBXBuildFile; fileRef = 85CB9BFB23E03D0D007E105D /* After Noon.png */; };
+		85E0FFE2242D5B1C00EB3A2A /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E0FFE1242D5B1C00EB3A2A /* Photo.swift */; };
+		85E67BBC23ED45A80079590C /* MyGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BBB23ED45A80079590C /* MyGroupsController.swift */; };
+		85E67BBE23ED46AB0079590C /* AvailableGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BBD23ED46AB0079590C /* AvailableGroupsController.swift */; };
+		85E67BC023ED49320079590C /* DetailedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BBF23ED49320079590C /* DetailedController.swift */; };
+		85E67BC223ED499B0079590C /* FriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BC123ED499B0079590C /* FriendsController.swift */; };
+		85E67BC523ED76840079590C /* FriensCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BC423ED76840079590C /* FriensCell.swift */; };
+		85E67BC723F09B040079590C /* MyGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BC623F09B040079590C /* MyGroupCell.swift */; };
+		85E67BC923F0ABD70079590C /* AvailableGroupsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E67BC823F0ABD70079590C /* AvailableGroupsCell.swift */; };
+		85F728702453575A009C9596 /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F7286F2453575A009C9596 /* NewsTableViewController.swift */; };
+		85FE24782411AB9E006B15E7 /* ImageFullScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FE24772411AB9E006B15E7 /* ImageFullScreenController.swift */; };
+		C6645983004F923F12DA2AA3 /* Pods_Lesson_1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4391CAE24A39866F793E43 /* Pods_Lesson_1.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		85CB9BE323E02F33007E105D /* Lesson_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lesson_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		850F6E40241E8AB40018F992 /* ActionVK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionVK.swift; sourceTree = "<group>"; };
+		8519BA22240D871D00E0B8E8 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
+		8519BA25240D8CDE00E0B8E8 /* CustomPopPushTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopPushTransitioning.swift; sourceTree = "<group>"; };
+		8523FC762450D70B00578E09 /* NewsPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPhoto.swift; sourceTree = "<group>"; };
+		8526B742241E5311002BAF77 /* VkLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkLoginViewController.swift; sourceTree = "<group>"; };
+		852FD4812427E50900EE38D6 /* EnterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterViewController.swift; sourceTree = "<group>"; };
+		8536C80E244D07F00052F7B4 /* NewsPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPost.swift; sourceTree = "<group>"; };
+		8537DD6224439E1F00533D74 /* FirebaseConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConnect.swift; sourceTree = "<group>"; };
+		8540FB3A243E2C56003CA328 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		85454CB2240E218500A426E9 /* CustomNavigationNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationNews.swift; sourceTree = "<group>"; };
+		854BF4C923F9DD74008850BB /* HeartLike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartLike.swift; sourceTree = "<group>"; };
+		855317F924315CFE00190803 /* GalleryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewController.swift; sourceTree = "<group>"; };
+		855317FB24315D4900190803 /* FriendGalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendGalleryCell.swift; sourceTree = "<group>"; };
+		855FC85E23F189100088E39D /* DetailedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedCell.swift; sourceTree = "<group>"; };
+		8566F83423F4017500EBD6DE /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
+		857641E0240E1A9B00466BC0 /* CloseAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseAnimation.swift; sourceTree = "<group>"; };
+		857CC3B423FE5EBE0023A73B /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
+		85A0FF4F240193310046E8C2 /* FriendCellXIBView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCellXIBView.xib; sourceTree = "<group>"; };
+		85A0FF51240197180046E8C2 /* FriendsCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCellHeader.swift; sourceTree = "<group>"; };
+		85B03FF923F1EE0E00EE4F3D /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		85BC07D1245C4F1400D288C2 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		85BC07D4245C578F00D288C2 /* FriendsDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsDataOperation.swift; sourceTree = "<group>"; };
+		85BC07D6245C665D00D288C2 /* FriendsParserOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsParserOperation.swift; sourceTree = "<group>"; };
+		85C3110C2418968B0087CB40 /* SessionSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSingleton.swift; sourceTree = "<group>"; };
+		85C3479E2455C583006A3B61 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		85C347A02455D880006A3B61 /* ParserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserService.swift; sourceTree = "<group>"; };
+		85C347A22455FE34006A3B61 /* NewsEXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsEXT.swift; sourceTree = "<group>"; };
+		85CB9BE323E02F33007E105D /* VK clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VK clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85CB9BE623E02F33007E105D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85CB9BE823E02F33007E105D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		85CB9BEA23E02F33007E105D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		85CB9BED23E02F33007E105D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		85CB9BEF23E02F34007E105D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85CB9BF223E02F34007E105D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85CB9BF423E02F34007E105D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		85CB9BFB23E03D0D007E105D /* After Noon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "After Noon.png"; sourceTree = "<group>"; };
+		85E0FFE1242D5B1C00EB3A2A /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		85E67BBB23ED45A80079590C /* MyGroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsController.swift; sourceTree = "<group>"; };
+		85E67BBD23ED46AB0079590C /* AvailableGroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableGroupsController.swift; sourceTree = "<group>"; };
+		85E67BBF23ED49320079590C /* DetailedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedController.swift; sourceTree = "<group>"; };
+		85E67BC123ED499B0079590C /* FriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsController.swift; sourceTree = "<group>"; };
+		85E67BC423ED76840079590C /* FriensCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriensCell.swift; sourceTree = "<group>"; };
+		85E67BC623F09B040079590C /* MyGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupCell.swift; sourceTree = "<group>"; };
+		85E67BC823F0ABD70079590C /* AvailableGroupsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableGroupsCell.swift; sourceTree = "<group>"; };
+		85F7286F2453575A009C9596 /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
+		85FE24772411AB9E006B15E7 /* ImageFullScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFullScreenController.swift; sourceTree = "<group>"; };
+		95C9CF14E66E5091A86000AF /* Pods-Lesson_1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lesson_1.debug.xcconfig"; path = "Target Support Files/Pods-Lesson_1/Pods-Lesson_1.debug.xcconfig"; sourceTree = "<group>"; };
+		BF4BACBEFF7CF8FD23224A90 /* Pods-Lesson_1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lesson_1.release.xcconfig"; path = "Target Support Files/Pods-Lesson_1/Pods-Lesson_1.release.xcconfig"; sourceTree = "<group>"; };
+		CB4391CAE24A39866F793E43 /* Pods_Lesson_1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lesson_1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,24 +107,82 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6645983004F923F12DA2AA3 /* Pods_Lesson_1.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05C5A9C3B66915989D9F80BF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CB4391CAE24A39866F793E43 /* Pods_Lesson_1.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8519BA24240D873200E0B8E8 /* CustomNavigation */ = {
+			isa = PBXGroup;
+			children = (
+				8519BA22240D871D00E0B8E8 /* CustomNavigationController.swift */,
+				8519BA25240D8CDE00E0B8E8 /* CustomPopPushTransitioning.swift */,
+				85454CB2240E218500A426E9 /* CustomNavigationNews.swift */,
+			);
+			path = CustomNavigation;
+			sourceTree = "<group>";
+		};
+		8566F83323F3FEDB00EBD6DE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				85A0FF4F240193310046E8C2 /* FriendCellXIBView.xib */,
+				85A0FF51240197180046E8C2 /* FriendsCellHeader.swift */,
+				85E67BC823F0ABD70079590C /* AvailableGroupsCell.swift */,
+				85E67BC623F09B040079590C /* MyGroupCell.swift */,
+				85E67BC423ED76840079590C /* FriensCell.swift */,
+				857CC3B423FE5EBE0023A73B /* NewsCell.swift */,
+				855FC85E23F189100088E39D /* DetailedCell.swift */,
+				855317FB24315D4900190803 /* FriendGalleryCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		85BC07D3245C507400D288C2 /* Operation */ = {
+			isa = PBXGroup;
+			children = (
+				85BC07D1245C4F1400D288C2 /* AsyncOperation.swift */,
+				85BC07D4245C578F00D288C2 /* FriendsDataOperation.swift */,
+				85BC07D6245C665D00D288C2 /* FriendsParserOperation.swift */,
+			);
+			path = Operation;
+			sourceTree = "<group>";
+		};
+		85C3110B2418963C0087CB40 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				85C3110C2418968B0087CB40 /* SessionSingleton.swift */,
+				850F6E40241E8AB40018F992 /* ActionVK.swift */,
+				85C347A02455D880006A3B61 /* ParserService.swift */,
+				8537DD6224439E1F00533D74 /* FirebaseConnect.swift */,
+				85C3479E2455C583006A3B61 /* RealmService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		85CB9BDA23E02F33007E105D = {
 			isa = PBXGroup;
 			children = (
 				85CB9BE523E02F33007E105D /* Lesson_1 */,
 				85CB9BE423E02F33007E105D /* Products */,
+				F9FE44BCB56FB9D2C7108E79 /* Pods */,
+				05C5A9C3B66915989D9F80BF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		85CB9BE423E02F33007E105D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				85CB9BE323E02F33007E105D /* Lesson_1.app */,
+				85CB9BE323E02F33007E105D /* VK clone.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -58,11 +190,23 @@
 		85CB9BE523E02F33007E105D /* Lesson_1 */ = {
 			isa = PBXGroup;
 			children = (
-				85CB9BFA23E03CD7007E105D /* img */,
+				8540FB3A243E2C56003CA328 /* GoogleService-Info.plist */,
+				85BC07D3245C507400D288C2 /* Operation */,
+				85C3110B2418963C0087CB40 /* Network */,
 				85CB9BE623E02F33007E105D /* AppDelegate.swift */,
 				85CB9BE823E02F33007E105D /* SceneDelegate.swift */,
-				85CB9BEA23E02F33007E105D /* ViewController.swift */,
+				85E67BC323ED4E180079590C /* Controllers */,
 				85CB9BEC23E02F33007E105D /* Main.storyboard */,
+				8519BA24240D873200E0B8E8 /* CustomNavigation */,
+				854BF4C923F9DD74008850BB /* HeartLike.swift */,
+				857641E0240E1A9B00466BC0 /* CloseAnimation.swift */,
+				85E0FFE1242D5B1C00EB3A2A /* Photo.swift */,
+				8536C80E244D07F00052F7B4 /* NewsPost.swift */,
+				8523FC762450D70B00578E09 /* NewsPhoto.swift */,
+				85B03FF923F1EE0E00EE4F3D /* Users.swift */,
+				85C347A22455FE34006A3B61 /* NewsEXT.swift */,
+				8566F83423F4017500EBD6DE /* Groups.swift */,
+				8566F83323F3FEDB00EBD6DE /* Cell */,
 				85CB9BEF23E02F34007E105D /* Assets.xcassets */,
 				85CB9BF123E02F34007E105D /* LaunchScreen.storyboard */,
 				85CB9BF423E02F34007E105D /* Info.plist */,
@@ -70,12 +214,29 @@
 			path = Lesson_1;
 			sourceTree = "<group>";
 		};
-		85CB9BFA23E03CD7007E105D /* img */ = {
+		85E67BC323ED4E180079590C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				85CB9BFB23E03D0D007E105D /* After Noon.png */,
+				85E67BC123ED499B0079590C /* FriendsController.swift */,
+				85E67BBF23ED49320079590C /* DetailedController.swift */,
+				85E67BBD23ED46AB0079590C /* AvailableGroupsController.swift */,
+				85E67BBB23ED45A80079590C /* MyGroupsController.swift */,
+				85F7286F2453575A009C9596 /* NewsTableViewController.swift */,
+				85FE24772411AB9E006B15E7 /* ImageFullScreenController.swift */,
+				8526B742241E5311002BAF77 /* VkLoginViewController.swift */,
+				852FD4812427E50900EE38D6 /* EnterViewController.swift */,
+				855317F924315CFE00190803 /* GalleryCollectionViewController.swift */,
 			);
-			path = img;
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F9FE44BCB56FB9D2C7108E79 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				95C9CF14E66E5091A86000AF /* Pods-Lesson_1.debug.xcconfig */,
+				BF4BACBEFF7CF8FD23224A90 /* Pods-Lesson_1.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -85,9 +246,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 85CB9BF723E02F34007E105D /* Build configuration list for PBXNativeTarget "Lesson_1" */;
 			buildPhases = (
+				D4E74060428AB21246B1725E /* [CP] Check Pods Manifest.lock */,
 				85CB9BDF23E02F33007E105D /* Sources */,
 				85CB9BE023E02F33007E105D /* Frameworks */,
 				85CB9BE123E02F33007E105D /* Resources */,
+				D3DBB06493936B0B6D3B5166 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -95,7 +258,7 @@
 			);
 			name = Lesson_1;
 			productName = Lesson_1;
-			productReference = 85CB9BE323E02F33007E105D /* Lesson_1.app */;
+			productReference = 85CB9BE323E02F33007E105D /* VK clone.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -137,7 +300,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				85CB9BF323E02F34007E105D /* LaunchScreen.storyboard in Resources */,
-				85CB9BFC23E03D0D007E105D /* After Noon.png in Resources */,
+				8540FB3B243E2C56003CA328 /* GoogleService-Info.plist in Resources */,
+				85A0FF50240193310046E8C2 /* FriendCellXIBView.xib in Resources */,
 				85CB9BF023E02F34007E105D /* Assets.xcassets in Resources */,
 				85CB9BEE23E02F33007E105D /* Main.storyboard in Resources */,
 			);
@@ -145,13 +309,89 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D3DBB06493936B0B6D3B5166 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Lesson_1/Pods-Lesson_1-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Lesson_1/Pods-Lesson_1-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Lesson_1/Pods-Lesson_1-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D4E74060428AB21246B1725E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Lesson_1-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		85CB9BDF23E02F33007E105D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85CB9BEB23E02F33007E105D /* ViewController.swift in Sources */,
+				85A0FF52240197180046E8C2 /* FriendsCellHeader.swift in Sources */,
+				854BF4CA23F9DD74008850BB /* HeartLike.swift in Sources */,
+				85E67BC023ED49320079590C /* DetailedController.swift in Sources */,
+				850F6E41241E8AB40018F992 /* ActionVK.swift in Sources */,
+				85C347A12455D880006A3B61 /* ParserService.swift in Sources */,
+				8536C80F244D07F00052F7B4 /* NewsPost.swift in Sources */,
+				85E67BC523ED76840079590C /* FriensCell.swift in Sources */,
+				855FC85F23F189100088E39D /* DetailedCell.swift in Sources */,
+				852FD4822427E50900EE38D6 /* EnterViewController.swift in Sources */,
+				857CC3B523FE5EBE0023A73B /* NewsCell.swift in Sources */,
+				8566F83523F4017500EBD6DE /* Groups.swift in Sources */,
+				8523FC772450D70B00578E09 /* NewsPhoto.swift in Sources */,
+				85B03FFA23F1EE0E00EE4F3D /* Users.swift in Sources */,
+				85BC07D7245C665D00D288C2 /* FriendsParserOperation.swift in Sources */,
+				85BC07D2245C4F1400D288C2 /* AsyncOperation.swift in Sources */,
+				85E67BC723F09B040079590C /* MyGroupCell.swift in Sources */,
+				855317FC24315D4900190803 /* FriendGalleryCell.swift in Sources */,
+				85E67BBE23ED46AB0079590C /* AvailableGroupsController.swift in Sources */,
+				85E67BBC23ED45A80079590C /* MyGroupsController.swift in Sources */,
+				85454CB3240E218500A426E9 /* CustomNavigationNews.swift in Sources */,
+				8519BA26240D8CDE00E0B8E8 /* CustomPopPushTransitioning.swift in Sources */,
 				85CB9BE723E02F33007E105D /* AppDelegate.swift in Sources */,
+				85BC07D5245C578F00D288C2 /* FriendsDataOperation.swift in Sources */,
+				85E67BC923F0ABD70079590C /* AvailableGroupsCell.swift in Sources */,
+				85C3110D2418968B0087CB40 /* SessionSingleton.swift in Sources */,
+				8519BA23240D871D00E0B8E8 /* CustomNavigationController.swift in Sources */,
+				85FE24782411AB9E006B15E7 /* ImageFullScreenController.swift in Sources */,
+				85E0FFE2242D5B1C00EB3A2A /* Photo.swift in Sources */,
+				855317FA24315CFE00190803 /* GalleryCollectionViewController.swift in Sources */,
+				8537DD6324439E1F00533D74 /* FirebaseConnect.swift in Sources */,
+				857641E1240E1A9B00466BC0 /* CloseAnimation.swift in Sources */,
+				85C3479F2455C583006A3B61 /* RealmService.swift in Sources */,
+				8526B743241E5311002BAF77 /* VkLoginViewController.swift in Sources */,
+				85C347A32455FE34006A3B61 /* NewsEXT.swift in Sources */,
+				85E67BC223ED499B0079590C /* FriendsController.swift in Sources */,
+				85F728702453575A009C9596 /* NewsTableViewController.swift in Sources */,
 				85CB9BE923E02F33007E105D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,6 +534,7 @@
 		};
 		85CB9BF823E02F34007E105D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 95C9CF14E66E5091A86000AF /* Pods-Lesson_1.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -303,8 +544,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "EK.Lesson-1";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.EK.Lesson-1";
+				PRODUCT_NAME = "VK clone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -312,6 +553,7 @@
 		};
 		85CB9BF923E02F34007E105D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF4BACBEFF7CF8FD23224A90 /* Pods-Lesson_1.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -321,8 +563,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "EK.Lesson-1";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.EK.Lesson-1";
+				PRODUCT_NAME = "VK clone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
