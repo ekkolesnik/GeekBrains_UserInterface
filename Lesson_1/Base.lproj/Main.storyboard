@@ -438,7 +438,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JJo-bC-BxZ">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JJo-bC-BxZ">
                                             <rect key="frame" x="20" y="117.5" width="374" height="374"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="374" id="IZC-ON-rWX"/>
@@ -602,7 +602,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ijK-HS-Tma">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ijK-HS-Tma">
                                             <rect key="frame" x="20" y="89" width="374" height="374.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="374" id="Rds-Va-c8V"/>

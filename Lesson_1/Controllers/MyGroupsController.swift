@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import PromiseKit
 
 class MyGroupsController: UITableViewController {
     let groupService: ServiceProtocol = DataForServiceProtocol()
@@ -24,24 +25,25 @@ class MyGroupsController: UITableViewController {
         super.viewDidLoad()
         
         observeMyGroup()
-        groupService.loadGroups { }
+        groupService.loadGroups()
+
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         tableView.tableHeaderView = searchController.searchBar
         
         //Обновление данных методом свайпа вниз
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(updateGroup), for: .valueChanged)
+//        refreshControl = UIRefreshControl()
+//        refreshControl?.addTarget(self, action: #selector(updateGroup), for: .valueChanged)
         
         self.tableView.reloadData()
     }
     
     //функция для обновления данных методом свайпа вниз
-    @objc func updateGroup() {
-        groupService.loadGroups() { [weak self] in
-            self?.refreshControl?.endRefreshing()
-        }
-    }
+//    @objc func updateGroup() {
+//        groupService.loadGroups() { [weak self] in
+//            self?.refreshControl?.endRefreshing()
+//        }
+//    }
     
     func observeMyGroup() {
         do {
