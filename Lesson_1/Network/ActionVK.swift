@@ -10,12 +10,14 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import RealmSwift
+import PromiseKit
 
 protocol ServiceProtocol {
 
     func loadNewsPost(completion: @escaping () -> Void)
     func loadUsers(completion: @escaping () -> Void)
-    func loadGroups(handler: @escaping () -> Void)
+//    func loadGroups(handler: @escaping () -> Void)
+    func loadGroups() -> Promise<[Groups]>
     func loadPhotos(addParameters: [String: String], completion: @escaping () -> Void)
     func getImageByURL(imageURL: String) -> UIImage?
 }
@@ -30,6 +32,10 @@ class DataForServiceProtocol: ServiceProtocol {
     private let firebaseServise: FirebaseServise = .init()
     private let realmSevrice: RealmService = .init()
     private let parserService: ParserServiceProtocol = ParserService()
+    
+    enum ServiceError: Error {
+        case noFound, noApiKey
+    }
 
 // Загрузка друзей
     func loadUsers(completion: @escaping () -> Void) {
@@ -46,7 +52,7 @@ class DataForServiceProtocol: ServiceProtocol {
         
         let url = baseUrl + path
         
-        AF.request(url, parameters: parameters).responseJSON { (response) in
+        Alamofire.request(url, parameters: parameters as Parameters).responseJSON { (response) in
             if let error = response.error {
                 print(error)
             } else {
@@ -62,41 +68,44 @@ class DataForServiceProtocol: ServiceProtocol {
     }
     
 // Загрузка групп
-    func loadGroups(handler: @escaping () -> Void) {
-        
-        let path = "/method/groups.get"
-        
-        let parameters = [
-            "user_id": Session.connect.userId,
-            "extended": "1",
-            "access_token": apiKey,
-            "v": "5.103"
-        ]
-        
-        let url = baseUrl + path
-        
-        AF.request(url, parameters: parameters).responseJSON { [handler] (response) in
-            if let error = response.error {
-                print(error)
-            } else {
-                guard let data = response.data else { return }
-                
-                let groups: [Groups] = self.parserService.groupsParser(data: data)
-
-                self.realmSevrice.saveObjects(objects: groups)
-                
-                handler()
+    func loadGroups() -> Promise<[Groups]> {
+        return Promise { (resolver) in
+            
+            let path = "/method/groups.get"
+            
+            let parameters: Parameters = [
+                "user_id": String(Session.connect.userId!),
+                "extended": "1",
+                "access_token": String(apiKey!),
+                "v": "5.103"
+            ]
+            
+            let url = baseUrl + path
+            
+            Alamofire.request(url, parameters: parameters).responseJSON { (response) in
+                if let error = response.error {
+                    print(error)
+                } else {
+                    guard let data = response.data else { return }
+                    
+                    let groups: [Groups] = self.parserService.groupsParser(data: data)
+                    
+                    self.realmSevrice.saveObjects(objects: groups)
+                    
+                    resolver.fulfill(groups)
+                }
             }
         }
     }
+    
 // Загрузка фотографий
     func loadPhotos(addParameters: [String: String], completion: @escaping () -> Void) {
         
         let path = "/method/photos.get"
         
-        var parameters = [
+        var parameters: Parameters = [
             "album_id" : "profile",
-            "access_token": apiKey,
+            "access_token": String(apiKey!),
             "v": "5.103"
         ]
         
@@ -104,7 +113,7 @@ class DataForServiceProtocol: ServiceProtocol {
         
         let url = baseUrl + path
         
-        AF.request(url, parameters: parameters).responseJSON { [completion] (response) in
+        Alamofire.request(url, parameters: parameters).responseJSON { [completion] (response) in
             if let error = response.error {
                 print(error)
             } else {
@@ -122,16 +131,16 @@ class DataForServiceProtocol: ServiceProtocol {
     func loadNewsPost(completion: @escaping () -> Void) {
         let path = "/method/newsfeed.get"
         
-        let parameters = [
-            "user_id": Session.connect.userId,
+        let parameters: Parameters = [
+            "user_id": String(Session.connect.userId!),
             "filters": "post",
-            "access_token": apiKey,
+            "access_token": String(apiKey!),
             "v": "5.103"
         ]
         
         let url = baseUrl + path
         
-        AF.request(url, parameters: parameters).responseJSON(queue: queue) { (response) in
+        Alamofire.request(url, parameters: parameters).responseJSON(queue: queue) { (response) in
             if let error = response.error {
                 print(error)
             } else {
