@@ -52,7 +52,7 @@ class DataForServiceProtocol: ServiceProtocol {
         
         let url = baseUrl + path
         
-        Alamofire.request(url, parameters: parameters as Parameters).responseJSON { (response) in
+        Alamofire.request(url, parameters: parameters as Parameters).responseJSON { [completion] (response) in
             if let error = response.error {
                 print(error)
             } else {

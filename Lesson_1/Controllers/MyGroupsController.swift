@@ -14,11 +14,8 @@ class MyGroupsController: UITableViewController {
     let groupService: ServiceProtocol = DataForServiceProtocol()
     var groups: Results<Groups>?
     var groupForSearch = [Groups]()
-    var filteredGroup: [Groups] {
-        return Array(searchController.isActive ? groupForSearch : myGroupArray)
-    }
     var notoficationToken: NotificationToken?
-    let searchController = UISearchController()
+    let searchController = UISearchController(searchResultsController: nil)
     var cachedAvatars = [String: UIImage]()
     
     override func viewDidLoad() {
@@ -44,6 +41,15 @@ class MyGroupsController: UITableViewController {
 //            self?.refreshControl?.endRefreshing()
 //        }
 //    }
+    
+    var searchBarIsEmpty: Bool {
+        guard let text = searchController.searchBar.text else { return false }
+        return text.isEmpty
+    }
+    
+    var isFiltering: Bool {
+        return searchController.isActive && !searchBarIsEmpty
+    }
     
     func observeMyGroup() {
         do {
@@ -72,18 +78,17 @@ class MyGroupsController: UITableViewController {
     
     // MARK: - Table view data source
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let group = filteredGroup[indexPath.row]
-        print(group)
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let group = myGroupArray[indexPath.row]
+//        print(group)
+//    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredGroup.count
-//        return searchController.isActive ? filteredGroup.count : groups?.count ?? 0
+        if isFiltering {
+            return groupForSearch.count
+        }
+        return myGroupArray.count
+    //    return searchController.isActive ? filteredGroup.count : groups?.count ?? 0
     }
     
     
@@ -113,10 +118,18 @@ class MyGroupsController: UITableViewController {
             preconditionFailure("Can't create MyGroupCell")
         }
         
-        let nameMyGroup = filteredGroup[indexPath.row]
-        cell.MyGroupNameLabel.text = nameMyGroup.name
+        var group: Groups
+        var url: String
         
-        let url = filteredGroup[indexPath.row].image
+        if isFiltering {
+            group = groupForSearch[indexPath.row]
+            url = groupForSearch[indexPath.row].image
+        } else {
+            group = myGroupArray[indexPath.row]
+            url = myGroupArray[indexPath.row].image
+        }
+        
+        cell.MyGroupNameLabel.text = group.name
         
         //применяем кэширование иконок групп
         if let cached = cachedAvatars[url] {
@@ -140,7 +153,7 @@ class MyGroupsController: UITableViewController {
                 // Получаем город по индексу
                 let groups = availableGroupController.avaGroup[indexPath.row]
                 // Проверяем, что такого города нет в списке
-                if !filteredGroup.contains(where: { $0.name == groups.name }) {
+                if !groupForSearch.contains(where: { $0.name == groups.name }) {
                     // Добавляем город в список выбранных
                     groupForSearch.append(groups)
                     // Обновляем таблицу
@@ -185,22 +198,27 @@ class MyGroupsController: UITableViewController {
 
 // MARK: - UISearchBarDelegate
 
+//extension MyGroupsController: UISearchResultsUpdating {
+//    func updateSearchResults(for searchController: UISearchController) {
+//
+//        guard let text = searchController.searchBar.text else { return }
+//        groupForSearch = myGroupArray.filter({ $0.name.range(of: text, options: .caseInsensitive) != nil })
+//            tableView.reloadData()
+//
+//    }
+//}
+
 extension MyGroupsController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+    func filterContentForSearchText(_ searchText: String) {
+        groupForSearch = myGroupArray.filter({ (groups: Groups) -> Bool in
+            return groups.name.lowercased().contains(searchText.lowercased())
+        })
         
-        guard let text = searchController.searchBar.text else { return }
-            groupForSearch = myGroupArray.filter({ $0.name.range(of: text, options: .caseInsensitive) != nil })
-            tableView.reloadData()
-        
-//        guard let groups = groups, let text = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() else { return }
-//
-//        if text.isEmpty {
-//            groupForSearch = Array(groups)
-//            tableView.reloadData()
-//        }
-//
-//        groupForSearch = groups.filter{ $0.name.lowercased().contains(text) }
-//        self.tableView.reloadData()
+        tableView.reloadData()
     }
 }
 
