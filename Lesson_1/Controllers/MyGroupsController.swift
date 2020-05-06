@@ -10,6 +10,46 @@ import UIKit
 import RealmSwift
 import PromiseKit
 
+class ImageDownloadingOperation : AsyncOperation {
+    weak var groupsController: MyGroupsController?
+    let url: String
+    let indexPath: IndexPath
+    
+    init(url: String, controller: MyGroupsController, indexPath: IndexPath) {
+        self.url = url
+        self.groupsController = controller
+        self.indexPath = indexPath
+        super.init()
+    }
+    
+    override func main() {
+        if self.groupsController?.cachedAvatars[url] == nil {
+            if let image = self.groupsController?.groupService.getImageByURL(imageURL: url) {
+                self.groupsController?.cachedAvatars[url] = image
+                
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    if !self.isCancelled {
+                        self.groupsController?.tableView.reloadRows(at: [self.indexPath], with: .automatic)
+                    }
+                    
+                    self.state = .finished
+                }
+            }
+        }
+        else {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                if !self.isCancelled {
+                    self.groupsController?.tableView.reloadRows(at: [self.indexPath], with: .automatic)
+                }
+                
+                self.state = .finished
+            }
+        }
+    }
+}
+
 class MyGroupsController: UITableViewController {
     let groupService: ServiceProtocol = DataForServiceProtocol()
     var groups: Results<Groups>?
@@ -29,18 +69,17 @@ class MyGroupsController: UITableViewController {
         tableView.tableHeaderView = searchController.searchBar
         
         //Обновление данных методом свайпа вниз
-//        refreshControl = UIRefreshControl()
-//        refreshControl?.addTarget(self, action: #selector(updateGroup), for: .valueChanged)
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(updateGroup), for: .valueChanged)
         
         self.tableView.reloadData()
     }
     
     //функция для обновления данных методом свайпа вниз
-//    @objc func updateGroup() {
-//        groupService.loadGroups() { [weak self] in
-//            self?.refreshControl?.endRefreshing()
-//        }
-//    }
+    @objc func updateGroup() {
+        groupService.loadGroups()
+            self.refreshControl?.endRefreshing()
+        }
     
     var searchBarIsEmpty: Bool {
         guard let text = searchController.searchBar.text else { return false }
@@ -78,39 +117,18 @@ class MyGroupsController: UITableViewController {
     
     // MARK: - Table view data source
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let group = myGroupArray[indexPath.row]
-//        print(group)
-//    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
             return groupForSearch.count
         }
         return myGroupArray.count
-    //    return searchController.isActive ? filteredGroup.count : groups?.count ?? 0
     }
     
-    
     //функция загрузки иконок если они отсутствуют в кэше
-    let queue = DispatchQueue(label: "download_queue")
+    let queue = OperationQueue()
     private func downloadImage( for url: String, indexPath: IndexPath ) {
-        queue.async {
-            if self.cachedAvatars[url] == nil {
-                if let image = self.groupService.getImageByURL(imageURL: url) {
-                    self.cachedAvatars[url] = image
-                    
-                    DispatchQueue.main.async {
-                        self.tableView.reloadRows(at: [indexPath], with: .automatic)
-                    }
-                }
-            }
-            else {
-                DispatchQueue.main.async {
-                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
-                }
-            }
-        }
+        let operation = ImageDownloadingOperation(url: url, controller: self, indexPath: indexPath)
+        queue.addOperation(operation)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -218,6 +236,7 @@ extension MyGroupsController: UISearchResultsUpdating {
             return groups.name.lowercased().contains(searchText.lowercased())
         })
         
+        queue.cancelAllOperations()
         tableView.reloadData()
     }
 }
