@@ -14,6 +14,8 @@ class GalleryCollectionViewController: UICollectionViewController {
     
     let realmService: RealmServiceProtocol = RealmService()
     let photoService: ServiceProtocol = DataForServiceProtocol()
+    //инициализируем фотоКэш
+    lazy var photoCache = PhotoCache(collection: self.collectionView)
         
     var id: Int?
         
@@ -52,14 +54,16 @@ class GalleryCollectionViewController: UICollectionViewController {
         
         let url = imageArray[indexPath.row].imageURL
         
-        DispatchQueue.global().async {
-            if let image = self.photoService.getImageByURL(imageURL: url) {
-                
-                DispatchQueue.main.async {
-                    cell.galleryCellImage.image = image
-                }
-            }
-        }
+        cell.galleryCellImage.image = photoCache.image(indexPath: indexPath, at: url)
+        
+//        DispatchQueue.global().async {
+//            if let image = self.photoService.getImageByURL(imageURL: url) {
+//
+//                DispatchQueue.main.async {
+//                    cell.galleryCellImage.image = image
+//                }
+//            }
+//        }
         
         return cell
     }
