@@ -36,7 +36,7 @@ class FriendsController: UITableViewController {
             tokens.removeAll()
             let realm = try Realm()
             //получаем весь список букв всех друзей. При помощи Set и Array осталяем только уникальные буквы и сортируем
-           // realm.refresh()
+            //realm.refresh()
             let friendsABC = Array( Set( realm.objects(User.self).compactMap{ $0.firstName.first?.uppercased() } ) ).sorted()
             //делаем секции
             sections = friendsABC.map { realm.objects(User.self).filter("firstName BEGINSWITH[c] %@", $0) }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		85016BE8246DD47600117ED7 /* PhotoCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85016BE7246DD47600117ED7 /* PhotoCache.swift */; };
 		850F6E41241E8AB40018F992 /* ActionVK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850F6E40241E8AB40018F992 /* ActionVK.swift */; };
 		8519BA23240D871D00E0B8E8 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8519BA22240D871D00E0B8E8 /* CustomNavigationController.swift */; };
 		8519BA26240D8CDE00E0B8E8 /* CustomPopPushTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8519BA25240D8CDE00E0B8E8 /* CustomPopPushTransitioning.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		85016BE7246DD47600117ED7 /* PhotoCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCache.swift; sourceTree = "<group>"; };
 		850F6E40241E8AB40018F992 /* ActionVK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionVK.swift; sourceTree = "<group>"; };
 		8519BA22240D871D00E0B8E8 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		8519BA25240D8CDE00E0B8E8 /* CustomPopPushTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopPushTransitioning.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				85CB9BEC23E02F33007E105D /* Main.storyboard */,
 				8519BA24240D873200E0B8E8 /* CustomNavigation */,
 				854BF4C923F9DD74008850BB /* HeartLike.swift */,
+				85016BE7246DD47600117ED7 /* PhotoCache.swift */,
 				857641E0240E1A9B00466BC0 /* CloseAnimation.swift */,
 				85E0FFE1242D5B1C00EB3A2A /* Photo.swift */,
 				8536C80E244D07F00052F7B4 /* NewsPost.swift */,
@@ -371,6 +374,7 @@
 				85B03FFA23F1EE0E00EE4F3D /* Users.swift in Sources */,
 				85BC07D7245C665D00D288C2 /* FriendsParserOperation.swift in Sources */,
 				85BC07D2245C4F1400D288C2 /* AsyncOperation.swift in Sources */,
+				85016BE8246DD47600117ED7 /* PhotoCache.swift in Sources */,
 				85E67BC723F09B040079590C /* MyGroupCell.swift in Sources */,
 				855317FC24315D4900190803 /* FriendGalleryCell.swift in Sources */,
 				85E67BBE23ED46AB0079590C /* AvailableGroupsController.swift in Sources */,
