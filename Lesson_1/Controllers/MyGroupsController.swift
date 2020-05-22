@@ -57,6 +57,8 @@ class MyGroupsController: UITableViewController {
     var notoficationToken: NotificationToken?
     let searchController = UISearchController(searchResultsController: nil)
     var cachedAvatars = [String: UIImage]()
+    //инициализируем фотоКэш
+    lazy var photoCache = PhotoCache(table: self.tableView)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,15 +97,15 @@ class MyGroupsController: UITableViewController {
             let realm = try Realm()
             groups = realm.objects(Groups.self)
             
-            notoficationToken = groups?.observe { (changes) in
+            notoficationToken = groups?.observe { [weak self] (changes) in
                 switch changes {
                 case .initial:
-                    self.tableView.reloadData()
+                    self?.tableView.reloadData()
                 case .update(_, let deletions, let insertions, let modifications):
-                    self.tableView.performBatchUpdates({
-                        self.tableView.deleteRows(at: deletions.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
-                        self.tableView.insertRows(at: insertions.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
-                        self.tableView.reloadRows(at: modifications.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
+                    self?.tableView.performBatchUpdates({
+                        self?.tableView.deleteRows(at: deletions.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self?.tableView.insertRows(at: insertions.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self?.tableView.reloadRows(at: modifications.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
                     }, completion: nil)
                     
                 case .error(let error):

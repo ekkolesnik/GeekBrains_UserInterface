@@ -16,6 +16,14 @@ class NewsTableViewController: UITableViewController {
     var notoficationToken: NotificationToken?
     let queue = DispatchQueue(label: "NewsQueue")
     
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        return formatter
+    }()
+    
+    private var cachedDates = [IndexPath: String]()
+    
     var myNewsArray: [NewsPost] {
         guard let news = news else { return [] }
         return Array(news)
@@ -26,15 +34,15 @@ class NewsTableViewController: UITableViewController {
             let realm = try Realm()
             news = realm.objects(NewsPost.self)
             
-            notoficationToken = news?.observe { (changes) in
+            notoficationToken = news?.observe { [weak self] (changes) in
                 switch changes {
                 case .initial:
-                    self.tableView.reloadData()
+                    self?.tableView.reloadData()
                 case .update(_, let deletions, let insertions, let modifications):
-                    self.tableView.performBatchUpdates({
-                        self.tableView.deleteRows(at: deletions.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
-                        self.tableView.insertRows(at: insertions.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
-                        self.tableView.reloadRows(at: modifications.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
+                    self?.tableView.performBatchUpdates({
+                        self?.tableView.deleteRows(at: deletions.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self?.tableView.insertRows(at: insertions.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self?.tableView.reloadRows(at: modifications.map{ IndexPath(row: $0, section: 0) }, with: .automatic)
                     }, completion: nil)
                     
                 case .error(let error):
@@ -84,11 +92,6 @@ class NewsTableViewController: UITableViewController {
         
         let newss = myNewsArray[indexPath.row]
         
-        let dateFormatter = DateFormatter()
-        let date = NSDate(timeIntervalSince1970: newss.date)
-        dateFormatter.dateFormat = "dd.MM.yyyy"
-        let stringDate = dateFormatter.string(from: date as Date)
-        
         let cell = cellSelection(news: newss, indexPath: indexPath)
         
         if let newsSource = self.realmService.getNewsSourceById(id: newss.sourceId) {
@@ -106,7 +109,16 @@ class NewsTableViewController: UITableViewController {
             }
         }
         
-        cell.DateNewsCell.text = stringDate
+        //создание и кэширование даты
+        if let dateString = cachedDates[indexPath] {
+            cell.DateNewsCell.text = dateString
+        } else {
+            let date = NSDate(timeIntervalSince1970: newss.date)
+            let stringDate = dateFormatter.string(from: date as Date)
+            cachedDates[indexPath] = stringDate
+            cell.DateNewsCell.text = stringDate
+        }
+
         cell.viewsCount.text = "\(newss.views)"
         cell.commentCount.text = "\(newss.comments)"
         cell.repostCount.text = "\(newss.reposts)"
