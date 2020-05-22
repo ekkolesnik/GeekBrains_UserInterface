@@ -12,6 +12,9 @@ import RealmSwift
 class FriendsController: UITableViewController {
     let friendService: ServiceProtocol = DataForServiceProtocol()
     
+    //инициализируем фотоКэш
+    lazy var photoCache = PhotoCache(table: self.tableView)
+    
     let path = "https://api.vk.com/method/friends.get"
     
     var sections: [Results<User>] = []
@@ -23,7 +26,7 @@ class FriendsController: UITableViewController {
         searchController.isActive ? filteredSections : sections
     }
     
-    var cachedAvatars = [String: UIImage]()
+//    var cachedAvatars = [String: UIImage]()
     
     let searchController: UISearchController = .init()
     
@@ -51,19 +54,19 @@ class FriendsController: UITableViewController {
     
     func observeUser(section: Int, results: Results<User>) {
         tokens.append(
-            results.observe { (changes) in
+            results.observe { [weak self] (changes) in
                 switch changes {
                 case .initial:
                     //перезагружаем не всю таблицу а определённую секцию, так как знаем её номер
-                    self.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
+                    self?.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
                     
                 case .update(_, let deletions, let insertions, let modifications):
                     //массовый апдейт при помощи beginUpdates() и endUpdates()
-                    self.tableView.beginUpdates()
-                    self.tableView.deleteRows(at: deletions.map{ IndexPath(row: $0, section: section) }, with: .automatic)
-                    self.tableView.insertRows(at: insertions.map{ IndexPath(row: $0, section: section) }, with: .automatic)
-                    self.tableView.reloadRows(at: modifications.map{ IndexPath(row: $0, section: section) }, with: .automatic)
-                    self.tableView.endUpdates()
+                    self?.tableView.beginUpdates()
+                    self?.tableView.deleteRows(at: deletions.map{ IndexPath(row: $0, section: section) }, with: .automatic)
+                    self?.tableView.insertRows(at: insertions.map{ IndexPath(row: $0, section: section) }, with: .automatic)
+                    self?.tableView.reloadRows(at: modifications.map{ IndexPath(row: $0, section: section) }, with: .automatic)
+                    self?.tableView.endUpdates()
                     
                 case .error(let error):
                     print(error.localizedDescription)
@@ -145,25 +148,25 @@ class FriendsController: UITableViewController {
     }
     
     //функция загрузки иконок если они отсутствуют в кэше
-    let queue = DispatchQueue(label: "download_queue")
-    private func downloadImage( for url: String, indexPath: IndexPath ) {
-        queue.async {
-            if self.cachedAvatars[url] == nil {
-                if let image = self.friendService.getImageByURL(imageURL: url) {
-                    self.cachedAvatars[url] = image
-                    
-                    DispatchQueue.main.async {
-                        self.tableView.reloadRows(at: [indexPath], with: .automatic)
-                    }
-                }
-            }
-            else {
-                DispatchQueue.main.async {
-                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
-                }
-            }
-        }
-    }
+//    let queue = DispatchQueue(label: "download_queue")
+//    private func downloadImage( for url: String, indexPath: IndexPath ) {
+//        queue.async {
+//            if self.cachedAvatars[url] == nil {
+//                if let image = self.friendService.getImageByURL(imageURL: url) {
+//                    self.cachedAvatars[url] = image
+//
+//                    DispatchQueue.main.async {
+//                        self.tableView.reloadRows(at: [indexPath], with: .automatic)
+//                    }
+//                }
+//            }
+//            else {
+//                DispatchQueue.main.async {
+//                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
+//                }
+//            }
+//        }
+//    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriensCell", for: indexPath) as? FriensCell else {
@@ -179,13 +182,14 @@ class FriendsController: UITableViewController {
         cell.id = friend.id
         cell.firstName = friend.firstName
         cell.lastName = friend.lastName
+        cell.ImagePic.image = photoCache.image(indexPath: indexPath, at: url)
         
-        //применяем кэширование иконок групп
-        if let cached = cachedAvatars[url] {
-            cell.ImagePic.image = cached
-        } else {
-            downloadImage(for: url, indexPath: indexPath)
-        }
+//        //применяем кэширование иконок групп
+//        if let cached = cachedAvatars[url] {
+//            cell.ImagePic.image = cached
+//        } else {
+//            downloadImage(for: url, indexPath: indexPath)
+//        }
         return cell
     }
 }
