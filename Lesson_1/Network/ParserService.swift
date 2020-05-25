@@ -114,6 +114,8 @@ class ParserService: ParserServiceProtocol {
                 let photoSet = item["attachments"].arrayValue.first?["photo"]["sizes"].arrayValue
                 if let first = photoSet?.first (where: { $0["type"].stringValue == "z" } ) {
                     news.imageURL = first["url"].stringValue
+                    news.imageWidth = first["width"].doubleValue
+                    news.imageHeight = first["height"].doubleValue
                 }
                 
                 news.views = item["views"]["count"].intValue
