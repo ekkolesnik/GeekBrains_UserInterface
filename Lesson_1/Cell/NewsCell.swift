@@ -8,25 +8,25 @@
 
 import UIKit
 
-class NewsCell: UITableViewCell {
-    
-    
-    @IBOutlet weak var FriendImageNewsCell: UIImageView!
-    
-    @IBOutlet weak var NameLabelNewsCell: UILabel!
-    
-    @IBOutlet weak var DateNewsCell: UILabel!
-    
-    @IBOutlet weak var TextNewsCell: UILabel!
-    
+class NewsBottomCell: UITableViewCell {
+    @IBOutlet weak var heartLikeCount: UILabel!
+    @IBOutlet weak var commentCount: UILabel!
+    @IBOutlet weak var repostCount: UILabel!
+    @IBOutlet weak var viewsCount: UILabel!
+}
+
+class NewsImageCell: UITableViewCell {
     @IBOutlet weak var imageNews: UIImageView!
     
-    @IBOutlet weak var heartLikeCount: UILabel!
-    
-    @IBOutlet weak var commentCount: UILabel!
-    
-    @IBOutlet weak var repostCount: UILabel!
-    
-    @IBOutlet weak var viewsCount: UILabel!
+    func setImage( image: UIImage? ) {
+        imageNews.image = image
+    }
+}
+
+class NewsCell: UITableViewCell {
+    @IBOutlet weak var FriendImageNewsCell: UIImageView!
+    @IBOutlet weak var NameLabelNewsCell: UILabel!
+    @IBOutlet weak var DateNewsCell: UILabel!
+    @IBOutlet weak var TextNewsCell: UILabel!
     
 }
