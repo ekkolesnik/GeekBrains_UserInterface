@@ -14,7 +14,7 @@ import PromiseKit
 
 protocol ServiceProtocol {
 
-    func loadNewsPost(completion: @escaping () -> Void)
+    func loadNewsPost(startFrom: String, completion: @escaping (String) -> Void)
     func loadUsers(completion: @escaping () -> Void)
 //    func loadGroups(handler: @escaping () -> Void)
     func loadGroups() -> Promise<[Groups]>
@@ -128,12 +128,14 @@ class DataForServiceProtocol: ServiceProtocol {
         }
     }
     
-    func loadNewsPost(completion: @escaping () -> Void) {
+    func loadNewsPost( startFrom: String, completion: @escaping (String) -> Void) {
         let path = "/method/newsfeed.get"
         
         let parameters: Parameters = [
             "user_id": String(Session.connect.userId!),
             "filters": "post",
+            "count": 20,
+            "start_from": startFrom,
             "access_token": String(apiKey!),
             "v": "5.103"
         ]
@@ -145,16 +147,22 @@ class DataForServiceProtocol: ServiceProtocol {
                 print(error)
             } else {
                 guard let data = response.data else { return }
-                
-                let news: [NewsPost] = self.parserService.newsPostParser(data: data)
-                let sourceGroup: [NewsEXT] = self.parserService.sourceGroupsParser(data: data)
-                let sourceUser: [NewsEXT] = self.parserService.sourceUsersParser(data: data)
-                
-                self.realmSevrice.saveObjects(objects: news)
-                self.realmSevrice.saveObjects(objects: sourceGroup)
-                self.realmSevrice.saveObjects(objects: sourceUser)
-                
-                completion()
+                do {
+                    let json = try JSON(data: data)
+                    let nextFrom = json["response"]["next_from"].stringValue
+                    let news: [NewsPost] = self.parserService.newsPostParser(json: json)
+                    let sourceGroup: [NewsEXT] = self.parserService.sourceGroupsParser(json: json)
+                    let sourceUser: [NewsEXT] = self.parserService.sourceUsersParser(json: json)
+                    
+                    self.realmSevrice.saveObjects(objects: news)
+                    self.realmSevrice.saveObjects(objects: sourceGroup)
+                    self.realmSevrice.saveObjects(objects: sourceUser)
+                    completion(nextFrom)
+                    
+                } catch {
+                    print(error.localizedDescription)
+                    completion("")
+                }
             }
         }
     }

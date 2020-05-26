@@ -13,9 +13,9 @@ protocol ParserServiceProtocol {
     func usersParser(data: Data) -> [User]
     func groupsParser(data: Data) -> [Groups]
     func photosParser(data: Data) -> [Photo]
-    func newsPostParser(data: Data) -> [NewsPost]
-    func sourceGroupsParser(data: Data) -> [NewsEXT]
-    func sourceUsersParser(data: Data) -> [NewsEXT]
+    func newsPostParser(json: JSON) -> [NewsPost]
+    func sourceGroupsParser(json: JSON) -> [NewsEXT]
+    func sourceUsersParser(json: JSON) -> [NewsEXT]
 }
 
 class ParserService: ParserServiceProtocol {
@@ -97,94 +97,74 @@ class ParserService: ParserServiceProtocol {
         }
     }
     
-    func newsPostParser(data: Data) -> [NewsPost] {
-        do {
-            let json = try JSON(data: data)
-            let array = json["response"]["items"].arrayValue
+    func newsPostParser(json: JSON) -> [NewsPost] {
+        let array = json["response"]["items"].arrayValue
+        
+        let result = array.map { item -> NewsPost in
             
-            let result = array.map { item -> NewsPost in
-                
-                let news = NewsPost()
-                
-                news.postId = item["post_id"].intValue
-                news.sourceId = item["source_id"].intValue
-                news.date = item["date"].doubleValue
-                news.text = item["text"].stringValue
-                
-                let photoSet = item["attachments"].arrayValue.first?["photo"]["sizes"].arrayValue
-                if let first = photoSet?.first (where: { $0["type"].stringValue == "z" } ) {
-                    news.imageURL = first["url"].stringValue
-                    news.imageWidth = first["width"].doubleValue
-                    news.imageHeight = first["height"].doubleValue
-                }
-                
-                news.views = item["views"]["count"].intValue
-                news.likes = item["likes"]["count"].intValue
-                news.comments = item["comments"]["count"].intValue
-                news.reposts = item["reposts"]["count"].intValue
-                
-                return news
+            let news = NewsPost()
+            
+            news.postId = item["post_id"].intValue
+            news.sourceId = item["source_id"].intValue
+            news.date = item["date"].doubleValue
+            news.text = item["text"].stringValue
+            
+            let photoSet = item["attachments"].arrayValue.first?["photo"]["sizes"].arrayValue
+            if let first = photoSet?.first (where: { $0["type"].stringValue == "z" } ) {
+                news.imageURL = first["url"].stringValue
+                news.imageWidth = first["width"].doubleValue
+                news.imageHeight = first["height"].doubleValue
             }
             
-            return result
+            news.views = item["views"]["count"].intValue
+            news.likes = item["likes"]["count"].intValue
+            news.comments = item["comments"]["count"].intValue
+            news.reposts = item["reposts"]["count"].intValue
             
-        } catch {
-            print(error.localizedDescription)
-            return []
+            return news
         }
+        
+        return result
+        
     }
     
-    func sourceGroupsParser(data: Data) -> [NewsEXT] {
-
-        do {
-            let json = try JSON(data: data)
-            let array = json["response"]["groups"].arrayValue
+    func sourceGroupsParser(json: JSON) -> [NewsEXT] {
+        let array = json["response"]["groups"].arrayValue
+        
+        let result = array.map { item -> NewsEXT in
             
-            let result = array.map { item -> NewsEXT in
+            let sourceGroup = NewsEXT()
             
-                let sourceGroup = NewsEXT()
-                
-                sourceGroup.id = item["id"].intValue
-                sourceGroup.name = item["name"].stringValue
-                sourceGroup.image = item["photo_200"].stringValue
-                
-                firebaseService.updateNewsSource(object: sourceGroup)
-                
-                return sourceGroup
-            }
+            sourceGroup.id = item["id"].intValue
+            sourceGroup.name = item["name"].stringValue
+            sourceGroup.image = item["photo_200"].stringValue
             
-            return result
+            firebaseService.updateNewsSource(object: sourceGroup)
             
-        } catch {
-            print(error.localizedDescription)
-            return []
+            return sourceGroup
         }
+        
+        return result
+        
     }
     
-    func sourceUsersParser(data: Data) -> [NewsEXT] {
-
-        do {
-            let json = try JSON(data: data)
-            let array = json["response"]["profiles"].arrayValue
+    func sourceUsersParser(json: JSON) -> [NewsEXT] {
+        let array = json["response"]["profiles"].arrayValue
+        
+        let result = array.map { item -> NewsEXT in
             
-            let result = array.map { item -> NewsEXT in
-                
-                let sourceUser = NewsEXT()
-                sourceUser.id = item["id"].intValue
-                sourceUser.name = item["first_name"].stringValue + " " + item["last_name"].stringValue
-                sourceUser.image = item["photo_100"].stringValue
-                
-                firebaseService.updateNewsSource(object: sourceUser)
-                
-                return sourceUser
-            }
+            let sourceUser = NewsEXT()
+            sourceUser.id = item["id"].intValue
+            sourceUser.name = item["first_name"].stringValue + " " + item["last_name"].stringValue
+            sourceUser.image = item["photo_100"].stringValue
             
-            return result
+            firebaseService.updateNewsSource(object: sourceUser)
             
-        } catch {
-            print(error.localizedDescription)
-            return []
+            return sourceUser
         }
+        
+        return result
+        
     }
     
 }

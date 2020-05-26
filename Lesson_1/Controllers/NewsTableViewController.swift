@@ -12,9 +12,11 @@ import RealmSwift
 class NewsTableViewController: UITableViewController {
     let newsService: ServiceProtocol = DataForServiceProtocol()
     let realmService: RealmServiceProtocol = RealmService()
-    var news: Results<NewsPost>?
-    var notoficationToken: NotificationToken?
+    var sections: Results<NewsPost>?
+    var notificationToken: NotificationToken?
     let queue = DispatchQueue(label: "NewsQueue")
+    private var startFrom: String = ""
+    private var loading = false
     
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -25,7 +27,7 @@ class NewsTableViewController: UITableViewController {
     private var cachedDates = [IndexPath: String]()
     
     var myNewsArray: [NewsPost] {
-        guard let news = news else { return [] }
+        guard let news = sections else { return [] }
         return Array(news)
     }
     
@@ -33,7 +35,7 @@ class NewsTableViewController: UITableViewController {
         do {
             let realm = try Realm()
             realm.refresh()
-            news = realm.objects(NewsPost.self).sorted(byKeyPath: "date", ascending: false)
+            sections = realm.objects(NewsPost.self).sorted(byKeyPath: "date", ascending: false)
             observeMyNews()
             tableView.reloadData()
         } catch {
@@ -42,17 +44,17 @@ class NewsTableViewController: UITableViewController {
     }
     
     func observeMyNews() {
-            notoficationToken = news?.observe { [weak self] (changes) in
+            notificationToken = sections?.observe { [weak self] (changes) in
                 switch changes {
                 case .initial:
                     self?.tableView.reloadData()
                 case .update(_, let deletions, let insertions, let modifications):
-                    self?.tableView.performBatchUpdates({
+                    self?.tableView.beginUpdates()
                         self?.tableView.deleteSections(.init(deletions), with: .automatic)
-                        self?.tableView.deleteSections(.init(insertions), with: .automatic)
-                        self?.tableView.deleteSections(.init(modifications), with: .automatic)
-                    }, completion: nil)
-                    
+                        self?.tableView.insertSections(.init(insertions), with: .automatic)
+                        self?.tableView.reloadSections(.init(modifications), with: .automatic)
+                    self?.tableView.endUpdates()
+
                 case .error(let error):
                     print(error.localizedDescription)
             }
@@ -62,24 +64,31 @@ class NewsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        newsService.loadNewsPost {
-            DispatchQueue.main.async {
-                self.prepareSections()
-                self.tableView.reloadData()
-            }
-        }
+        tableView.prefetchDataSource = self
         
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(updateNews), for: .valueChanged)
         
+        loading = true
+        newsService.loadNewsPost(startFrom: "") { [weak self] startFrom in
+            self?.startFrom = startFrom
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+                self?.prepareSections()
+                self?.loading = false
+            }
+        }
     }
     
     @objc func updateNews() {
-        newsService.loadNewsPost() {
-            DispatchQueue.main.async {
-                self.observeMyNews()
-                self.refreshControl?.endRefreshing()
-                self.tableView.reloadData()
+        loading = true
+        newsService.loadNewsPost(startFrom: "") { [weak self] _ in
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+                self?.prepareSections()
+                self?.refreshControl?.endRefreshing()
+                
+                self?.loading = false
             }
         }
     }
@@ -87,18 +96,18 @@ class NewsTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return news?.count ?? 0
+        return sections?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard indexPath.row == 1, let news = news?[indexPath.section], news.hasImage else { return UITableView.automaticDimension }
+        guard indexPath.row == 1, let news = sections?[indexPath.section], news.hasImage else { return UITableView.automaticDimension }
     
         return tableView.bounds.size.width * news.aspectRatio
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let news = news?[section] else { return 0 }
-        if news.hasImage {
+        guard let section = sections?[section] else { return 0 }
+        if section.hasImage {
             return 3
         } else {
             return 2
@@ -107,11 +116,10 @@ class NewsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let newss = news![indexPath.section]
+        let news = sections![indexPath.section]
         
-        let cell = cellSelection(news: newss, indexPath: indexPath)
+        let cell = cellSelection(news: news, indexPath: indexPath)
  
-        
         return cell
     }
     
@@ -175,6 +183,21 @@ class NewsTableViewController: UITableViewController {
             
             return cell
             
+        }
+    }
+}
+
+extension NewsTableViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        guard !loading,
+            let maxSection = indexPaths.map(\.section).max(),
+            let sections = sections,
+            maxSection > sections.count - 6 else { return }
+        
+        loading = true
+        newsService.loadNewsPost(startFrom: startFrom) { [weak self] startFrom in
+            self?.startFrom = startFrom
+            self?.loading = false
         }
     }
 }
